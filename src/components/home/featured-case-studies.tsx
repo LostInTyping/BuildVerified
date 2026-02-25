@@ -1,21 +1,9 @@
 import Link from "next/link";
-
-const placeholderStudies = [
-  {
-    slug: "digital-menu-platform",
-    clientType: "National QSR brand",
-    role: "Test planning, Cypress automation, lab infrastructure",
-    outcome: "Reduced regression cycles from days to hours",
-  },
-  {
-    slug: "university-it-systems",
-    clientType: "Major university IT systems",
-    role: "Cypress framework, regression suites, defect lifecycle",
-    outcome: "Strengthened regression coverage across critical systems",
-  },
-];
+import { getFeaturedCaseStudies } from "@/lib/case-studies";
 
 export function FeaturedCaseStudies() {
+  const studies = getFeaturedCaseStudies();
+
   return (
     <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-16">
@@ -31,20 +19,20 @@ export function FeaturedCaseStudies() {
           </Link>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {placeholderStudies.map((study) => (
+          {studies.map((study) => (
             <Link
-              key={study.slug}
-              href={`/case-studies/${study.slug}`}
+              key={study.frontmatter.slug}
+              href={`/case-studies/${study.frontmatter.slug}`}
               className="group rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-border-hover hover:bg-bg-card-hover"
             >
               <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
-                {study.clientType}
+                {study.frontmatter.clientType}
               </p>
               <h3 className="mt-3 text-lg font-semibold text-text-primary group-hover:text-accent">
-                {study.role}
+                {study.frontmatter.role}
               </h3>
               <p className="mt-2 text-sm text-text-secondary">
-                {study.outcome}
+                {study.frontmatter.outcome}
               </p>
             </Link>
           ))}
