@@ -13,6 +13,8 @@ export function MobileNav() {
         onClick={() => setIsOpen(!isOpen)}
         className="text-text-secondary hover:text-text-primary"
         aria-label="Toggle menu"
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu"
       >
         <svg
           className="h-6 w-6"
@@ -38,7 +40,7 @@ export function MobileNav() {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full border-b border-border bg-bg-primary px-6 py-4">
+        <div id="mobile-menu" className="absolute left-0 right-0 top-full border-b border-border bg-bg-primary px-6 py-4">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.href}>
