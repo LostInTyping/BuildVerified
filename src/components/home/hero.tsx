@@ -10,32 +10,32 @@ const expertiseAreas: Array<{
   {
     title: "Test Automation",
     icon: "selenium",
-    hoverColorClass: "group-hover:text-[#7BCB5C]",
+    hoverColorClass: "group-hover:text-[#43B02A]",
   },
   {
     title: "Testing Strategy",
     icon: "cypress",
-    hoverColorClass: "group-hover:text-[#7EE0B8]",
+    hoverColorClass: "group-hover:text-[#69D3A7]",
   },
   {
     title: "Defect Lifecycle",
     icon: "jira",
-    hoverColorClass: "group-hover:text-[#66A3FF]",
+    hoverColorClass: "group-hover:text-[#2684FF]",
   },
   {
     title: "Environments & Infrastructure",
     icon: "docker",
-    hoverColorClass: "group-hover:text-[#63B3FF]",
+    hoverColorClass: "group-hover:text-[#2496ED]",
   },
   {
     title: "CI & Tooling",
     icon: "githubactions",
-    hoverColorClass: "group-hover:text-[#7DB7FF]",
+    hoverColorClass: "group-hover:text-[#2088FF]",
   },
   {
     title: "Collaboration & Documentation",
     icon: "confluence",
-    hoverColorClass: "group-hover:text-[#8AB8FF]",
+    hoverColorClass: "group-hover:text-[#1868DB]",
   },
 ];
 
@@ -162,7 +162,7 @@ export function Hero() {
                 >
                   <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
                     <div
-                      className={`mx-auto flex h-10 w-10 items-center justify-center text-white/95 transition-colors duration-300 ${area.hoverColorClass}`}
+                      className={`mx-auto flex h-10 w-10 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
                     >
                       <ExpertiseIcon
                         name={area.icon}
