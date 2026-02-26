@@ -3,7 +3,8 @@ import { getAllCaseStudies } from "@/lib/case-studies";
 
 export const metadata = {
   title: "Case Studies",
-  description: "NDA-safe deep dives into real QA engineering projects.",
+  description:
+    "Deep dives into real QA engineering projects across public and NDA-protected work.",
 };
 
 export default function CaseStudiesPage() {
@@ -13,15 +14,15 @@ export default function CaseStudiesPage() {
     <main className="mx-auto max-w-6xl px-6 py-16">
       <h1 className="text-4xl font-bold">Case Studies</h1>
       <p className="mt-4 max-w-2xl text-text-secondary">
-        Deep dives into real projects. Details sanitized for NDA compliance —
-        workflows and outcomes are accurate.
+        A mix of public case studies and NDA-safe project summaries. Where
+        details are restricted, workflows and outcomes remain accurate.
       </p>
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {caseStudies.map((study, index) => (
           <Link
             key={study.frontmatter.slug}
             href={`/case-studies/${study.frontmatter.slug}`}
-            className="group rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-accent hover:bg-bg-card-hover"
+            className="case-study-card group block rounded-lg border border-border bg-bg-card p-6 hover:bg-bg-card-hover"
           >
             <div className="flex items-start justify-between gap-4">
               <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
