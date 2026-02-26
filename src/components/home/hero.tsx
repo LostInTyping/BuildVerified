@@ -8,7 +8,7 @@ export function Hero() {
         <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Ben Armour
         </p>
-        <h1 className="mt-4 text-5xl font-bold leading-tight md:text-6xl">
+        <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
           Software QA Engineer
         </h1>
       </FadeIn>
@@ -19,7 +19,7 @@ export function Hero() {
         </p>
       </FadeIn>
       <FadeIn delay={0.2}>
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex flex-wrap gap-4">
           <Link
             href="/case-studies"
             className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-bg-primary transition-colors hover:bg-accent-hover"

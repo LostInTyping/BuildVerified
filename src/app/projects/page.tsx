@@ -26,7 +26,7 @@ export default function ProjectsPage() {
             <div className="absolute left-0 top-[18px] h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg-primary" />
 
             <div className="mb-8 rounded-lg border border-border bg-bg-card p-6">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-accent">
                     {project.frontmatter.company}
