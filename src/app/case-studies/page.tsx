@@ -17,17 +17,22 @@ export default function CaseStudiesPage() {
         workflows and outcomes are accurate.
       </p>
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {caseStudies.map((study) => (
+        {caseStudies.map((study, index) => (
           <Link
             key={study.frontmatter.slug}
             href={`/case-studies/${study.frontmatter.slug}`}
-            className="group rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-border-hover hover:bg-bg-card-hover"
+            className="group rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-accent hover:bg-bg-card-hover"
           >
-            <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
-              {study.frontmatter.clientType}
-            </p>
-            <h2 className="mt-3 text-xl font-semibold text-text-primary group-hover:text-accent">
-              {study.frontmatter.role}
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
+                {study.frontmatter.clientType}
+              </p>
+              <span className="shrink-0 font-mono text-4xl font-bold text-text-muted transition-colors group-hover:text-accent">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <h2 className="mt-3 text-xl font-semibold text-text-primary transition-colors group-hover:text-accent">
+              {study.frontmatter.title}
             </h2>
             <p className="mt-2 text-sm text-text-secondary">
               {study.frontmatter.outcome}
