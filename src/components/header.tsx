@@ -23,7 +23,7 @@ export function Header() {
       <nav
         className={`navbar-inner flex items-center gap-1 border border-border bg-bg-card/60 backdrop-blur-lg ${
           scrolled
-            ? "w-full max-w-6xl rounded-full px-3 py-2"
+            ? "w-full max-w-[34rem] rounded-full px-3 py-2"
             : "w-full max-w-6xl rounded-xl px-5 py-3"
         }`}
       >
