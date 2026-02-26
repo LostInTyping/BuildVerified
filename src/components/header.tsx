@@ -19,12 +19,12 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
         className={`navbar-inner flex items-center gap-1 border border-border bg-bg-card/60 backdrop-blur-lg ${
           scrolled
-            ? "max-w-fit rounded-full px-2 py-2"
-            : "max-w-4xl w-full rounded-xl px-5 py-3"
+            ? "w-full max-w-6xl rounded-full px-3 py-2"
+            : "w-full max-w-6xl rounded-xl px-5 py-3"
         }`}
       >
         {/* Logo — visible only at top */}
@@ -49,7 +49,7 @@ export function Header() {
         </AnimatePresence>
 
         {/* Nav links — always visible (desktop) */}
-        <ul className="hidden flex-1 items-center justify-center gap-1 md:flex">
+        <ul className="hidden flex-1 items-center justify-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -81,7 +81,7 @@ export function Header() {
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}
               transition={{ duration: 0.3 }}
-              className="hidden overflow-hidden md:block"
+              className="hidden overflow-hidden lg:block"
             >
               <Link
                 href="/contact"
