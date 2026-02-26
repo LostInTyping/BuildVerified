@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/capabilities", label: "Capabilities" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
-];
+import { navLinks } from "@/lib/nav-links";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
