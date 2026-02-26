@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Capabilities",
+  description: "Test automation, testing strategy, defect lifecycle, and more.",
+};
+
 const capabilities = [
   {
     title: "Test Automation",

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Contact",
+  description: "Get in touch for QA engineering opportunities.",
+};
+
 export default function ContactPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">

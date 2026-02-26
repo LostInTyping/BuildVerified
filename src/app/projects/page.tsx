@@ -1,5 +1,10 @@
 import { getAllProjects } from "@/lib/projects";
 
+export const metadata = {
+  title: "Projects",
+  description: "Timeline of professional and personal QA engineering work.",
+};
+
 export default function ProjectsPage() {
   const projects = getAllProjects();
 
