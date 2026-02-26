@@ -34,19 +34,59 @@ body {
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-33.33%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .marquee-strip {
+  display: flex;
+  width: max-content;
   animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marquee-group {
+  display: flex;
+  gap: 0.5rem;
+  min-width: max-content;
+  padding-right: 0.5rem;
 }
 
 .expertise-tile:hover {
   box-shadow: var(--shadow-expertise-glow);
+}
+
+.case-study-card {
+  transition: border-color 220ms ease, background-color 220ms ease,
+              box-shadow 220ms ease;
+}
+
+.case-study-card:hover,
+.case-study-card:focus-visible {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-expertise-glow),
+              0 0 28px rgba(96, 165, 250, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {

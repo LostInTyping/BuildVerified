@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { getFeaturedCaseStudies } from "@/lib/case-studies";
+import { getAllCaseStudies, getFeaturedCaseStudies } from "@/lib/case-studies";
 import { FadeIn } from "@/components/fade-in";
 
 export function FeaturedCaseStudies() {
-  const studies = getFeaturedCaseStudies();
+  const featuredStudies = getFeaturedCaseStudies();
+  const studies =
+    (featuredStudies.length >= 4 ? featuredStudies : getAllCaseStudies()).slice(
+      0,
+      4,
+    );
 
   return (
     <section>
@@ -21,10 +26,14 @@ export function FeaturedCaseStudies() {
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {studies.map((study, index) => (
-            <FadeIn key={study.frontmatter.slug} delay={index * 0.1} className="h-full">
+            <FadeIn
+              key={study.frontmatter.slug}
+              delay={index * 0.1}
+              className={index >= 2 ? "hidden h-full md:block" : "h-full"}
+            >
               <Link
                 href={`/case-studies/${study.frontmatter.slug}`}
-                className="group flex h-full flex-col rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-accent hover:bg-bg-card-hover"
+                className="case-study-card group flex h-full flex-col rounded-lg border border-border bg-bg-card p-6 hover:bg-bg-card-hover"
               >
                 <div className="flex items-start justify-between gap-4">
                   <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
@@ -50,9 +59,6 @@ export function FeaturedCaseStudies() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-auto pt-6 text-xs text-accent">
-                  Read case study &rarr;
-                </p>
               </Link>
             </FadeIn>
           ))}
