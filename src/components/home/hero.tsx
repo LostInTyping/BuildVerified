@@ -39,11 +39,20 @@ const expertiseAreas: Array<{
   },
 ];
 
-const capabilities = expertiseAreas.map((area) => area.title);
+const selectedBrandsAndPrograms = [
+  "Brooksource",
+  "Macy's",
+  "Ohio Sentencing Data Platform (OSDP)",
+  "Offender Risk Assessment & Case Planning (20+ States)",
+  "DRF-CoApp",
+  "McDonald's",
+  "Taco Bell",
+  "KFC",
+  "Tim Hortons",
+  "Burger King",
+];
 
 export function Hero() {
-  const tripleCaps = [...capabilities, ...capabilities, ...capabilities];
-
   return (
     <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
@@ -181,23 +190,35 @@ export function Hero() {
 
         {/* Content Card */}
         <FadeIn delay={0.2} className="h-full min-w-0">
-          <div className="h-full min-w-0 overflow-hidden rounded-lg border border-border bg-bg-card p-5">
+          <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
             <p className="text-sm leading-relaxed text-text-secondary">
               As a QA engineer, I specialize in building robust test automation
               frameworks, designing comprehensive test strategies, and ensuring
-              software quality across the full development lifecycle.
+              software quality across enterprise and public-sector systems.
             </p>
-            <div className="-mx-5 mt-4 overflow-hidden border-t border-border px-5 pt-4">
-              <div className="marquee-strip min-w-0 flex gap-3 whitespace-nowrap">
-                {tripleCaps.map((cap, i) => (
-                  <span
-                    key={`${cap}-${i}`}
-                    aria-hidden={i >= capabilities.length}
-                    className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-text-muted"
-                  >
-                    {cap}
-                  </span>
-                ))}
+            <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
+              <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
+                Selected Brands & Programs
+              </p>
+              <div className="marquee-viewport">
+                <div className="marquee-strip">
+                  {[0, 1].map((copyIndex) => (
+                    <div
+                      key={copyIndex}
+                      className="marquee-group"
+                      aria-hidden={copyIndex === 1}
+                    >
+                      {selectedBrandsAndPrograms.map((item) => (
+                        <span
+                          key={`${item}-${copyIndex}`}
+                          className="shrink-0 whitespace-nowrap rounded-full border border-border bg-bg-elevated px-2.5 py-1 text-[11px] text-text-secondary"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
