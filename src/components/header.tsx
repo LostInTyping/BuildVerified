@@ -9,6 +9,7 @@ import { MobileNav } from "./mobile-nav";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [showExpandedContent, setShowExpandedContent] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -18,38 +19,57 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const timer = window.setTimeout(
+      () => setShowExpandedContent(!scrolled),
+      scrolled ? 0 : 120,
+    );
+
+    return () => window.clearTimeout(timer);
+  }, [scrolled]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
-        className={`navbar-inner flex items-center gap-1 border border-border bg-bg-card/60 backdrop-blur-lg ${
+        className={`navbar-inner relative grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1 border border-border bg-bg-card/60 px-3 py-2.5 backdrop-blur-lg ${
           scrolled
-            ? "w-full max-w-[34rem] rounded-full px-3 py-2"
-            : "w-full max-w-6xl rounded-xl px-5 py-3"
+            ? "navbar-collapsed w-full max-w-[34rem]"
+            : "navbar-expanded w-full max-w-6xl px-5"
         }`}
       >
         {/* Logo — visible only at top */}
-        <AnimatePresence>
-          {!scrolled && (
-            <motion.div
-              key="logo"
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "auto" }}
-              exit={{ opacity: 0, width: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
-              <Link
-                href="/"
-                className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
+        <div className="min-w-0">
+          <AnimatePresence initial={false}>
+            {showExpandedContent && (
+              <motion.div
+                key="logo"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "auto" }}
+                exit={{
+                  opacity: 0,
+                  width: 0,
+                  transition: { duration: 0.18, ease: [0.4, 0, 1, 1] },
+                }}
+                transition={{
+                  duration: 0.34,
+                  delay: 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="overflow-hidden"
               >
-                Ben Armour
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <Link
+                  href="/"
+                  className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
+                >
+                  Ben Armour
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Nav links — always visible (desktop) */}
-        <ul className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+        <ul className="hidden items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -59,7 +79,7 @@ export function Header() {
               <Link
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
+                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors ${
                   isActive
                     ? "bg-bg-elevated text-text-primary"
                     : "text-text-secondary hover:text-text-primary"
@@ -72,29 +92,10 @@ export function Header() {
           })}
         </ul>
 
-        {/* CTA — visible only at top */}
-        <AnimatePresence>
-          {!scrolled && (
-            <motion.div
-              key="cta"
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "auto" }}
-              exit={{ opacity: 0, width: 0 }}
-              transition={{ duration: 0.3 }}
-              className="hidden overflow-hidden lg:block"
-            >
-              <Link
-                href="/contact"
-                className="ml-4 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-bg-primary transition-colors hover:bg-accent-hover"
-              >
-                Get in Touch
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Mobile hamburger */}
-        <MobileNav />
+        <div className="justify-self-end">
+          <MobileNav />
+        </div>
       </nav>
     </header>
   );
