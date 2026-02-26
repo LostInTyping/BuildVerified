@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
+export const metadata = {
+  title: "Case Studies",
+  description: "NDA-safe deep dives into real QA engineering projects.",
+};
+
 export default function CaseStudiesPage() {
   const caseStudies = getAllCaseStudies();
 

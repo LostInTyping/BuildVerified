@@ -4,6 +4,20 @@ import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
 import { mdxComponents } from "@/components/mdx-components";
 import Link from "next/link";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const study = getCaseStudyBySlug(slug);
+  if (!study) return { title: "Case Study" };
+  return {
+    title: study.frontmatter.title,
+    description: study.frontmatter.outcome,
+  };
+}
+
 export function generateStaticParams() {
   const studies = getAllCaseStudies();
   return studies.map((s) => ({ slug: s.frontmatter.slug }));
