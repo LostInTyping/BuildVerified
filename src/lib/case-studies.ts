@@ -4,6 +4,18 @@ import matter from "gray-matter";
 
 const contentDir = path.join(process.cwd(), "src/content/case-studies");
 
+export type CaseStudyLinkKind =
+  | "public_reference"
+  | "restricted_access"
+  | "client_site";
+
+export interface CaseStudyLink {
+  label: string;
+  url: string;
+  kind: CaseStudyLinkKind;
+  note?: string;
+}
+
 export interface CaseStudyFrontmatter {
   title: string;
   slug: string;
@@ -12,6 +24,7 @@ export interface CaseStudyFrontmatter {
   stack: string[];
   highlights: string;
   outcome: string;
+  links?: CaseStudyLink[];
   featured: boolean;
   order: number;
 }
