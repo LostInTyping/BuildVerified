@@ -14,8 +14,8 @@ export function StatsSection() {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
           {stats.map((stat, i) => (
-            <FadeIn key={stat.label} delay={i * 0.05}>
-              <div className="rounded-lg border border-border bg-bg-card p-4 text-center">
+            <FadeIn key={stat.label} delay={i * 0.05} className="h-full">
+              <div className="h-full rounded-lg border border-border bg-bg-card p-4 text-center">
                 <p className="text-3xl font-bold text-accent md:text-4xl">
                   {stat.value}
                 </p>

@@ -34,7 +34,7 @@ export function Hero() {
     <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
       <div className="grid gap-5 lg:grid-cols-[350px_1fr]">
         {/* Profile Card — spans both rows on desktop */}
-        <FadeIn className="lg:row-span-2">
+        <FadeIn className="h-full lg:row-span-2">
           <div className="flex h-full flex-col gap-5 rounded-lg border border-border bg-bg-card p-5">
             {/* Terminal visual */}
             <div className="rounded-lg bg-bg-elevated font-mono text-xs">
@@ -134,8 +134,8 @@ export function Hero() {
         </FadeIn>
 
         {/* Skills Card */}
-        <FadeIn delay={0.1}>
-          <div className="rounded-lg border border-border bg-bg-card p-5">
+        <FadeIn delay={0.1} className="h-full">
+          <div className="h-full rounded-lg border border-border bg-bg-card p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               My QA Toolkit
             </h2>
@@ -153,8 +153,8 @@ export function Hero() {
         </FadeIn>
 
         {/* Content Card */}
-        <FadeIn delay={0.2}>
-          <div className="overflow-hidden rounded-lg border border-border bg-bg-card p-5">
+        <FadeIn delay={0.2} className="h-full">
+          <div className="h-full overflow-hidden rounded-lg border border-border bg-bg-card p-5">
             <p className="text-sm leading-relaxed text-text-secondary">
               As a QA engineer, I specialize in building robust test automation
               frameworks, designing comprehensive test strategies, and ensuring
