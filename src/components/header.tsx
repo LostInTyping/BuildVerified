@@ -31,6 +31,7 @@ export function Header() {
         <AnimatePresence>
           {!scrolled && (
             <motion.div
+              key="logo"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}
@@ -48,14 +49,18 @@ export function Header() {
         </AnimatePresence>
 
         {/* Nav links — always visible (desktop) */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
+        <ul className="hidden flex-1 items-center justify-center gap-1 md:flex">
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href));
+            return (
             <li key={link.href}>
               <Link
                 href={link.href}
+                aria-current={isActive ? "page" : undefined}
                 className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
-                  pathname === link.href ||
-                  (link.href !== "/" && pathname.startsWith(link.href))
+                  isActive
                     ? "bg-bg-elevated text-text-primary"
                     : "text-text-secondary hover:text-text-primary"
                 }`}
@@ -63,13 +68,15 @@ export function Header() {
                 {link.label}
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
 
         {/* CTA — visible only at top */}
         <AnimatePresence>
           {!scrolled && (
             <motion.div
+              key="cta"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}
