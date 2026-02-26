@@ -35,7 +35,7 @@ export function BottomSection() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* How I Work Card */}
-          <FadeIn>
+          <FadeIn className="h-full">
             <div className="h-full rounded-lg border border-border bg-bg-card p-6">
               <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
                 How I Work
@@ -56,7 +56,7 @@ export function BottomSection() {
           </FadeIn>
 
           {/* CTA Card */}
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.1} className="h-full">
             <div className="flex h-full flex-col rounded-lg border border-border bg-bg-card p-6">
               <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
                 Available for new opportunities
