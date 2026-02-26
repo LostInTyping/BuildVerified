@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/fade-in";
+
 const proofItems = [
   {
     title: "CI Pipeline Integration",
@@ -34,18 +36,17 @@ export function ProofSection() {
           How I Work
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {proofItems.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-lg border border-border bg-bg-card p-6 transition-colors hover:bg-bg-card-hover"
-            >
-              <h3 className="text-lg font-semibold text-text-primary">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm text-text-secondary">
-                {item.description}
-              </p>
-            </div>
+          {proofItems.map((item, index) => (
+            <FadeIn key={item.title} delay={index * 0.1}>
+              <div className="rounded-lg border border-border bg-bg-card p-6 transition-colors hover:bg-bg-card-hover">
+                <h3 className="text-lg font-semibold text-text-primary">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary">
+                  {item.description}
+                </p>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </div>
