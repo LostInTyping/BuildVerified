@@ -46,12 +46,12 @@ export function Hero() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
-      <div className="grid gap-4 sm:gap-5 lg:grid-cols-[350px_minmax(0,42rem)] lg:justify-center">
+      <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         {/* Profile Card — spans both rows on desktop */}
-        <FadeIn className="h-full lg:row-span-2">
-          <div className="flex h-full flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
+        <FadeIn className="h-full min-w-0 md:row-span-2">
+          <div className="flex h-full min-w-0 flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
             {/* Terminal visual */}
-            <div className="rounded-lg bg-bg-elevated font-mono text-[11px] sm:text-xs">
+            <div className="overflow-x-auto rounded-lg bg-bg-elevated font-mono text-[11px] sm:text-xs">
               <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
                 <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
@@ -148,8 +148,8 @@ export function Hero() {
         </FadeIn>
 
         {/* Expertise Card */}
-        <FadeIn delay={0.1} className="h-full">
-          <div className="h-full rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+        <FadeIn delay={0.1} className="h-full min-w-0">
+          <div className="h-full min-w-0 rounded-lg border border-border bg-bg-card p-4 sm:p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               Areas of Expertise
             </h2>
@@ -180,15 +180,15 @@ export function Hero() {
         </FadeIn>
 
         {/* Content Card */}
-        <FadeIn delay={0.2} className="h-full">
-          <div className="h-full overflow-hidden rounded-lg border border-border bg-bg-card p-5">
+        <FadeIn delay={0.2} className="h-full min-w-0">
+          <div className="h-full min-w-0 overflow-hidden rounded-lg border border-border bg-bg-card p-5">
             <p className="text-sm leading-relaxed text-text-secondary">
               As a QA engineer, I specialize in building robust test automation
               frameworks, designing comprehensive test strategies, and ensuring
               software quality across the full development lifecycle.
             </p>
             <div className="-mx-5 mt-4 overflow-hidden border-t border-border px-5 pt-4">
-              <div className="marquee-strip flex gap-3 whitespace-nowrap">
+              <div className="marquee-strip min-w-0 flex gap-3 whitespace-nowrap">
                 {tripleCaps.map((cap, i) => (
                   <span
                     key={`${cap}-${i}`}
