@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
 import { mdxComponents } from "@/components/mdx-components";
 import Link from "next/link";
+import { CaseStudyLinks } from "@/components/case-study-links";
 
 export async function generateMetadata({
   params,
@@ -57,6 +58,7 @@ export default async function CaseStudyDetailPage({
           </span>
         ))}
       </div>
+      <CaseStudyLinks links={study.frontmatter.links} className="mt-5" />
       <div className="mt-12">
         <MDXRemote source={study.content} components={mdxComponents} />
       </div>
