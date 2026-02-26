@@ -21,7 +21,7 @@ export function FeaturedCaseStudies() {
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {studies.map((study, index) => (
-            <FadeIn key={study.frontmatter.slug} delay={index * 0.1}>
+            <FadeIn key={study.frontmatter.slug} delay={index * 0.1} className="h-full">
               <Link
                 href={`/case-studies/${study.frontmatter.slug}`}
                 className="group flex h-full flex-col rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-accent hover:bg-bg-card-hover"
