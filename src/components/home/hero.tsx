@@ -1,30 +1,41 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
+import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 
-const expertiseAreas = [
+const expertiseAreas: Array<{
+  title: string;
+  icon: ExpertiseIconName;
+  hoverColorClass: string;
+}> = [
   {
     title: "Test Automation",
-    logo: "https://cdn.simpleicons.org/selenium",
+    icon: "selenium",
+    hoverColorClass: "group-hover:text-[#7BCB5C]",
   },
   {
     title: "Testing Strategy",
-    logo: "https://cdn.simpleicons.org/cypress",
+    icon: "cypress",
+    hoverColorClass: "group-hover:text-[#7EE0B8]",
   },
   {
     title: "Defect Lifecycle",
-    logo: "https://cdn.simpleicons.org/jira",
+    icon: "jira",
+    hoverColorClass: "group-hover:text-[#66A3FF]",
   },
   {
     title: "Environments & Infrastructure",
-    logo: "https://cdn.simpleicons.org/docker",
+    icon: "docker",
+    hoverColorClass: "group-hover:text-[#63B3FF]",
   },
   {
     title: "CI & Tooling",
-    logo: "https://cdn.simpleicons.org/githubactions",
+    icon: "githubactions",
+    hoverColorClass: "group-hover:text-[#7DB7FF]",
   },
   {
     title: "Collaboration & Documentation",
-    logo: "https://cdn.simpleicons.org/confluence",
+    icon: "confluence",
+    hoverColorClass: "group-hover:text-[#8AB8FF]",
   },
 ];
 
@@ -34,14 +45,14 @@ export function Hero() {
   const tripleCaps = [...capabilities, ...capabilities, ...capabilities];
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <div className="grid gap-5 lg:grid-cols-[350px_minmax(0,42rem)] lg:justify-center">
+    <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
+      <div className="grid gap-4 sm:gap-5 lg:grid-cols-[350px_minmax(0,42rem)] lg:justify-center">
         {/* Profile Card — spans both rows on desktop */}
         <FadeIn className="h-full lg:row-span-2">
-          <div className="flex h-full flex-col gap-5 rounded-lg border border-border bg-bg-card p-5">
+          <div className="flex h-full flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
             {/* Terminal visual */}
-            <div className="rounded-lg bg-bg-elevated font-mono text-xs">
-              <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
+            <div className="rounded-lg bg-bg-elevated font-mono text-[11px] sm:text-xs">
+              <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
                 <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
                 <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
@@ -49,7 +60,7 @@ export function Hero() {
                   cypress run --headless
                 </span>
               </div>
-              <div className="space-y-1 p-3">
+              <div className="space-y-0.5 p-2.5 sm:space-y-1 sm:p-3">
                 <p className="text-text-muted">Running 5 of 5 specs...</p>
                 <p>
                   <span className="text-green-400">✓</span>{" "}
@@ -91,32 +102,32 @@ export function Hero() {
               <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
                 Software QA Engineer
               </p>
-              <h1 className="mt-2 text-3xl font-bold text-text-primary">
+              <h1 className="mt-1.5 text-2xl font-bold text-text-primary sm:mt-2 sm:text-3xl">
                 Ben Armour
               </h1>
-              <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+              <p className="mt-2.5 text-sm leading-relaxed text-text-secondary sm:mt-3">
                 I build test automation, validate software across distributed
                 environments, and own quality from test planning through release.
               </p>
             </div>
 
             {/* Actions — pushed to bottom */}
-            <div className="mt-auto flex flex-col gap-3">
-              <div className="flex flex-wrap gap-3">
+            <div className="mt-auto flex flex-col gap-2.5 sm:gap-3">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 <Link
                   href="/case-studies"
-                  className="rounded-md bg-accent px-4 py-2.5 text-xs font-medium text-bg-primary transition-colors hover:bg-accent-hover"
+                  className="basis-full rounded-md bg-accent px-3.5 py-2 text-center text-[11px] font-medium text-bg-primary transition-colors hover:bg-accent-hover sm:basis-auto sm:px-4 sm:py-2.5 sm:text-xs"
                 >
                   View Case Studies
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-md border border-border px-4 py-2.5 text-xs font-medium text-text-primary transition-colors hover:border-border-hover"
+                  className="basis-full rounded-md border border-border px-3.5 py-2 text-center text-[11px] font-medium text-text-primary transition-colors hover:border-border-hover sm:basis-auto sm:px-4 sm:py-2.5 sm:text-xs"
                 >
                   Get in Touch
                 </Link>
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href="https://linkedin.com/in/ben-armour"
                   target="_blank"
@@ -138,31 +149,31 @@ export function Hero() {
 
         {/* Expertise Card */}
         <FadeIn delay={0.1} className="h-full">
-          <div className="h-full rounded-lg border border-border bg-bg-card p-5">
+          <div className="h-full rounded-lg border border-border bg-bg-card p-4 sm:p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               Areas of Expertise
             </h2>
-            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-              {expertiseAreas.map((area) => (
-                <div
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-2.5 sm:grid-cols-3">
+              {expertiseAreas.map((area, index) => (
+                <FadeIn
                   key={area.title}
-                  className="group rounded-md border border-border bg-bg-elevated px-3 py-3 text-center transition-all duration-300 hover:border-border-hover hover:shadow-[4px_4px_10px_4px_rgba(255,136,51,0.05)]"
+                  delay={0.14 + index * 0.05}
+                  className="h-full"
                 >
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center">
-                    <img
-                      src={area.logo}
-                      alt=""
-                      aria-hidden="true"
-                      width={26}
-                      height={26}
-                      className="h-6 w-6 object-contain grayscale opacity-75 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                      loading="lazy"
-                    />
+                  <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
+                    <div
+                      className={`mx-auto flex h-10 w-10 items-center justify-center text-white/95 transition-colors duration-300 ${area.hoverColorClass}`}
+                    >
+                      <ExpertiseIcon
+                        name={area.icon}
+                        className="h-6 w-6 transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <p className="mt-2 text-[11px] font-medium text-text-secondary sm:text-xs">
+                      {area.title}
+                    </p>
                   </div>
-                  <p className="mt-2 text-xs font-medium text-text-secondary">
-                    {area.title}
-                  </p>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
