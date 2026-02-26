@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { navLinks } from "@/lib/nav-links";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="md:hidden">
@@ -40,14 +42,22 @@ export function MobileNav() {
         </svg>
       </button>
       {isOpen && (
-        <div id="mobile-menu" className="absolute left-0 right-0 top-full border-b border-border bg-bg-primary px-6 py-4">
-          <ul className="flex flex-col gap-4">
+        <div
+          id="mobile-menu"
+          className="absolute left-4 right-4 top-full mt-2 rounded-xl border border-border bg-bg-card/80 px-6 py-4 backdrop-blur-lg"
+        >
+          <ul className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                  className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
+                    pathname === link.href ||
+                    (link.href !== "/" && pathname.startsWith(link.href))
+                      ? "bg-bg-elevated text-text-primary"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
                 >
                   {link.label}
                 </Link>

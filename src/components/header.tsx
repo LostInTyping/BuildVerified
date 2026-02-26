@@ -1,26 +1,92 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { MobileNav } from "./mobile-nav";
+import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
+import { MobileNav } from "./mobile-nav";
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    handleScroll(); // check initial position
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-bold text-text-primary">
-          Ben Armour
-        </Link>
-        <ul className="hidden gap-6 md:flex">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-6 py-4">
+      <nav
+        className={`navbar-inner flex items-center gap-1 border border-border bg-bg-card/60 backdrop-blur-lg ${
+          scrolled
+            ? "max-w-fit rounded-full px-2 py-2"
+            : "max-w-4xl w-full rounded-xl px-5 py-3"
+        }`}
+      >
+        {/* Logo — visible only at top */}
+        <AnimatePresence>
+          {!scrolled && (
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "auto" }}
+              exit={{ opacity: 0, width: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <Link
+                href="/"
+                className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
+              >
+                Ben Armour
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Nav links — always visible (desktop) */}
+        <ul className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
+                  pathname === link.href ||
+                  (link.href !== "/" && pathname.startsWith(link.href))
+                    ? "bg-bg-elevated text-text-primary"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
               >
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
+
+        {/* CTA — visible only at top */}
+        <AnimatePresence>
+          {!scrolled && (
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "auto" }}
+              exit={{ opacity: 0, width: 0 }}
+              transition={{ duration: 0.3 }}
+              className="hidden overflow-hidden md:block"
+            >
+              <Link
+                href="/contact"
+                className="ml-4 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-bg-primary transition-colors hover:bg-accent-hover"
+              >
+                Get in Touch
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile hamburger */}
         <MobileNav />
       </nav>
     </header>
