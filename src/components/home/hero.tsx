@@ -1,38 +1,41 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 
-const tools = [
-  "Cypress",
-  "Playwright",
-  "Selenium",
-  "Jest",
-  "Postman",
-  "Jira",
-  "GitHub Actions",
-  "Docker",
-  "SQL",
-  "Git",
-  "Zephyr",
-  "TestRail",
-  "Allure",
-  "Confluence",
+const expertiseAreas = [
+  {
+    title: "Test Automation",
+    logo: "https://cdn.simpleicons.org/selenium",
+  },
+  {
+    title: "Testing Strategy",
+    logo: "https://cdn.simpleicons.org/cypress",
+  },
+  {
+    title: "Defect Lifecycle",
+    logo: "https://cdn.simpleicons.org/jira",
+  },
+  {
+    title: "Environments & Infrastructure",
+    logo: "https://cdn.simpleicons.org/docker",
+  },
+  {
+    title: "CI & Tooling",
+    logo: "https://cdn.simpleicons.org/githubactions",
+  },
+  {
+    title: "Collaboration & Documentation",
+    logo: "https://cdn.simpleicons.org/confluence",
+  },
 ];
 
-const capabilities = [
-  "Test Automation",
-  "Testing Strategy",
-  "Defect Lifecycle",
-  "Environments & Infrastructure",
-  "CI & Tooling",
-  "Collaboration & Documentation",
-];
+const capabilities = expertiseAreas.map((area) => area.title);
 
 export function Hero() {
   const tripleCaps = [...capabilities, ...capabilities, ...capabilities];
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <div className="grid gap-5 lg:grid-cols-[350px_1fr]">
+      <div className="grid gap-5 lg:grid-cols-[350px_minmax(0,42rem)] lg:justify-center">
         {/* Profile Card — spans both rows on desktop */}
         <FadeIn className="h-full lg:row-span-2">
           <div className="flex h-full flex-col gap-5 rounded-lg border border-border bg-bg-card p-5">
@@ -99,7 +102,7 @@ export function Hero() {
 
             {/* Actions — pushed to bottom */}
             <div className="mt-auto flex flex-col gap-3">
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="/case-studies"
                   className="rounded-md bg-accent px-4 py-2.5 text-xs font-medium text-bg-primary transition-colors hover:bg-accent-hover"
@@ -133,19 +136,32 @@ export function Hero() {
           </div>
         </FadeIn>
 
-        {/* Skills Card */}
+        {/* Expertise Card */}
         <FadeIn delay={0.1} className="h-full">
           <div className="h-full rounded-lg border border-border bg-bg-card p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-              My QA Toolkit
+              Areas of Expertise
             </h2>
-            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
-              {tools.map((tool) => (
+            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+              {expertiseAreas.map((area) => (
                 <div
-                  key={tool}
-                  className="rounded-md bg-bg-elevated px-3 py-3 text-center text-sm text-text-secondary"
+                  key={area.title}
+                  className="group rounded-md border border-border bg-bg-elevated px-3 py-3 text-center transition-all duration-300 hover:border-border-hover hover:shadow-[4px_4px_10px_4px_rgba(255,136,51,0.05)]"
                 >
-                  {tool}
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center">
+                    <img
+                      src={area.logo}
+                      alt=""
+                      aria-hidden="true"
+                      width={26}
+                      height={26}
+                      className="h-6 w-6 object-contain grayscale opacity-75 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-2 text-xs font-medium text-text-secondary">
+                    {area.title}
+                  </p>
                 </div>
               ))}
             </div>
