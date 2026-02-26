@@ -54,7 +54,7 @@ const selectedBrandsAndPrograms = [
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
+    <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         {/* Profile Card — spans both rows on desktop */}
         <FadeIn className="h-full min-w-0 md:row-span-2">

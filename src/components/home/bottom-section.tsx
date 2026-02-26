@@ -32,7 +32,7 @@ const proofItems = [
 export function BottomSection() {
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-6 py-16">
+      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* How I Work Card */}
           <FadeIn className="h-full">
