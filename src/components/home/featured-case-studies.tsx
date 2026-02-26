@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getFeaturedCaseStudies } from "@/lib/case-studies";
+import { FadeIn } from "@/components/fade-in";
 
 export function FeaturedCaseStudies() {
   const studies = getFeaturedCaseStudies();
@@ -19,22 +20,23 @@ export function FeaturedCaseStudies() {
           </Link>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {studies.map((study) => (
-            <Link
-              key={study.frontmatter.slug}
-              href={`/case-studies/${study.frontmatter.slug}`}
-              className="group rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-border-hover hover:bg-bg-card-hover"
-            >
-              <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
-                {study.frontmatter.clientType}
-              </p>
-              <h3 className="mt-3 text-lg font-semibold text-text-primary group-hover:text-accent">
-                {study.frontmatter.role}
-              </h3>
-              <p className="mt-2 text-sm text-text-secondary">
-                {study.frontmatter.outcome}
-              </p>
-            </Link>
+          {studies.map((study, index) => (
+            <FadeIn key={study.frontmatter.slug} delay={index * 0.1}>
+              <Link
+                href={`/case-studies/${study.frontmatter.slug}`}
+                className="group block rounded-lg border border-border bg-bg-card p-6 transition-all hover:border-border-hover hover:bg-bg-card-hover"
+              >
+                <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
+                  {study.frontmatter.clientType}
+                </p>
+                <h3 className="mt-3 text-lg font-semibold text-text-primary group-hover:text-accent">
+                  {study.frontmatter.role}
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary">
+                  {study.frontmatter.outcome}
+                </p>
+              </Link>
+            </FadeIn>
           ))}
         </div>
       </div>
