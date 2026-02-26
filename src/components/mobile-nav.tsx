@@ -44,7 +44,7 @@ export function MobileNav() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[60] bg-bg-primary/70 px-4 pb-4 pt-20 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-[60] bg-bg-primary/70 px-4 pb-4 pt-20 backdrop-blur-sm md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -111,22 +111,6 @@ export function MobileNav() {
                 );
               })}
             </nav>
-
-            {/* CTA at bottom */}
-            <motion.div
-              className="border-t border-border px-6 pb-6 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 * navLinks.length, duration: 0.3 }}
-            >
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block rounded-md bg-accent px-6 py-3 text-center text-base font-medium text-bg-primary transition-colors hover:bg-accent-hover"
-              >
-                Get in Touch
-              </Link>
-            </motion.div>
           </motion.div>
         </motion.div>
       )}
@@ -134,7 +118,7 @@ export function MobileNav() {
   );
 
   return (
-    <div className="ml-auto lg:hidden">
+    <div className="ml-auto md:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-text-secondary hover:text-text-primary"
