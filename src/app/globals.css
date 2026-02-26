@@ -36,6 +36,16 @@ body {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-33.33%);
+  }
+}
+
+.marquee-strip {
+  animation: marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-strip {
+    animation: none;
   }
 }
