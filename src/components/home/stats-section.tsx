@@ -11,7 +11,7 @@ const stats = [
 export function StatsSection() {
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-6 py-8">
+      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
           {stats.map((stat, i) => (
             <FadeIn

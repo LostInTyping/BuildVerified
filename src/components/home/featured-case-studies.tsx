@@ -12,7 +12,7 @@ export function FeaturedCaseStudies() {
 
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-6 py-16">
+      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
             Case Studies
