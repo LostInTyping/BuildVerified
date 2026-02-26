@@ -31,7 +31,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
-        className={`navbar-inner relative grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1 border border-border bg-bg-card/60 px-3 py-2.5 backdrop-blur-lg ${
+        className={`navbar-inner relative flex h-12 items-center gap-1 border border-border bg-bg-card/60 px-3 backdrop-blur-lg ${
           scrolled
             ? "navbar-collapsed w-full max-w-[34rem]"
             : "navbar-expanded w-full max-w-6xl px-5"
@@ -69,7 +69,7 @@ export function Header() {
         </div>
 
         {/* Nav links — always visible (desktop) */}
-        <ul className="hidden items-center justify-center gap-1 md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -79,9 +79,9 @@ export function Header() {
               <Link
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors ${
+                className={`nav-pill-link whitespace-nowrap rounded-full px-3 py-1.5 text-sm ${
                   isActive
-                    ? "bg-bg-elevated text-text-primary"
+                    ? "nav-pill-link-active text-text-primary"
                     : "text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -93,7 +93,7 @@ export function Header() {
         </ul>
 
         {/* Mobile hamburger */}
-        <div className="justify-self-end">
+        <div className="ml-auto">
           <MobileNav />
         </div>
       </nav>
