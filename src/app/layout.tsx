@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   description:
     "I build test automation, validate software across distributed environments, and own quality from test planning through release.",
-  metadataBase: new URL("https://benarmour.com"),
+  metadataBase: new URL("https://buildverified.com"),
 };
 
 export default function RootLayout({

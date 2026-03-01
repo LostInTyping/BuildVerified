@@ -29,8 +29,41 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is configured for static export (`output: "export"`) and can be deployed directly to Cloudflare Pages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a Cloudflare API token with:
+   - `Cloudflare Pages:Edit`
+   - `Zone:DNS:Edit`
+   - `Zone:Zone:Read`
+2. Export your token:
+
+```bash
+export CLOUDFLARE_API_TOKEN="<your-token>"
+```
+
+3. Create the Pages project (one-time setup):
+
+```bash
+npx wrangler pages project create buildverified --production-branch main
+```
+
+4. Build the static site:
+
+```bash
+pnpm build
+```
+
+5. Deploy to production:
+
+```bash
+npx wrangler pages deploy out --project-name buildverified --branch main
+```
+
+6. Attach custom domains:
+
+```bash
+npx wrangler pages domain add buildverified.com --project-name buildverified
+npx wrangler pages domain add www.buildverified.com --project-name buildverified
+```
