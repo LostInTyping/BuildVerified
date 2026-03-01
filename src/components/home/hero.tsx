@@ -56,7 +56,7 @@ export function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
-        {/* Profile Card — spans both rows on desktop */}
+        {/* Profile Card - spans both rows on desktop */}
         <FadeIn className="h-full min-w-0 md:row-span-2">
           <div className="flex h-full min-w-0 flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
             {/* Terminal visual */}
@@ -115,12 +115,13 @@ export function Hero() {
                 Ben Armour
               </h1>
               <p className="mt-2.5 text-sm leading-relaxed text-text-secondary sm:mt-3">
-                I build test automation, validate software across distributed
-                environments, and own quality from test planning through release.
+                I build maintainable test automation, validate software
+                end-to-end in complex environments, and own quality from test
+                planning through release.
               </p>
             </div>
 
-            {/* Actions — pushed to bottom */}
+            {/* Actions - pushed to bottom */}
             <div className="mt-auto flex flex-col gap-2.5 sm:gap-3">
               <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 <Link
@@ -192,9 +193,10 @@ export function Hero() {
         <FadeIn delay={0.2} className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
             <p className="text-sm leading-relaxed text-text-secondary">
-              As a QA engineer, I specialize in building robust test automation
-              frameworks, designing comprehensive test strategies, and ensuring
-              software quality across enterprise and public-sector systems.
+              As a QA engineer, I specialize in building maintainable test
+              frameworks, conducting end-to-end validation, and owning quality
+              across enterprise and public-sector systems, from test planning
+              through production release.
             </p>
             <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
               <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
