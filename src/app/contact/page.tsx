@@ -44,7 +44,8 @@ export default function ContactPage() {
               Location
             </h2>
             <p className="mt-2 text-text-secondary">
-              Mason, OH — open to remote and hybrid
+              Mason, OH. Open to on-site, hybrid, and remote. Willing to
+              relocate within the US or abroad.
             </p>
           </div>
         </div>

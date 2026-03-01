@@ -9,16 +9,24 @@ const skillCategories = [
     skills: ["Cypress", "Playwright", "Selenium", "Jest"],
   },
   {
+    category: "Languages",
+    skills: ["JavaScript", "TypeScript", "Python", "SQL"],
+  },
+  {
     category: "API & Tools",
-    skills: ["Postman", "REST APIs", "SQL", "Charles Proxy"],
+    skills: ["Postman", "REST APIs", "Tableau", "Charles Proxy"],
   },
   {
     category: "CI & Infrastructure",
-    skills: ["GitHub Actions", "Docker", "Linux", "Windows"],
+    skills: ["GitHub Actions", "GitLab", "Docker", "Linux"],
   },
   {
     category: "Management & Reporting",
-    skills: ["Jira", "Zephyr", "TestRail", "Allure", "Confluence"],
+    skills: ["Jira", "QMetry", "Confluence", "Allure"],
+  },
+  {
+    category: "AI-Assisted Development",
+    skills: ["AI-accelerated test development", "Human-in-the-loop review"],
   },
 ];
 
@@ -34,7 +42,12 @@ export default function AboutPage() {
           <p className="mt-1 text-sm text-accent">Software QA Engineer</p>
           <div className="mt-4 space-y-0.5">
             <p className="text-sm text-text-muted">Mason, OH</p>
-            <p className="text-sm text-text-muted">Open to remote &amp; hybrid</p>
+            <p className="text-sm text-text-muted">
+              Open to on-site, hybrid &amp; remote
+            </p>
+            <p className="text-sm text-text-muted">
+              Willing to relocate (US or abroad)
+            </p>
           </div>
           <div className="mt-5 flex flex-col gap-2 border-t border-border pt-5">
             <a
@@ -58,20 +71,24 @@ export default function AboutPage() {
         <div className="space-y-4">
           <p className="text-lg text-text-secondary">
             I&apos;m Ben Armour, a Software QA Engineer based in Mason, Ohio. I
-            build test automation, validate software across distributed
-            environments, and own quality from test planning through release.
+            build maintainable test automation, validate software end-to-end in
+            complex environments, and own quality from test planning through
+            release.
           </p>
           <p className="text-text-secondary">
             My background spans both automation and manual QA. At STRATACACHE, I
-            led test planning for digital menu board systems — building lab
-            infrastructure, expanding Cypress automation, managing defects end to
-            end, and coordinating validation across multiple client programs with
-            overlapping release timelines.
+            performed risk-based test planning for multi-client, multi-region
+            digital menu board launches, building custom lab infrastructure with
+            1:1 staging/production parity, developing Cypress automation suites,
+            and taking full ownership of the defect lifecycle from triage through
+            verification.
           </p>
           <p className="text-text-secondary">
             Before that, at the University of Cincinnati IT Solutions Center, I
-            developed Cypress test suites from scratch, strengthened regression
-            coverage, and established QA workflows that the team could scale with.
+            developed Cypress test suites from scratch, increasing regression
+            coverage and establishing a foundation for CI/CD integration. I
+            partnered with developers and stakeholders to align test coverage
+            with technical requirements and release priorities.
           </p>
           <p className="text-text-secondary">
             I care about reliable software. That means building automation that
@@ -87,7 +104,7 @@ export default function AboutPage() {
         <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
           Skills &amp; Tools
         </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((cat) => (
             <div
               key={cat.category}
@@ -120,7 +137,8 @@ export default function AboutPage() {
             Double Major: Software Development &amp; Game Design and Simulation
           </p>
           <p className="text-sm text-text-muted">
-            Graduated Spring 2024 &middot; Dean&apos;s List
+            Graduated Spring 2024 &middot; 3.85 / 4.00 GPA &middot; Dean&apos;s
+            List
           </p>
         </div>
       </section>

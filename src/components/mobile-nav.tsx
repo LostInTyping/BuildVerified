@@ -82,7 +82,7 @@ export function MobileNav() {
               </button>
             </div>
 
-            {/* Nav links — centered */}
+            {/* Nav links - centered */}
             <nav className="flex flex-1 flex-col items-center justify-center gap-2 overflow-y-auto px-6 py-4">
               {navLinks.map((link, index) => {
                 const isActive =
