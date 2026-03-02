@@ -70,31 +70,26 @@ export default function AboutPage() {
         {/* Bio */}
         <div className="space-y-4">
           <p className="text-lg text-text-secondary">
-            I&apos;m Ben Armour, a Software QA Engineer based in Mason, Ohio. I
-            build maintainable test automation, validate software end-to-end in
-            complex environments, and own quality from test planning through
-            release.
+            Hi, I&apos;m Ben, a Software QA Engineer based in Mason, Ohio. I help
+            teams ship with confidence by combining practical test automation
+            with deep manual validation from planning through release.
           </p>
           <p className="text-text-secondary">
-            My background spans both automation and manual QA. At STRATACACHE, I
-            performed risk-based test planning for multi-client, multi-region
-            digital menu board launches, building custom lab infrastructure with
-            1:1 staging/production parity, developing Cypress automation suites,
-            and taking full ownership of the defect lifecycle from triage through
-            verification.
+            At STRATACACHE, I led QA across multi-client digital menu board
+            programs with overlapping timelines. I built and maintained Cypress
+            coverage, validated releases across distributed environments, and
+            created lab setups that mirrored production so issues surfaced early.
           </p>
           <p className="text-text-secondary">
-            Before that, at the University of Cincinnati IT Solutions Center, I
-            developed Cypress test suites from scratch, increasing regression
-            coverage and establishing a foundation for CI/CD integration. I
-            partnered with developers and stakeholders to align test coverage
-            with technical requirements and release priorities.
+            At the University of Cincinnati IT Solutions Center, I built Cypress
+            suites from scratch and expanded regression coverage while partnering
+            closely with developers to prioritize risk and speed up defect
+            resolution.
           </p>
           <p className="text-text-secondary">
-            I care about reliable software. That means building automation that
-            people trust, writing defect reports that developers can act on, and
-            setting up environments that catch real issues before they reach
-            production.
+            My focus is consistent, actionable quality work: test plans tied to
+            risk, defect reports developers can act on quickly, and automation
+            that stays reliable as products evolve.
           </p>
         </div>
       </div>
