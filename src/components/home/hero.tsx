@@ -74,8 +74,8 @@ export function Hero() {
                 </div>
               </div>
               <p className="text-sm leading-relaxed text-text-secondary">
-                I bring structure to software quality so teams can move quickly
-                without sacrificing reliability.
+                I bring reliability to every release so teams can ship with
+                confidence. Every build, verified.
               </p>
             </div>
 
