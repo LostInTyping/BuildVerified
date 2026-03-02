@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
+import { RegressionTerminal } from "@/components/home/regression-terminal";
 
 const expertiseAreas: Array<{
   title: string;
@@ -56,72 +57,28 @@ export function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
-        {/* Profile Card - spans both rows on desktop */}
-        <FadeIn className="h-full min-w-0 md:row-span-2">
+        <FadeIn className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
-            {/* Terminal visual */}
-            <div className="overflow-x-auto rounded-lg bg-bg-elevated font-mono text-[11px] sm:text-xs">
-              <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2">
-                <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-                <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-                <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-                <span className="ml-1.5 text-[10px] text-text-muted">
-                  cypress run --headless
-                </span>
-              </div>
-              <div className="space-y-0.5 p-2.5 sm:space-y-1 sm:p-3">
-                <p className="text-text-muted">Running 5 of 5 specs...</p>
-                <p>
-                  <span className="text-green-400">✓</span>{" "}
-                  <span className="text-text-secondary">auth › login flow</span>{" "}
-                  <span className="text-text-muted">(2.3s)</span>
-                </p>
-                <p>
-                  <span className="text-green-400">✓</span>{" "}
-                  <span className="text-text-secondary">
-                    checkout › cart flow
-                  </span>{" "}
-                  <span className="text-text-muted">(1.8s)</span>
-                </p>
-                <p>
-                  <span className="text-green-400">✓</span>{" "}
-                  <span className="text-text-secondary">user › creation</span>{" "}
-                  <span className="text-text-muted">(0.9s)</span>
-                </p>
-                <p>
-                  <span className="text-green-400">✓</span>{" "}
-                  <span className="text-text-secondary">api › endpoints</span>{" "}
-                  <span className="text-text-muted">(0.4s)</span>
-                </p>
-                <p>
-                  <span className="text-green-400">✓</span>{" "}
-                  <span className="text-text-secondary">
-                    regression › smoke suite
-                  </span>{" "}
-                  <span className="text-text-muted">(4.1s)</span>
-                </p>
-                <div className="mt-2 border-t border-border pt-2">
-                  <p className="text-green-400">5 passing (9.5s)</p>
+            <div className="flex flex-col gap-3 sm:gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-bg-elevated sm:h-16 sm:w-16">
+                  <span className="text-lg font-bold tracking-wider text-text-muted sm:text-xl">BA</span>
+                </div>
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
+                    Software QA Engineer
+                  </p>
+                  <h1 className="mt-0.5 text-2xl font-bold text-text-primary sm:mt-1 sm:text-3xl">
+                    Ben Armour
+                  </h1>
                 </div>
               </div>
-            </div>
-
-            {/* Identity */}
-            <div>
-              <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
-                Software QA Engineer
-              </p>
-              <h1 className="mt-1.5 text-2xl font-bold text-text-primary sm:mt-2 sm:text-3xl">
-                Ben Armour
-              </h1>
-              <p className="mt-2.5 text-sm leading-relaxed text-text-secondary sm:mt-3">
-                I build maintainable test automation, validate software
-                end-to-end in complex environments, and own quality from test
-                planning through release.
+              <p className="text-sm leading-relaxed text-text-secondary">
+                I bring structure to software quality so teams can move quickly
+                without sacrificing reliability.
               </p>
             </div>
 
-            {/* Actions - pushed to bottom */}
             <div className="mt-auto flex flex-col gap-2.5 sm:gap-3">
               <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 <Link
@@ -157,8 +114,13 @@ export function Hero() {
           </div>
         </FadeIn>
 
-        {/* Expertise Card */}
         <FadeIn delay={0.1} className="h-full min-w-0">
+          <RegressionTerminal />
+        </FadeIn>
+      </div>
+
+      <div className="mt-4 grid w-full gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2">
+        <FadeIn delay={0.2} className="h-full min-w-0">
           <div className="h-full min-w-0 rounded-lg border border-border bg-bg-card p-4 sm:p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               Areas of Expertise
@@ -189,14 +151,13 @@ export function Hero() {
           </div>
         </FadeIn>
 
-        {/* Content Card */}
-        <FadeIn delay={0.2} className="h-full min-w-0">
+        <FadeIn delay={0.25} className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
             <p className="text-sm leading-relaxed text-text-secondary">
-              As a QA engineer, I specialize in building maintainable test
-              frameworks, conducting end-to-end validation, and owning quality
-              across enterprise and public-sector systems, from test planning
-              through production release.
+              My expertise lies in building resilient test automation for
+              large-scale enterprise systems. From establishing CI/CD testing
+              pipelines to validating complex workflows, I bring a systematic
+              approach to software quality.
             </p>
             <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
               <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
