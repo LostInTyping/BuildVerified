@@ -22,6 +22,25 @@ export const metadata: Metadata = {
   description:
     "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
   metadataBase: new URL("https://buildverified.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "BuildVerified",
+    title: "Ben Armour | Software QA Engineer",
+    description:
+      "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
+    url: "https://buildverified.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ben Armour | Software QA Engineer",
+    description:
+      "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

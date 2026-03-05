@@ -20,6 +20,11 @@ export async function generateMetadata({
   return {
     title: item.frontmatter.title,
     description: item.frontmatter.outcome,
+    openGraph: {
+      title: item.frontmatter.title,
+      description: item.frontmatter.outcome,
+      url: `https://buildverified.com/portfolio/${slug}`,
+    },
   };
 }
 

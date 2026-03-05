@@ -1,6 +1,15 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Capabilities",
-  description: "Test automation, testing strategy, defect lifecycle, and more.",
+  description:
+    "Test automation, testing strategy, defect lifecycle, and more.",
+  openGraph: {
+    title: "Capabilities",
+    description:
+      "Test automation, testing strategy, defect lifecycle, and more.",
+    url: "https://buildverified.com/capabilities",
+  },
 };
 
 const capabilities = [
