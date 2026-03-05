@@ -34,7 +34,7 @@ function toneClass(tone: LogTone): string {
   }
 
   if (tone === "error") {
-    return "text-red-400";
+    return "text-status-error";
   }
 
   return "text-text-muted";
@@ -468,7 +468,7 @@ export function RegressionTerminal() {
       <p className="mb-2 text-xs font-medium uppercase tracking-widest text-text-muted">
         CI / QA Terminal
       </p>
-      <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]" style={{ fontFamily: "var(--font-mono), ui-monospace, monospace" }}>
+      <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated font-mono text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]">
         <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
