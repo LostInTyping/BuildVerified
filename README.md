@@ -31,7 +31,7 @@ public/             Static assets
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev:wsl
 ```
 
 Runs at [localhost:3000](http://localhost:3000).
