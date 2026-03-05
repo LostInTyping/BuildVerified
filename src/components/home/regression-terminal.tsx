@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 type SuiteStatus = "pass" | "retry";
 
@@ -91,7 +92,63 @@ function toneClass(tone: LogTone): string {
   return "text-text-muted";
 }
 
+const fullCommand = `${commandPrefix}${correctedSegment}${commandSuffix}`;
+
+interface LogEntry {
+  message: string;
+  tone: LogTone;
+  /** Delay in ms before this line appears during animation. */
+  delayMs: number;
+}
+
+function buildLogEntries(): LogEntry[] {
+  const entries: LogEntry[] = [
+    { message: "[00:00] Booting services: web, api, db, queue...", tone: "muted", delayMs: 130 },
+    {
+      message: `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
+      tone: "muted",
+      delayMs: 180,
+    },
+  ];
+
+  for (const suite of regressionSuites) {
+    if (suite.status === "retry") {
+      entries.push({
+        message: `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
+        tone: "retry",
+        delayMs: 220,
+      });
+    }
+    entries.push({
+      message: `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
+      tone: "pass",
+      delayMs: suite.status === "retry" ? 340 : 250,
+    });
+  }
+
+  entries.push(
+    { message: "[04:27] Uploading traces, videos, screenshots, junit.xml...", tone: "muted", delayMs: 220 },
+    { message: `${totalTests} passing - 0 failing - ${retriedCount} retried`, tone: "pass", delayMs: 180 },
+    { message: "Total runtime: 4m 29s", tone: "muted", delayMs: 110 },
+  );
+
+  return entries;
+}
+
+const logEntries = buildLogEntries();
+
+function buildStaticLogLines(): TerminalLogLine[] {
+  return logEntries.map((entry, index) => ({
+    id: `s-${index}`,
+    message: entry.message,
+    tone: entry.tone,
+  }));
+}
+
 export function RegressionTerminal() {
+  const prefersReduced = useReducedMotion();
+  // Default to reduced until media query resolves — safer for motion-sensitive users
+  const shouldReduceMotion = prefersReduced ?? true;
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -99,6 +156,11 @@ export function RegressionTerminal() {
   const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setCursorVisible(true);
+      return;
+    }
+
     const intervalId = window.setInterval(() => {
       setCursorVisible((visible) => !visible);
     }, 460);
@@ -106,7 +168,7 @@ export function RegressionTerminal() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   useEffect(() => {
     if (!outputRef.current) {
@@ -117,6 +179,16 @@ export function RegressionTerminal() {
   }, [commandText, logLines]);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setCommandText(fullCommand);
+      setLogLines(buildStaticLogLines());
+      setIsRunning(false);
+      return;
+    }
+
+    setCommandText("");
+    setLogLines([]);
+
     let cancelled = false;
     let cycleNumber = 0;
 
@@ -217,92 +289,18 @@ export function RegressionTerminal() {
 
         setIsRunning(true);
 
-        if (
-          !(await addLine(
-            "[00:00] Booting services: web, api, db, queue...",
-            "muted",
-            130,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
-            "muted",
-            180,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        for (const suite of regressionSuites) {
-          if (suite.status === "retry") {
-            if (
-              !(await addLine(
-                `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
-                "retry",
-                220,
-                cycleId,
-                lineNumber,
-              ))
-            ) {
-              return;
-            }
-          }
-
+        for (const entry of logEntries) {
           if (
             !(await addLine(
-              `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
-              "pass",
-              suite.status === "retry" ? 340 : 250,
+              entry.message,
+              entry.tone,
+              entry.delayMs,
               cycleId,
               lineNumber,
             ))
           ) {
             return;
           }
-        }
-
-        if (
-          !(await addLine(
-            "[04:27] Uploading traces, videos, screenshots, junit.xml...",
-            "muted",
-            220,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            `${totalTests} passing - 0 failing - ${retriedCount} retried`,
-            "pass",
-            180,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            "Total runtime: 4m 29s",
-            "muted",
-            110,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
         }
 
         setIsRunning(false);
@@ -315,7 +313,7 @@ export function RegressionTerminal() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   return (
     <div className="flex h-full min-w-0 flex-col">
