@@ -81,11 +81,11 @@ const retriedCount = regressionSuites.filter((suite) => suite.status === "retry"
 
 function toneClass(tone: LogTone): string {
   if (tone === "pass") {
-    return "text-green-400";
+    return "text-status-pass";
   }
 
   if (tone === "retry") {
-    return "text-yellow-400";
+    return "text-status-retry";
   }
 
   return "text-text-muted";
