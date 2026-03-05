@@ -1,10 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPortfolioItems } from "@/lib/portfolio";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "Deep dives into real QA engineering projects across public and NDA-protected work.",
+  openGraph: {
+    url: "/portfolio",
+  },
 };
 
 export default function PortfolioPage() {

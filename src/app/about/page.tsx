@@ -1,6 +1,12 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "About",
-  description: "Career background, education, and approach to software quality.",
+  description:
+    "Career background, education, and approach to software quality.",
+  openGraph: {
+    url: "/about",
+  },
 };
 
 const skillCategories = [
