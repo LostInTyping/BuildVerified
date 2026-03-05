@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Ben Armour",
   },
   description:
-    "I build test automation, validate software across distributed environments, and own quality from test planning through release.",
+    "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
   metadataBase: new URL("https://buildverified.com"),
 };
 

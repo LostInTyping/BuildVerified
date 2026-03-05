@@ -37,7 +37,7 @@ export function Header() {
             : "navbar-expanded w-full max-w-6xl px-5"
         }`}
       >
-        {/* Logo — visible only at top */}
+        {/* Logo - visible only at top */}
         <div className="min-w-0">
           <AnimatePresence initial={false}>
             {showExpandedContent && (
@@ -68,7 +68,7 @@ export function Header() {
           </AnimatePresence>
         </div>
 
-        {/* Nav links — always visible (desktop) */}
+        {/* Nav links - always visible (desktop) */}
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive =
