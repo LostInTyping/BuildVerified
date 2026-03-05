@@ -97,25 +97,25 @@ body {
 }
 
 .ghost-btn-accent {
-  border-color: rgba(96, 165, 250, 0.08);
-  background-color: rgba(96, 165, 250, 0.04);
-  color: rgba(96, 165, 250, 0.7);
+  border-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 70%, transparent);
 }
 
 .ghost-btn-accent:hover {
-  background-color: rgba(96, 165, 250, 0.08);
-  color: rgba(96, 165, 250, 0.9);
+  background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 90%, transparent);
 }
 
 .ghost-btn-neutral {
-  border-color: rgba(245, 245, 245, 0.07);
-  background-color: rgba(245, 245, 245, 0.02);
-  color: rgba(245, 245, 245, 0.7);
+  border-color: color-mix(in srgb, var(--color-text-primary) 7%, transparent);
+  background-color: color-mix(in srgb, var(--color-text-primary) 2%, transparent);
+  color: color-mix(in srgb, var(--color-text-primary) 70%, transparent);
 }
 
 .ghost-btn-neutral:hover {
-  background-color: rgba(245, 245, 245, 0.06);
-  color: rgba(245, 245, 245, 0.9);
+  background-color: color-mix(in srgb, var(--color-text-primary) 6%, transparent);
+  color: color-mix(in srgb, var(--color-text-primary) 90%, transparent);
 }
 
 .portfolio-card {
