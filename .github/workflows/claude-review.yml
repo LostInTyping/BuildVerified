@@ -36,4 +36,4 @@ jobs:
             Be direct and concise. Flag real issues, skip nitpicks.
           claude_args: |
             --model claude-opus-4-6
-            --max-turns 5
+            --max-turns 15
