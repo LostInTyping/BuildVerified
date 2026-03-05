@@ -75,6 +75,7 @@ export default function ExperiencePage() {
                       <Link
                         key={item.slug}
                         href={`/portfolio/${item.slug}`}
+                        aria-label={`View portfolio: ${item.title}`}
                         className="rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80 transition-colors hover:bg-accent/10 hover:text-accent"
                       >
                         {item.title}
