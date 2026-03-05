@@ -75,7 +75,7 @@ export default function ExperiencePage() {
                       <Link
                         key={item.slug}
                         href={`/portfolio/${item.slug}`}
-                        className="rounded-full border border-[rgba(96,165,250,0.15)] bg-[rgba(96,165,250,0.05)] px-3 py-1 text-xs text-accent/80 transition-colors hover:bg-[rgba(96,165,250,0.1)] hover:text-accent"
+                        className="rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80 transition-colors hover:bg-accent/10 hover:text-accent"
                       >
                         {item.title}
                       </Link>
