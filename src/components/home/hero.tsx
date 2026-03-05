@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 import { RegressionTerminal } from "@/components/home/regression-terminal";
+import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 const expertiseAreas: Array<{
   title: string;
@@ -41,26 +42,13 @@ const expertiseAreas: Array<{
     },
   ];
 
-const selectedBrandsAndPrograms = [
-  "Brooksource",
-  "Macy's",
-  "Ohio Sentencing Data Platform (OSDP)",
-  "Offender Risk Assessment & Case Planning (20+ States)",
-  "DRF-CoApp",
-  "McDonald's",
-  "Taco Bell",
-  "KFC",
-  "Tim Hortons",
-  "Burger King",
-];
-
 export function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         <FadeIn className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
-            <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg transition-shadow duration-300 hover:shadow-[0_0_12px_rgba(96,165,250,0.3)]">
               <Image
                 src="/headshot.jpg"
                 alt="Ben Armour"
@@ -119,6 +107,7 @@ export function Hero() {
                   key={area.title}
                   delay={0.14 + index * 0.05}
                   className="h-full"
+                  scale
                 >
                   <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
                     <div
@@ -140,39 +129,7 @@ export function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.25} className="h-full min-w-0">
-          <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
-            <p className="text-sm leading-relaxed text-text-secondary">
-              My expertise lies in building resilient test automation for
-              large-scale enterprise systems. From establishing CI/CD testing
-              pipelines to validating complex workflows, I bring a systematic
-              approach to software quality.
-            </p>
-            <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
-              <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
-                Selected Brands & Programs
-              </p>
-              <div className="marquee-viewport">
-                <div className="marquee-strip">
-                  {[0, 1].map((copyIndex) => (
-                    <div
-                      key={copyIndex}
-                      className="marquee-group"
-                      aria-hidden={copyIndex === 1}
-                    >
-                      {selectedBrandsAndPrograms.map((item) => (
-                        <span
-                          key={`${item}-${copyIndex}`}
-                          className="shrink-0 whitespace-nowrap rounded-full border border-border bg-bg-elevated px-2.5 py-1 text-[11px] text-text-secondary"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <TestimonialCarousel />
         </FadeIn>
       </div>
     </section>
