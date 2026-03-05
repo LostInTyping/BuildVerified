@@ -147,6 +147,7 @@ function buildStaticLogLines(): TerminalLogLine[] {
 
 export function RegressionTerminal() {
   const prefersReduced = useReducedMotion();
+  // Default to reduced until media query resolves — safer for motion-sensitive users
   const shouldReduceMotion = prefersReduced ?? true;
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
