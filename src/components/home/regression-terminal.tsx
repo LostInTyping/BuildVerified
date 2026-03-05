@@ -320,7 +320,7 @@ export function RegressionTerminal() {
         Nightly Regression Run
       </p>
       <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated font-mono text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]">
-        <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2">
+        <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
@@ -332,6 +332,7 @@ export function RegressionTerminal() {
           ref={outputRef}
           role="region"
           aria-label="Nightly regression run output"
+          aria-live="off"
           tabIndex={0}
           className="max-h-[340px] flex-1 space-y-0.5 overflow-y-auto p-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:space-y-1 sm:p-3 lg:max-h-[460px]"
         >
