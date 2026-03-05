@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 type SuiteStatus = "pass" | "retry";
 
@@ -91,7 +92,47 @@ function toneClass(tone: LogTone): string {
   return "text-text-muted";
 }
 
+const fullCommand = `${commandPrefix}${correctedSegment}${commandSuffix}`;
+
+function buildStaticLogLines(): TerminalLogLine[] {
+  const lines: TerminalLogLine[] = [
+    { id: "s-1", message: "[00:00] Booting services: web, api, db, queue...", tone: "muted" },
+    {
+      id: "s-2",
+      message: `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
+      tone: "muted",
+    },
+  ];
+
+  let index = 3;
+  for (const suite of regressionSuites) {
+    if (suite.status === "retry") {
+      lines.push({
+        id: `s-${index}`,
+        message: `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
+        tone: "retry",
+      });
+      index += 1;
+    }
+    lines.push({
+      id: `s-${index}`,
+      message: `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
+      tone: "pass",
+    });
+    index += 1;
+  }
+
+  lines.push(
+    { id: `s-${index}`, message: "[04:27] Uploading traces, videos, screenshots, junit.xml...", tone: "muted" },
+    { id: `s-${index + 1}`, message: `${totalTests} passing - 0 failing - ${retriedCount} retried`, tone: "pass" },
+    { id: `s-${index + 2}`, message: "Total runtime: 4m 29s", tone: "muted" },
+  );
+
+  return lines;
+}
+
 export function RegressionTerminal() {
+  const shouldReduceMotion = useReducedMotion();
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -99,6 +140,11 @@ export function RegressionTerminal() {
   const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setCursorVisible(true);
+      return;
+    }
+
     const intervalId = window.setInterval(() => {
       setCursorVisible((visible) => !visible);
     }, 460);
@@ -106,7 +152,7 @@ export function RegressionTerminal() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   useEffect(() => {
     if (!outputRef.current) {
@@ -117,6 +163,13 @@ export function RegressionTerminal() {
   }, [commandText, logLines]);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setCommandText(fullCommand);
+      setLogLines(buildStaticLogLines());
+      setIsRunning(false);
+      return;
+    }
+
     let cancelled = false;
     let cycleNumber = 0;
 
@@ -315,7 +368,7 @@ export function RegressionTerminal() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   return (
     <div className="flex h-full min-w-0 flex-col">
