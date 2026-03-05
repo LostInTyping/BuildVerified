@@ -1,6 +1,11 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch for QA engineering opportunities.",
+  openGraph: {
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {

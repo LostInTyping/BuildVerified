@@ -1,11 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllExperience } from "@/lib/experience";
 import { getAllPortfolioItems } from "@/lib/portfolio";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Experience",
   description:
     "Timeline of professional and personal QA engineering work by Ben Armour.",
+  openGraph: {
+    url: "/experience",
+  },
 };
 
 export default function ExperiencePage() {

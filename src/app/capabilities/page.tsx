@@ -1,6 +1,12 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Capabilities",
-  description: "Test automation, testing strategy, defect lifecycle, and more.",
+  description:
+    "Test automation, testing strategy, defect lifecycle, and more.",
+  openGraph: {
+    url: "/capabilities",
+  },
 };
 
 const capabilities = [
