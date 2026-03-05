@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { StatsSection } from "@/components/home/stats-section";
-import { FeaturedCaseStudies } from "@/components/home/featured-case-studies";
+import { FeaturedPortfolio } from "@/components/home/featured-portfolio";
 import { BottomSection } from "@/components/home/bottom-section";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <main>
       <Hero />
       <StatsSection />
-      <FeaturedCaseStudies />
+      <FeaturedPortfolio />
       <BottomSection />
     </main>
   );

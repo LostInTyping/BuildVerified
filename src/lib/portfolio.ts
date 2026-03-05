@@ -2,21 +2,21 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const contentDir = path.join(process.cwd(), "src/content/case-studies");
+const contentDir = path.join(process.cwd(), "src/content/portfolio");
 
-export type CaseStudyLinkKind =
+export type PortfolioLinkKind =
   | "public_reference"
   | "restricted_access"
   | "client_site";
 
-export interface CaseStudyLink {
+export interface PortfolioLink {
   label: string;
   url: string;
-  kind: CaseStudyLinkKind;
+  kind: PortfolioLinkKind;
   note?: string;
 }
 
-export interface CaseStudyFrontmatter {
+export interface PortfolioFrontmatter {
   title: string;
   slug: string;
   clientType: string;
@@ -24,17 +24,17 @@ export interface CaseStudyFrontmatter {
   stack: string[];
   highlights: string;
   outcome: string;
-  links?: CaseStudyLink[];
+  links?: PortfolioLink[];
   featured: boolean;
   order: number;
 }
 
-export interface CaseStudy {
-  frontmatter: CaseStudyFrontmatter;
+export interface PortfolioItem {
+  frontmatter: PortfolioFrontmatter;
   content: string;
 }
 
-export function getAllCaseStudies(): CaseStudy[] {
+export function getAllPortfolioItems(): PortfolioItem[] {
   if (!fs.existsSync(contentDir)) return [];
 
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith(".mdx"));
@@ -45,18 +45,20 @@ export function getAllCaseStudies(): CaseStudy[] {
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
       return {
-        frontmatter: data as CaseStudyFrontmatter,
+        frontmatter: data as PortfolioFrontmatter,
         content,
       };
     })
     .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
 }
 
-export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
-  const allStudies = getAllCaseStudies();
-  return allStudies.find((s) => s.frontmatter.slug === slug);
+export function getPortfolioItemBySlug(
+  slug: string,
+): PortfolioItem | undefined {
+  const allItems = getAllPortfolioItems();
+  return allItems.find((s) => s.frontmatter.slug === slug);
 }
 
-export function getFeaturedCaseStudies(): CaseStudy[] {
-  return getAllCaseStudies().filter((s) => s.frontmatter.featured);
+export function getFeaturedPortfolioItems(): PortfolioItem[] {
+  return getAllPortfolioItems().filter((s) => s.frontmatter.featured);
 }
