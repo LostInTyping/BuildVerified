@@ -64,6 +64,10 @@ export function TestimonialCarousel() {
       className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-4 sm:p-5"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      aria-roledescription="carousel"
+      aria-label="Testimonials"
     >
       <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
         Testimonials
@@ -77,6 +81,7 @@ export function TestimonialCarousel() {
             <div
               key={testimonial.name}
               className="col-start-1 row-start-1 flex items-center gap-3"
+              aria-hidden={!isActive}
               style={{
                 opacity: isActive ? 1 : 0,
                 transform: `translateX(${isActive ? 0 : 20}px)`,
@@ -107,13 +112,14 @@ export function TestimonialCarousel() {
       </div>
 
       {/* Quote block — grid overlap for fixed height + slide-fade */}
-      <div className="mt-3 grid flex-1">
+      <div className="mt-3 grid flex-1" aria-live="polite">
         {testimonials.map((testimonial, i) => {
           const isActive = i === active;
           return (
             <blockquote
               key={testimonial.name}
               className="col-start-1 row-start-1 text-sm leading-relaxed text-text-secondary italic"
+              aria-hidden={!isActive}
               style={{
                 opacity: isActive ? 1 : 0,
                 transform: `translateX(${isActive ? 0 : 20}px)`,
