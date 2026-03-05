@@ -1,69 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BuildVerified.com
 
-## Getting Started
+Personal portfolio site for **Ben Armour**, Software QA Engineer. Showcases enterprise QA experience, project deep-dives, and technical capabilities.
 
-First, run the development server:
+**Live:** [buildverified.com](https://buildverified.com)
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, static generation)
+- **Language:** TypeScript (strict)
+- **Styling:** Tailwind CSS v4 (custom dark theme)
+- **Content:** MDX with frontmatter (gray-matter + next-mdx-remote)
+- **Animations:** Framer Motion
+- **Package Manager:** pnpm
+- **CI:** Claude Code GitHub Actions (auto PR review + interactive @claude)
+
+## Project Structure
+
+```
+src/
+  app/              Route pages (About, Capabilities, Portfolio, Experience, Contact)
+  components/       React components (hero, navigation, cards)
+  content/          MDX content files
+    portfolio/      Project deep-dive writeups
+    experience/     Career timeline entries
+  lib/              Data utilities (portfolio.ts, experience.ts)
+public/             Static assets
+```
+
+## Local Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Cloudflare Pages
-
-This project is configured for static export (`output: "export"`) and can be deployed directly to Cloudflare Pages.
-
-1. Create a Cloudflare API token with:
-   - `Cloudflare Pages:Edit`
-   - `Zone:DNS:Edit`
-   - `Zone:Zone:Read`
-2. Export your token:
+Runs at [localhost:3000](http://localhost:3000).
 
 ```bash
-export CLOUDFLARE_API_TOKEN="<your-token>"
+pnpm build       # Production build
+pnpm lint        # ESLint
+pnpm exec tsc --noEmit  # Type check
 ```
 
-3. Create the Pages project (one-time setup):
+## Content
 
-```bash
-npx wrangler pages project create buildverified --production-branch main
-```
+Portfolio items and experience entries are MDX files in `src/content/`. Add a new `.mdx` file with the correct frontmatter and it's picked up automatically at build time.
 
-4. Build the static site:
+## License
 
-```bash
-pnpm build
-```
-
-5. Deploy to production:
-
-```bash
-npx wrangler pages deploy out --project-name buildverified --branch main
-```
-
-6. Attach custom domains:
-
-```bash
-npx wrangler pages domain add buildverified.com --project-name buildverified
-npx wrangler pages domain add www.buildverified.com --project-name buildverified
-```
+MIT
