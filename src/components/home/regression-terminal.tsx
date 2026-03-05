@@ -2,74 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-
-type SuiteStatus = "pass" | "retry";
-
-interface RegressionSuite {
-  suite: string;
-  tests: number;
-  duration: string;
-  status: SuiteStatus;
-}
-
-type LogTone = "muted" | "pass" | "retry" | "error";
+import { scenarios, shuffleScenarios, type TerminalScenario, type LogTone } from "@/lib/terminal-scenarios";
 
 interface TerminalLogLine {
   id: string;
   message: string;
   tone: LogTone;
 }
-
-const regressionSuites: RegressionSuite[] = [
-  {
-    suite: "auth > session-timeout-regression",
-    tests: 18,
-    duration: "18.4s",
-    status: "pass",
-  },
-  {
-    suite: "checkout > cart-and-promotions",
-    tests: 24,
-    duration: "26.9s",
-    status: "pass",
-  },
-  {
-    suite: "api > order-lifecycle-contracts",
-    tests: 20,
-    duration: "15.1s",
-    status: "pass",
-  },
-  {
-    suite: "reporting > dashboard-data-parity",
-    tests: 16,
-    duration: "31.8s",
-    status: "retry",
-  },
-  {
-    suite: "device-lab > kiosk-fallback-flows",
-    tests: 19,
-    duration: "22.2s",
-    status: "pass",
-  },
-  {
-    suite: "localization > currency-and-locale",
-    tests: 15,
-    duration: "12.6s",
-    status: "pass",
-  },
-  {
-    suite: "permissions > role-based-access",
-    tests: 21,
-    duration: "21.0s",
-    status: "pass",
-  },
-  {
-    suite: "release > smoke-suite",
-    tests: 15,
-    duration: "9.7s",
-    status: "pass",
-  },
-];
 
 const adjacentKeys: Record<string, string[]> = {
   q: ["w", "a"], w: ["q", "e", "s"], e: ["w", "r", "d"],
@@ -84,9 +23,6 @@ const adjacentKeys: Record<string, string[]> = {
   v: ["c", "f", "g", "b"], b: ["v", "g", "h", "n"],
   n: ["b", "h", "j", "m"], m: ["n", "j", "k"],
 };
-
-const totalTests = regressionSuites.reduce((count, suite) => count + suite.tests, 0);
-const retriedCount = regressionSuites.filter((suite) => suite.status === "retry").length;
 
 function toneClass(tone: LogTone): string {
   if (tone === "pass") {
@@ -104,59 +40,6 @@ function toneClass(tone: LogTone): string {
   return "text-text-muted";
 }
 
-const fullCommand = "pnpm exec cypress run --record --group nightly-regression";
-
-interface LogEntry {
-  message: string;
-  tone: LogTone;
-  /** Delay in ms before this line appears during animation. */
-  delayMs: number;
-}
-
-function buildLogEntries(): LogEntry[] {
-  const entries: LogEntry[] = [
-    { message: "[00:00] Booting services: web, api, db, queue...", tone: "muted", delayMs: 130 },
-    {
-      message: `[00:11] Discovered ${regressionSuites.length} specs / ${totalTests} tests across 4 CI shards`,
-      tone: "muted",
-      delayMs: 180,
-    },
-  ];
-
-  for (const suite of regressionSuites) {
-    if (suite.status === "retry") {
-      entries.push({
-        message: `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
-        tone: "retry",
-        delayMs: 220,
-      });
-    }
-    entries.push({
-      message: `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
-      tone: "pass",
-      delayMs: suite.status === "retry" ? 340 : 250,
-    });
-  }
-
-  entries.push(
-    { message: "[04:27] Uploading traces, videos, screenshots, junit.xml...", tone: "muted", delayMs: 220 },
-    { message: `${totalTests} passing - 0 failing - ${retriedCount} retried`, tone: "pass", delayMs: 180 },
-    { message: "Total runtime: 4m 29s", tone: "muted", delayMs: 110 },
-  );
-
-  return entries;
-}
-
-const logEntries = buildLogEntries();
-
-function buildStaticLogLines(): TerminalLogLine[] {
-  return logEntries.map((entry, index) => ({
-    id: `s-${index}`,
-    message: entry.message,
-    tone: entry.tone,
-  }));
-}
-
 export function RegressionTerminal() {
   const prefersReduced = useReducedMotion();
   // Default to reduced until media query resolves — safer for motion-sensitive users
@@ -165,7 +48,9 @@ export function RegressionTerminal() {
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [label, setLabel] = useState("queued");
   const outputRef = useRef<HTMLDivElement>(null);
+  const scenarioQueue = useRef<TerminalScenario[]>([]);
 
   useEffect(() => {
     if (shouldReduceMotion) {
@@ -192,8 +77,21 @@ export function RegressionTerminal() {
 
   useEffect(() => {
     if (shouldReduceMotion) {
-      setCommandText(fullCommand);
-      setLogLines(buildStaticLogLines());
+      const firstScenario = scenarios[0];
+      setCommandText("");
+      setLogLines([
+        {
+          id: "s-prompt",
+          message: `ben@qa-runner:~$ ${firstScenario.command}`,
+          tone: "muted",
+        },
+        ...firstScenario.logEntries.map((entry, i) => ({
+          id: `s-${i}`,
+          message: entry.message,
+          tone: entry.tone,
+        })),
+      ]);
+      setLabel(firstScenario.label);
       setIsRunning(false);
       return;
     }
@@ -450,11 +348,16 @@ export function RegressionTerminal() {
         const cycleId = cycleNumber;
         const lineNumber = { current: 0 };
 
+        if (scenarioQueue.current.length === 0) {
+          scenarioQueue.current = shuffleScenarios(scenarios);
+        }
+        const scenario = scenarioQueue.current.pop()!;
+
         setCommandText("");
         setLogLines([]);
         setIsRunning(false);
 
-        const typoResult = await typeTextWithTypos(fullCommand, 26);
+        const typoResult = await typeTextWithTypos(scenario.command, 26);
 
         if (!typoResult.completed) {
           return;
@@ -498,7 +401,7 @@ export function RegressionTerminal() {
           await wait(400);
 
           // Retype the command cleanly (no typos)
-          const retryResult = await typeTextWithTypos(fullCommand, 26, 0, 0);
+          const retryResult = await typeTextWithTypos(scenario.command, 26, 0, 0);
 
           if (!retryResult.completed) {
             return;
@@ -511,9 +414,22 @@ export function RegressionTerminal() {
           return;
         }
 
-        setIsRunning(true);
+        // Commit the typed command into log lines so it scrolls with output
+        lineNumber.current += 1;
+        setLogLines((lines) => [
+          ...lines,
+          {
+            id: `${cycleId}-${lineNumber.current}`,
+            message: `ben@qa-runner:~$ ${scenario.command}`,
+            tone: "muted",
+          },
+        ]);
+        setCommandText("");
 
-        for (const entry of logEntries) {
+        setIsRunning(true);
+        setLabel(scenario.label + " \u2014 running");
+
+        for (const entry of scenario.logEntries) {
           if (
             !(await addLine(
               entry.message,
@@ -528,6 +444,7 @@ export function RegressionTerminal() {
         }
 
         setIsRunning(false);
+        setLabel(scenario.label + " \u2014 complete");
         await wait(3000);
       }
     };
@@ -542,7 +459,7 @@ export function RegressionTerminal() {
   return (
     <div className="flex h-full min-w-0 flex-col">
       <p className="mb-2 text-xs font-medium uppercase tracking-widest text-text-muted">
-        Nightly Regression Run
+        CI / QA Terminal
       </p>
       <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated font-mono text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]">
         <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
@@ -550,17 +467,28 @@ export function RegressionTerminal() {
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
           <span className="ml-1.5 text-[10px] text-text-muted">
-            {isRunning ? "nightly-regression - running" : "nightly-regression - queued"}
+            {label}
           </span>
         </div>
         <div
           ref={outputRef}
           role="region"
-          aria-label="Nightly regression run output"
+          aria-label="CI terminal output"
           aria-live="off"
           tabIndex={0}
           className="max-h-[340px] flex-1 space-y-0.5 overflow-y-auto p-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:space-y-1 sm:p-3 lg:max-h-[460px]"
         >
+          <p className="sr-only">
+            Automated CI terminal showing test and deployment scenarios
+          </p>
+
+          {logLines.map((line) => (
+            <p key={line.id} className={toneClass(line.tone)}>
+              {line.message}
+            </p>
+          ))}
+
+          {/* Active prompt — renders at the bottom, scrolls naturally */}
           <p className="text-text-secondary">
             <span className="text-text-muted">ben@qa-runner</span>
             <span className="text-text-muted">:~$ </span>
@@ -574,17 +502,6 @@ export function RegressionTerminal() {
               _
             </span>
           </p>
-
-          <p className="sr-only">
-            Nightly regression results: {totalTests} tests passing across{" "}
-            {regressionSuites.length} suites, 0 failing, {retriedCount} retried.
-          </p>
-
-          {logLines.map((line) => (
-            <p key={line.id} className={toneClass(line.tone)}>
-              {line.message}
-            </p>
-          ))}
         </div>
       </div>
     </div>
