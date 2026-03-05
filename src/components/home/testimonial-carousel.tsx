@@ -73,6 +73,7 @@ export function TestimonialCarousel() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Testimonials"
+      aria-live="polite"
     >
       <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
         Testimonials
@@ -117,7 +118,7 @@ export function TestimonialCarousel() {
       </div>
 
       {/* Quote block — grid overlap for fixed height + slide-fade */}
-      <div className="mt-3 grid flex-1" aria-live="polite">
+      <div className="mt-3 grid flex-1">
         {testimonials.map((testimonial, i) => {
           const isActive = i === active;
           return (
