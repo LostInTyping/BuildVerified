@@ -60,7 +60,7 @@ export function Hero() {
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         <FadeIn className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
-            <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg transition-shadow duration-300 hover:shadow-[0_0_12px_rgba(96,165,250,0.3)]">
               <Image
                 src="/headshot.jpg"
                 alt="Ben Armour"
@@ -119,6 +119,7 @@ export function Hero() {
                   key={area.title}
                   delay={0.14 + index * 0.05}
                   className="h-full"
+                  scale
                 >
                   <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
                     <div
