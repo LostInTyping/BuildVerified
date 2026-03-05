@@ -34,7 +34,7 @@ function toneClass(tone: LogTone): string {
   }
 
   if (tone === "error") {
-    return "text-red-400";
+    return "text-status-error";
   }
 
   return "text-text-muted";
