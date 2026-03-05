@@ -65,7 +65,12 @@ export function TestimonialCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsPaused(false);
+        }
+      }}
+      role="region"
       aria-roledescription="carousel"
       aria-label="Testimonials"
     >
