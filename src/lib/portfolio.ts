@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { validateScenarioCoverage } from "@/lib/terminal-scenarios";
 
 const contentDir = path.join(process.cwd(), "src/content/portfolio");
 
@@ -142,7 +143,7 @@ export function getAllPortfolioItems(): PortfolioItem[] {
 
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith(".mdx"));
 
-  return files
+  const items = files
     .map((filename) => {
       const filePath = path.join(contentDir, filename);
       const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -156,6 +157,13 @@ export function getAllPortfolioItems(): PortfolioItem[] {
       };
     })
     .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
+
+  // Validate terminal scenario coverage at build time
+  if (process.env.NODE_ENV === "production") {
+    validateScenarioCoverage(items.map((item) => item.frontmatter.slug));
+  }
+
+  return items;
 }
 
 export function getPortfolioItemBySlug(
