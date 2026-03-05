@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatedCounter } from "@/components/home/animated-counter";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 import { RegressionTerminal } from "@/components/home/regression-terminal";
@@ -142,16 +143,12 @@ export function Hero() {
 
         <FadeIn delay={0.25} className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
-            <p className="text-sm leading-relaxed text-text-secondary">
-              My expertise lies in building resilient test automation for
-              large-scale enterprise systems. From establishing CI/CD testing
-              pipelines to validating complex workflows, I bring a systematic
-              approach to software quality.
-            </p>
+            <div className="grid grid-cols-3 gap-4 py-2">
+              <AnimatedCounter target={6} suffix="+" label="Enterprise Programs" />
+              <AnimatedCounter target={148} suffix="+" label="Regression Tests" />
+              <AnimatedCounter target={20} suffix="+" label="State Deployments" />
+            </div>
             <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
-              <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
-                Selected Brands & Programs
-              </p>
               <div className="marquee-viewport">
                 <div className="marquee-strip">
                   {[0, 1].map((copyIndex) => (
