@@ -94,45 +94,60 @@ function toneClass(tone: LogTone): string {
 
 const fullCommand = `${commandPrefix}${correctedSegment}${commandSuffix}`;
 
-function buildStaticLogLines(): TerminalLogLine[] {
-  const lines: TerminalLogLine[] = [
-    { id: "s-1", message: "[00:00] Booting services: web, api, db, queue...", tone: "muted" },
+interface LogEntry {
+  message: string;
+  tone: LogTone;
+  /** Delay in ms before this line appears during animation. */
+  delayMs: number;
+}
+
+function buildLogEntries(): LogEntry[] {
+  const entries: LogEntry[] = [
+    { message: "[00:00] Booting services: web, api, db, queue...", tone: "muted", delayMs: 130 },
     {
-      id: "s-2",
       message: `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
       tone: "muted",
+      delayMs: 180,
     },
   ];
 
-  let index = 3;
   for (const suite of regressionSuites) {
     if (suite.status === "retry") {
-      lines.push({
-        id: `s-${index}`,
+      entries.push({
         message: `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
         tone: "retry",
+        delayMs: 220,
       });
-      index += 1;
     }
-    lines.push({
-      id: `s-${index}`,
+    entries.push({
       message: `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
       tone: "pass",
+      delayMs: suite.status === "retry" ? 340 : 250,
     });
-    index += 1;
   }
 
-  lines.push(
-    { id: `s-${index}`, message: "[04:27] Uploading traces, videos, screenshots, junit.xml...", tone: "muted" },
-    { id: `s-${index + 1}`, message: `${totalTests} passing - 0 failing - ${retriedCount} retried`, tone: "pass" },
-    { id: `s-${index + 2}`, message: "Total runtime: 4m 29s", tone: "muted" },
+  entries.push(
+    { message: "[04:27] Uploading traces, videos, screenshots, junit.xml...", tone: "muted", delayMs: 220 },
+    { message: `${totalTests} passing - 0 failing - ${retriedCount} retried`, tone: "pass", delayMs: 180 },
+    { message: "Total runtime: 4m 29s", tone: "muted", delayMs: 110 },
   );
 
-  return lines;
+  return entries;
+}
+
+const logEntries = buildLogEntries();
+
+function buildStaticLogLines(): TerminalLogLine[] {
+  return logEntries.map((entry, index) => ({
+    id: `s-${index}`,
+    message: entry.message,
+    tone: entry.tone,
+  }));
 }
 
 export function RegressionTerminal() {
-  const shouldReduceMotion = useReducedMotion();
+  const prefersReduced = useReducedMotion();
+  const shouldReduceMotion = prefersReduced ?? true;
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -270,92 +285,18 @@ export function RegressionTerminal() {
 
         setIsRunning(true);
 
-        if (
-          !(await addLine(
-            "[00:00] Booting services: web, api, db, queue...",
-            "muted",
-            130,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
-            "muted",
-            180,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        for (const suite of regressionSuites) {
-          if (suite.status === "retry") {
-            if (
-              !(await addLine(
-                `[RETRY] ${suite.suite} assertion timed out on attempt 1/2`,
-                "retry",
-                220,
-                cycleId,
-                lineNumber,
-              ))
-            ) {
-              return;
-            }
-          }
-
+        for (const entry of logEntries) {
           if (
             !(await addLine(
-              `[PASS] ${suite.suite} (${suite.tests} tests, ${suite.duration})`,
-              "pass",
-              suite.status === "retry" ? 340 : 250,
+              entry.message,
+              entry.tone,
+              entry.delayMs,
               cycleId,
               lineNumber,
             ))
           ) {
             return;
           }
-        }
-
-        if (
-          !(await addLine(
-            "[04:27] Uploading traces, videos, screenshots, junit.xml...",
-            "muted",
-            220,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            `${totalTests} passing - 0 failing - ${retriedCount} retried`,
-            "pass",
-            180,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
-        }
-
-        if (
-          !(await addLine(
-            "Total runtime: 4m 29s",
-            "muted",
-            110,
-            cycleId,
-            lineNumber,
-          ))
-        ) {
-          return;
         }
 
         setIsRunning(false);
