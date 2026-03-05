@@ -7,10 +7,7 @@ export const metadata: Metadata = {
   description:
     "Deep dives into real QA engineering projects across public and NDA-protected work.",
   openGraph: {
-    title: "Portfolio",
-    description:
-      "Deep dives into real QA engineering projects across public and NDA-protected work.",
-    url: "https://buildverified.com/portfolio",
+    url: "/portfolio",
   },
 };
 

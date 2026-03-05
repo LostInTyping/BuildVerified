@@ -26,20 +26,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "BuildVerified",
-    title: "Ben Armour | Software QA Engineer",
-    description:
-      "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
-    url: "https://buildverified.com",
+    url: "/",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Ben Armour | Software QA Engineer",
-    description:
-      "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    card: "summary",
   },
 };
 

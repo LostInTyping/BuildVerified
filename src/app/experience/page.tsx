@@ -8,10 +8,7 @@ export const metadata: Metadata = {
   description:
     "Timeline of professional and personal QA engineering work by Ben Armour.",
   openGraph: {
-    title: "Experience",
-    description:
-      "Timeline of professional and personal QA engineering work by Ben Armour.",
-    url: "https://buildverified.com/experience",
+    url: "/experience",
   },
 };
 

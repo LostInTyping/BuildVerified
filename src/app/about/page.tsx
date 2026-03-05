@@ -5,10 +5,7 @@ export const metadata: Metadata = {
   description:
     "Career background, education, and approach to software quality.",
   openGraph: {
-    title: "About",
-    description:
-      "Career background, education, and approach to software quality.",
-    url: "https://buildverified.com/about",
+    url: "/about",
   },
 };
 

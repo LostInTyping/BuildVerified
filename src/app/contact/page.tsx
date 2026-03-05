@@ -4,9 +4,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch for QA engineering opportunities.",
   openGraph: {
-    title: "Contact",
-    description: "Get in touch for QA engineering opportunities.",
-    url: "https://buildverified.com/contact",
+    url: "/contact",
   },
 };
 

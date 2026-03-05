@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import {
@@ -13,7 +14,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const item = getPortfolioItemBySlug(slug);
   if (!item) return { title: "Portfolio" };
@@ -21,9 +22,7 @@ export async function generateMetadata({
     title: item.frontmatter.title,
     description: item.frontmatter.outcome,
     openGraph: {
-      title: item.frontmatter.title,
-      description: item.frontmatter.outcome,
-      url: `https://buildverified.com/portfolio/${slug}`,
+      url: `/portfolio/${slug}`,
     },
   };
 }
