@@ -16,17 +16,19 @@ export function FeaturedPortfolio() {
   return (
     <section>
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-            Portfolio
-          </h2>
-          <Link
-            href="/portfolio"
-            className="text-sm text-accent transition-colors hover:text-accent-hover"
-          >
-            View all &rarr;
-          </Link>
-        </div>
+        <FadeIn>
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+              Portfolio
+            </h2>
+            <Link
+              href="/portfolio"
+              className="text-sm text-accent transition-colors hover:text-accent-hover"
+            >
+              View all &rarr;
+            </Link>
+          </div>
+        </FadeIn>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {items.map((item, index) => (
             <FadeIn
