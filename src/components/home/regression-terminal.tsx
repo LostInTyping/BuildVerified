@@ -76,7 +76,6 @@ const mistypedSegment = "gruop";
 const correctedSegment = "group";
 const commandSuffix = " nightly-regression";
 
-const totalSpecs = regressionSuites.length;
 const totalTests = regressionSuites.reduce((count, suite) => count + suite.tests, 0);
 const retriedCount = regressionSuites.filter((suite) => suite.status === "retry").length;
 
@@ -105,7 +104,7 @@ function buildLogEntries(): LogEntry[] {
   const entries: LogEntry[] = [
     { message: "[00:00] Booting services: web, api, db, queue...", tone: "muted", delayMs: 130 },
     {
-      message: `[00:11] Discovered ${totalSpecs} specs / ${totalTests} tests across 4 CI shards`,
+      message: `[00:11] Discovered ${regressionSuites.length} specs / ${totalTests} tests across 4 CI shards`,
       tone: "muted",
       delayMs: 180,
     },
@@ -334,7 +333,7 @@ export function RegressionTerminal() {
           role="region"
           aria-label="Nightly regression run output"
           tabIndex={0}
-          className="max-h-[340px] flex-1 space-y-0.5 overflow-y-auto p-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 focus-visible:outline-offset-bg-elevated sm:space-y-1 sm:p-3 lg:max-h-[460px]"
+          className="max-h-[340px] flex-1 space-y-0.5 overflow-y-auto p-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:space-y-1 sm:p-3 lg:max-h-[460px]"
         >
           <p className="text-text-secondary">
             <span className="text-text-muted">ben@qa-runner</span>
