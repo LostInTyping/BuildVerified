@@ -68,11 +68,19 @@ export function RegressionTerminal() {
   }, [shouldReduceMotion]);
 
   useEffect(() => {
-    if (!outputRef.current) {
+    const el = outputRef.current;
+
+    if (!el) {
       return;
     }
 
-    outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    // Only auto-scroll if the user is already near the bottom.
+    // This lets users freely scroll up to read without being yanked down.
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+
+    if (distanceFromBottom < 60) {
+      el.scrollTop = el.scrollHeight;
+    }
   }, [commandText, logLines]);
 
   useEffect(() => {
@@ -354,7 +362,6 @@ export function RegressionTerminal() {
         const scenario = scenarioQueue.current.pop()!;
 
         setCommandText("");
-        setLogLines([]);
         setIsRunning(false);
 
         const typoResult = await typeTextWithTypos(scenario.command, 26);
@@ -461,7 +468,7 @@ export function RegressionTerminal() {
       <p className="mb-2 text-xs font-medium uppercase tracking-widest text-text-muted">
         CI / QA Terminal
       </p>
-      <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated font-mono text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]">
+      <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]" style={{ fontFamily: "var(--font-mono), ui-monospace, monospace" }}>
         <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
@@ -476,17 +483,45 @@ export function RegressionTerminal() {
           aria-label="CI terminal output"
           aria-live="off"
           tabIndex={0}
-          className="max-h-[340px] flex-1 space-y-0.5 overflow-y-auto p-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:space-y-1 sm:p-3 lg:max-h-[460px]"
+          className="max-h-[340px] flex-1 overflow-y-auto p-2.5 leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:p-3 lg:max-h-[460px]"
         >
           <p className="sr-only">
             Automated CI terminal showing test and deployment scenarios
           </p>
 
-          {logLines.map((line) => (
-            <p key={line.id} className={toneClass(line.tone)}>
-              {line.message}
-            </p>
-          ))}
+          {(() => {
+            const elements: React.ReactNode[] = [];
+            let boxGroup: TerminalLogLine[] = [];
+
+            const flushBoxGroup = () => {
+              if (boxGroup.length === 0) return;
+              elements.push(
+                <pre
+                  key={boxGroup[0].id}
+                  className="text-text-muted leading-[1.15]"
+                >
+                  {boxGroup.map((l) => l.message).join("\n")}
+                </pre>,
+              );
+              boxGroup = [];
+            };
+
+            for (const line of logLines) {
+              const isBox = /[\u2500-\u257F]/.test(line.message);
+              if (isBox) {
+                boxGroup.push(line);
+              } else {
+                flushBoxGroup();
+                elements.push(
+                  <p key={line.id} className={toneClass(line.tone)}>
+                    {line.message}
+                  </p>,
+                );
+              }
+            }
+            flushBoxGroup();
+            return elements;
+          })()}
 
           {/* Active prompt — renders at the bottom, scrolls naturally */}
           <p className="text-text-secondary">
