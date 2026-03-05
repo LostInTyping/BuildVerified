@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const contentDir = path.join(process.cwd(), "src/content/projects");
+const contentDir = path.join(process.cwd(), "src/content/experience");
 
-export interface ProjectFrontmatter {
+export interface ExperienceFrontmatter {
   title: string;
   company: string;
   period: string;
@@ -12,14 +12,15 @@ export interface ProjectFrontmatter {
   role: string;
   summary: string;
   stack: string[];
+  portfolioSlugs?: string[];
   order: number;
 }
 
-export interface Project {
-  frontmatter: ProjectFrontmatter;
+export interface ExperienceItem {
+  frontmatter: ExperienceFrontmatter;
 }
 
-export function getAllProjects(): Project[] {
+export function getAllExperience(): ExperienceItem[] {
   if (!fs.existsSync(contentDir)) return [];
 
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith(".mdx"));
@@ -29,7 +30,7 @@ export function getAllProjects(): Project[] {
       const filePath = path.join(contentDir, filename);
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(fileContent);
-      return { frontmatter: data as ProjectFrontmatter };
+      return { frontmatter: data as ExperienceFrontmatter };
     })
     .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
 }
