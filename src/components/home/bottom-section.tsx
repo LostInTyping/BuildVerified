@@ -67,12 +67,13 @@ export function BottomSection() {
               </h2>
               <p className="mt-3 text-sm text-text-secondary">
                 Looking for a QA engineer who owns quality end-to-end?
-                I&apos;m currently open to new roles and project work.
+                I&apos;m open to on-site, hybrid, and remote roles, and willing
+                to relocate within the US or abroad.
               </p>
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <Link
                   href="/contact"
-                  className="rounded-md bg-accent px-5 py-2.5 text-center text-sm font-medium text-bg-primary transition-colors hover:bg-accent-hover"
+                  className="ghost-btn ghost-btn-accent"
                 >
                   Get in Touch
                 </Link>
@@ -80,7 +81,7 @@ export function BottomSection() {
                   href="https://linkedin.com/in/ben-armour"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-md border border-border px-5 py-2.5 text-center text-sm font-medium text-text-primary transition-colors hover:border-border-hover"
+                  className="ghost-btn ghost-btn-neutral"
                 >
                   LinkedIn ↗
                 </a>

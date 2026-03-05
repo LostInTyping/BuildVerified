@@ -1,17 +1,17 @@
-import type { CaseStudyLink, CaseStudyLinkKind } from "@/lib/case-studies";
+import type { PortfolioLink, PortfolioLinkKind } from "@/lib/portfolio";
 
-const defaultNotes: Record<CaseStudyLinkKind, string> = {
+const defaultNotes: Record<PortfolioLinkKind, string> = {
   public_reference: "Public reference",
   restricted_access: "Login required",
   client_site: "Client website",
 };
 
-interface CaseStudyLinksProps {
-  links?: CaseStudyLink[];
+interface PortfolioLinksProps {
+  links?: PortfolioLink[];
   className?: string;
 }
 
-export function CaseStudyLinks({ links, className = "" }: CaseStudyLinksProps) {
+export function PortfolioLinks({ links, className = "" }: PortfolioLinksProps) {
   if (!links?.length) return null;
 
   return (

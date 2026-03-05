@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local tooling/workspace files
+.agent-deck/
+.superpowers/
+.worktrees/
+.mcp.json
+CLAUDE.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+dev.log
