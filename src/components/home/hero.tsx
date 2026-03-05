@@ -88,13 +88,13 @@ export function Hero() {
             <div className="mt-auto flex flex-row gap-5 pt-2">
               <Link
                 href="/portfolio"
-                className="flex flex-1 items-center justify-center rounded-[4px] border border-accent/[0.08] bg-accent/[0.04] px-[18px] py-3 text-[13px] font-medium uppercase leading-none tracking-normal text-accent/70 transition-colors duration-200 hover:bg-accent/[0.08] hover:text-accent/90"
+                className="ghost-btn ghost-btn-accent flex-1"
               >
                 View Portfolio
               </Link>
               <Link
                 href="/contact"
-                className="flex flex-1 items-center justify-center rounded-[4px] border border-text-primary/[0.07] bg-text-primary/[0.02] px-[18px] py-3 text-[13px] font-medium uppercase leading-none tracking-normal text-text-primary/70 transition-colors duration-200 hover:bg-text-primary/[0.06] hover:text-text-primary/90"
+                className="ghost-btn ghost-btn-neutral flex-1"
               >
                 Get in Touch
               </Link>
