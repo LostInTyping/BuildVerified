@@ -7,9 +7,19 @@ interface AnimatedCounterProps {
   target: number;
   suffix?: string;
   label: string;
+  decimals?: number;
+  valueClassName?: string;
+  labelClassName?: string;
 }
 
-export function AnimatedCounter({ target, suffix = "", label }: AnimatedCounterProps) {
+export function AnimatedCounter({
+  target,
+  suffix = "",
+  label,
+  decimals = 0,
+  valueClassName = "text-2xl font-bold text-text-primary sm:text-3xl",
+  labelClassName = "mt-1 text-[10px] font-medium uppercase tracking-[0.15em] text-text-muted",
+}: AnimatedCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [count, setCount] = useState(0);
@@ -23,6 +33,8 @@ export function AnimatedCounter({ target, suffix = "", label }: AnimatedCounterP
     const increment = target / steps;
     const stepTime = duration / steps;
 
+    const factor = Math.pow(10, decimals);
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) {
@@ -30,19 +42,21 @@ export function AnimatedCounter({ target, suffix = "", label }: AnimatedCounterP
         clearInterval(timer);
         return;
       }
-      setCount(Math.floor(current));
+      setCount(Math.floor(current * factor) / factor);
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, [isInView, target]);
+  }, [isInView, target, decimals]);
+
+  const displayValue = decimals > 0 ? (isInView ? count : 0).toFixed(decimals) : (isInView ? count : 0);
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-2xl font-bold text-text-primary sm:text-3xl">
-        {isInView ? count : 0}
+      <p className={valueClassName}>
+        {displayValue}
         {count === target ? suffix : ""}
       </p>
-      <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.15em] text-text-muted">
+      <p className={labelClassName}>
         {label}
       </p>
     </div>

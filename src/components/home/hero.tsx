@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatedCounter } from "@/components/home/animated-counter";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 import { RegressionTerminal } from "@/components/home/regression-terminal";
+import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 const expertiseAreas: Array<{
   title: string;
@@ -41,19 +41,6 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#1868DB]",
     },
   ];
-
-const selectedBrandsAndPrograms = [
-  "Brooksource",
-  "Macy's",
-  "Ohio Sentencing Data Platform (OSDP)",
-  "Offender Risk Assessment & Case Planning (20+ States)",
-  "DRF-CoApp",
-  "McDonald's",
-  "Taco Bell",
-  "KFC",
-  "Tim Hortons",
-  "Burger King",
-];
 
 export function Hero() {
   return (
@@ -142,35 +129,7 @@ export function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.25} className="h-full min-w-0">
-          <div className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5">
-            <div className="grid grid-cols-3 gap-4 py-2">
-              <AnimatedCounter target={6} suffix="+" label="Enterprise Programs" />
-              <AnimatedCounter target={148} suffix="+" label="Regression Tests" />
-              <AnimatedCounter target={20} suffix="+" label="State Deployments" />
-            </div>
-            <div className="-mx-5 mt-auto border-t border-border px-5 pt-4">
-              <div className="marquee-viewport">
-                <div className="marquee-strip">
-                  {[0, 1].map((copyIndex) => (
-                    <div
-                      key={copyIndex}
-                      className="marquee-group"
-                      aria-hidden={copyIndex === 1}
-                    >
-                      {selectedBrandsAndPrograms.map((item) => (
-                        <span
-                          key={`${item}-${copyIndex}`}
-                          className="shrink-0 whitespace-nowrap rounded-full border border-border bg-bg-elevated px-2.5 py-1 text-[11px] text-text-secondary"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <TestimonialCarousel />
         </FadeIn>
       </div>
     </section>
