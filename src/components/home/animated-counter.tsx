@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 
 interface AnimatedCounterProps {
   target: number;
@@ -23,9 +23,15 @@ export function AnimatedCounter({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [count, setCount] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!isInView) return;
+
+    if (shouldReduceMotion) {
+      setCount(target);
+      return;
+    }
 
     let current = 0;
     const duration = 1000;
@@ -46,7 +52,7 @@ export function AnimatedCounter({
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, [isInView, target, decimals]);
+  }, [isInView, target, decimals, shouldReduceMotion]);
 
   const displayValue = decimals > 0 ? (isInView ? count : 0).toFixed(decimals) : (isInView ? count : 0);
 
