@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
@@ -8,37 +9,37 @@ const expertiseAreas: Array<{
   icon: ExpertiseIconName;
   hoverColorClass: string;
 }> = [
-  {
-    title: "Test Automation",
-    icon: "selenium",
-    hoverColorClass: "group-hover:text-[#43B02A]",
-  },
-  {
-    title: "Testing Strategy",
-    icon: "cypress",
-    hoverColorClass: "group-hover:text-[#69D3A7]",
-  },
-  {
-    title: "Defect Lifecycle",
-    icon: "jira",
-    hoverColorClass: "group-hover:text-[#2684FF]",
-  },
-  {
-    title: "Environments & Infrastructure",
-    icon: "docker",
-    hoverColorClass: "group-hover:text-[#2496ED]",
-  },
-  {
-    title: "CI & Tooling",
-    icon: "githubactions",
-    hoverColorClass: "group-hover:text-[#2088FF]",
-  },
-  {
-    title: "Collaboration & Documentation",
-    icon: "confluence",
-    hoverColorClass: "group-hover:text-[#1868DB]",
-  },
-];
+    {
+      title: "Test Automation",
+      icon: "selenium",
+      hoverColorClass: "group-hover:text-[#43B02A]",
+    },
+    {
+      title: "Testing Strategy",
+      icon: "cypress",
+      hoverColorClass: "group-hover:text-[#69D3A7]",
+    },
+    {
+      title: "Defect Lifecycle",
+      icon: "jira",
+      hoverColorClass: "group-hover:text-[#2684FF]",
+    },
+    {
+      title: "Environments & Infrastructure",
+      icon: "docker",
+      hoverColorClass: "group-hover:text-[#2496ED]",
+    },
+    {
+      title: "CI & Tooling",
+      icon: "githubactions",
+      hoverColorClass: "group-hover:text-[#2088FF]",
+    },
+    {
+      title: "Collaboration & Documentation",
+      icon: "confluence",
+      hoverColorClass: "group-hover:text-[#1868DB]",
+    },
+  ];
 
 const selectedBrandsAndPrograms = [
   "Brooksource",
@@ -58,20 +59,25 @@ export function Hero() {
     <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         <FadeIn className="h-full min-w-0">
-          <div className="flex h-full min-w-0 flex-col gap-4 rounded-lg border border-border bg-bg-card p-4 sm:gap-5 sm:p-5">
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-bg-elevated sm:h-16 sm:w-16">
-                  <span className="text-lg font-bold tracking-wider text-text-muted sm:text-xl">BA</span>
-                </div>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
-                    Software QA Engineer
-                  </p>
-                  <h1 className="mt-0.5 text-2xl font-bold text-text-primary sm:mt-1 sm:text-3xl">
-                    Ben Armour
-                  </h1>
-                </div>
+          <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+              <Image
+                src="/headshot.jpg"
+                alt="Ben Armour"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 350px, (min-width: 768px) 300px, 100vw"
+                priority
+              />
+            </div>
+            <div className="flex flex-col gap-3 pt-4 sm:gap-4 sm:pt-5">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
+                  Software QA Engineer
+                </p>
+                <h1 className="mt-1 text-2xl font-bold text-text-primary sm:mt-1.5 sm:text-3xl">
+                  Ben Armour
+                </h1>
               </div>
               <p className="text-sm leading-relaxed text-text-secondary">
                 I bring reliability to every release so teams can ship with
@@ -79,37 +85,19 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="mt-auto flex flex-col gap-2.5 sm:gap-3">
-              <div className="flex flex-wrap gap-2.5 sm:gap-3">
-                <Link
-                  href="/case-studies"
-                  className="basis-full rounded-md bg-accent px-3.5 py-2 text-center text-[11px] font-medium text-bg-primary transition-colors hover:bg-accent-hover sm:basis-auto sm:px-4 sm:py-2.5 sm:text-xs"
-                >
-                  View Case Studies
-                </Link>
-                <Link
-                  href="/contact"
-                  className="basis-full rounded-md border border-border px-3.5 py-2 text-center text-[11px] font-medium text-text-primary transition-colors hover:border-border-hover sm:basis-auto sm:px-4 sm:py-2.5 sm:text-xs"
-                >
-                  Get in Touch
-                </Link>
-              </div>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <a
-                  href="https://linkedin.com/in/ben-armour"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-text-muted transition-colors hover:text-text-primary"
-                >
-                  LinkedIn ↗
-                </a>
-                <a
-                  href="mailto:armourbl@mail.uc.edu"
-                  className="text-xs text-text-muted transition-colors hover:text-text-primary"
-                >
-                  Email ↗
-                </a>
-              </div>
+            <div className="mt-auto flex flex-row gap-5 pt-2">
+              <Link
+                href="/portfolio"
+                className="flex flex-1 items-center justify-center rounded-[4px] border border-[rgba(96,165,250,0.08)] bg-[rgba(96,165,250,0.04)] px-[18px] py-3 text-[13px] font-medium uppercase leading-none tracking-normal text-accent/70 transition-colors duration-200 hover:bg-[rgba(96,165,250,0.08)] hover:text-accent/90"
+              >
+                View Portfolio
+              </Link>
+              <Link
+                href="/contact"
+                className="flex flex-1 items-center justify-center rounded-[4px] border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.02)] px-[18px] py-3 text-[13px] font-medium uppercase leading-none tracking-normal text-text-primary/70 transition-colors duration-200 hover:bg-[rgba(255,255,255,0.06)] hover:text-text-primary/90"
+              >
+                Get in Touch
+              </Link>
             </div>
           </div>
         </FadeIn>
