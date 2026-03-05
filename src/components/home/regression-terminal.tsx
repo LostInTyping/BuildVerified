@@ -186,6 +186,9 @@ export function RegressionTerminal() {
       return;
     }
 
+    setCommandText("");
+    setLogLines([]);
+
     let cancelled = false;
     let cycleNumber = 0;
 
