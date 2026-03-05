@@ -350,6 +350,11 @@ export function RegressionTerminal() {
             </span>
           </p>
 
+          <p className="sr-only">
+            Nightly regression results: {totalTests} tests passing across{" "}
+            {regressionSuites.length} suites, 0 failing, {retriedCount} retried.
+          </p>
+
           {logLines.map((line) => (
             <p key={line.id} className={toneClass(line.tone)}>
               {line.message}
