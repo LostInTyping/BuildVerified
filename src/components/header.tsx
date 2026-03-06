@@ -5,34 +5,34 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
-import { MobileNav } from "./mobile-nav";
+import { MobileNav } from "@/components/mobile-nav";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [showExpandedContent, setShowExpandedContent] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    handleScroll(); // check initial position
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateScrolledState = () => setIsScrolled(window.scrollY > 50);
+    updateScrolledState(); // check initial position
+    window.addEventListener("scroll", updateScrolledState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolledState);
   }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(
-      () => setShowExpandedContent(!scrolled),
-      scrolled ? 0 : 120,
+      () => setShowExpandedContent(!isScrolled),
+      isScrolled ? 0 : 120,
     );
 
     return () => window.clearTimeout(timer);
-  }, [scrolled]);
+  }, [isScrolled]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
         className={`navbar-inner relative flex h-12 items-center gap-1 border border-border bg-bg-card/60 px-3 backdrop-blur-lg ${
-          scrolled
+          isScrolled
             ? "navbar-collapsed w-full max-w-[34rem]"
             : "navbar-expanded w-full max-w-6xl px-5"
         }`}

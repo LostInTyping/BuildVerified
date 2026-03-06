@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { scenarios, shuffleScenarios, type TerminalScenario, type LogTone } from "@/lib/terminal-scenarios";
 
@@ -25,19 +25,20 @@ const adjacentKeys: Record<string, string[]> = {
 };
 
 function toneClass(tone: LogTone): string {
-  if (tone === "pass") {
-    return "text-status-pass";
+  switch (tone) {
+    case "pass":
+      return "text-status-pass";
+    case "retry":
+      return "text-status-retry";
+    case "error":
+      return "text-status-error";
+    case "muted":
+      return "text-text-muted";
+    default: {
+      const _exhaustive: never = tone;
+      throw new Error(`Unhandled tone: ${_exhaustive}`);
+    }
   }
-
-  if (tone === "retry") {
-    return "text-status-retry";
-  }
-
-  if (tone === "error") {
-    return "text-status-error";
-  }
-
-  return "text-text-muted";
 }
 
 export function RegressionTerminal() {
@@ -46,26 +47,9 @@ export function RegressionTerminal() {
   const shouldReduceMotion = prefersReduced ?? true;
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
-  const [isRunning, setIsRunning] = useState(false);
-  const [cursorVisible, setCursorVisible] = useState(true);
   const [label, setLabel] = useState("queued");
   const outputRef = useRef<HTMLDivElement>(null);
   const scenarioQueue = useRef<TerminalScenario[]>([]);
-
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      setCursorVisible(true);
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setCursorVisible((visible) => !visible);
-    }, 460);
-
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [shouldReduceMotion]);
 
   useEffect(() => {
     const el = outputRef.current;
@@ -100,14 +84,13 @@ export function RegressionTerminal() {
         })),
       ]);
       setLabel(firstScenario.label);
-      setIsRunning(false);
       return;
     }
 
     setCommandText("");
     setLogLines([]);
 
-    let cancelled = false;
+    let isCancelled = false;
     let cycleNumber = 0;
 
     const wait = async (ms: number) =>
@@ -116,7 +99,7 @@ export function RegressionTerminal() {
       });
 
     const typeChar = async (char: string, speedMs: number) => {
-      if (cancelled) {
+      if (isCancelled) {
         return false;
       }
 
@@ -127,7 +110,7 @@ export function RegressionTerminal() {
 
     const backspace = async (count: number, speedMs: number) => {
       for (let index = 0; index < count; index += 1) {
-        if (cancelled) {
+        if (isCancelled) {
           return false;
         }
 
@@ -147,7 +130,7 @@ export function RegressionTerminal() {
     ) => {
       await wait(delayMs);
 
-      if (cancelled) {
+      if (isCancelled) {
         return false;
       }
 
@@ -243,7 +226,7 @@ export function RegressionTerminal() {
       let index = 0;
 
       while (index < text.length) {
-        if (cancelled) {
+        if (isCancelled) {
           return { completed: false };
         }
 
@@ -297,7 +280,7 @@ export function RegressionTerminal() {
           // Pause to "notice" the mistake
           await wait(200 + Math.random() * 200);
 
-          if (cancelled) {
+          if (isCancelled) {
             return { completed: false };
           }
 
@@ -332,9 +315,9 @@ export function RegressionTerminal() {
           // Find which word was mangled
           let errorWordIndex = 0;
 
-          for (let w = 0; w < typedWords.length; w += 1) {
-            if (typedWords[w] !== correctWords[w]) {
-              errorWordIndex = w;
+          for (let wordIndex = 0; wordIndex < typedWords.length; wordIndex += 1) {
+            if (typedWords[wordIndex] !== correctWords[wordIndex]) {
+              errorWordIndex = wordIndex;
               break;
             }
           }
@@ -351,7 +334,7 @@ export function RegressionTerminal() {
     };
 
     const runLoop = async () => {
-      while (!cancelled) {
+      while (!isCancelled) {
         cycleNumber += 1;
         const cycleId = cycleNumber;
         const lineNumber = { current: 0 };
@@ -359,10 +342,14 @@ export function RegressionTerminal() {
         if (scenarioQueue.current.length === 0) {
           scenarioQueue.current = shuffleScenarios(scenarios);
         }
-        const scenario = scenarioQueue.current.pop()!;
+        const scenario = scenarioQueue.current.pop();
+
+        if (!scenario) {
+          return;
+        }
 
         setCommandText("");
-        setIsRunning(false);
+        setLogLines([]);
 
         const typoResult = await typeTextWithTypos(scenario.command, 26);
 
@@ -376,7 +363,7 @@ export function RegressionTerminal() {
 
           await wait(240);
 
-          if (cancelled) {
+          if (isCancelled) {
             return;
           }
 
@@ -417,7 +404,7 @@ export function RegressionTerminal() {
 
         await wait(240);
 
-        if (cancelled) {
+        if (isCancelled) {
           return;
         }
 
@@ -433,7 +420,6 @@ export function RegressionTerminal() {
         ]);
         setCommandText("");
 
-        setIsRunning(true);
         setLabel(scenario.label + " \u2014 running");
 
         for (const entry of scenario.logEntries) {
@@ -450,7 +436,6 @@ export function RegressionTerminal() {
           }
         }
 
-        setIsRunning(false);
         setLabel(scenario.label + " \u2014 complete");
         await wait(3000);
       }
@@ -459,9 +444,43 @@ export function RegressionTerminal() {
     void runLoop();
 
     return () => {
-      cancelled = true;
+      isCancelled = true;
     };
   }, [shouldReduceMotion]);
+
+  const renderedLogLines = useMemo(() => {
+    const elements: React.ReactNode[] = [];
+    let boxGroup: TerminalLogLine[] = [];
+
+    const flushBoxGroup = () => {
+      if (boxGroup.length === 0) return;
+      elements.push(
+        <pre
+          key={boxGroup[0].id}
+          className="text-text-muted leading-[1.15]"
+        >
+          {boxGroup.map((line) => line.message).join("\n")}
+        </pre>,
+      );
+      boxGroup = [];
+    };
+
+    for (const line of logLines) {
+      const isBox = /[\u2500-\u257F]/.test(line.message);
+      if (isBox) {
+        boxGroup.push(line);
+      } else {
+        flushBoxGroup();
+        elements.push(
+          <p key={line.id} className={toneClass(line.tone)}>
+            {line.message}
+          </p>,
+        );
+      }
+    }
+    flushBoxGroup();
+    return elements;
+  }, [logLines]);
 
   return (
     <div className="flex h-full min-w-0 flex-col">
@@ -489,39 +508,7 @@ export function RegressionTerminal() {
             Automated CI terminal showing test and deployment scenarios
           </p>
 
-          {(() => {
-            const elements: React.ReactNode[] = [];
-            let boxGroup: TerminalLogLine[] = [];
-
-            const flushBoxGroup = () => {
-              if (boxGroup.length === 0) return;
-              elements.push(
-                <pre
-                  key={boxGroup[0].id}
-                  className="text-text-muted leading-[1.15]"
-                >
-                  {boxGroup.map((l) => l.message).join("\n")}
-                </pre>,
-              );
-              boxGroup = [];
-            };
-
-            for (const line of logLines) {
-              const isBox = /[\u2500-\u257F]/.test(line.message);
-              if (isBox) {
-                boxGroup.push(line);
-              } else {
-                flushBoxGroup();
-                elements.push(
-                  <p key={line.id} className={toneClass(line.tone)}>
-                    {line.message}
-                  </p>,
-                );
-              }
-            }
-            flushBoxGroup();
-            return elements;
-          })()}
+          {renderedLogLines}
 
           {/* Active prompt — renders at the bottom, scrolls naturally */}
           <p className="text-text-secondary">
@@ -530,9 +517,7 @@ export function RegressionTerminal() {
             <span>{commandText}</span>
             <span
               aria-hidden="true"
-              className={`text-accent transition-opacity duration-200 ${
-                cursorVisible ? "opacity-100" : "opacity-0"
-              }`}
+              className="text-accent terminal-cursor"
             >
               _
             </span>

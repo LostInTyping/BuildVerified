@@ -9,7 +9,7 @@ import { navLinks } from "@/lib/nav-links";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const mounted = useSyncExternalStore(
+  const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false,
@@ -29,16 +29,16 @@ export function MobileNav() {
   }, [isOpen]);
 
   // Close on Escape
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+  const closeOnEscapeKey = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") setIsOpen(false);
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-      return () => document.removeEventListener("keydown", handleKeyDown);
+      document.addEventListener("keydown", closeOnEscapeKey);
+      return () => document.removeEventListener("keydown", closeOnEscapeKey);
     }
-  }, [isOpen, handleKeyDown]);
+  }, [isOpen, closeOnEscapeKey]);
 
   const overlay = (
     <AnimatePresence>
@@ -139,7 +139,7 @@ export function MobileNav() {
           />
         </svg>
       </button>
-      {mounted && createPortal(overlay, document.body)}
+      {isMounted && createPortal(overlay, document.body)}
     </div>
   );
 }
