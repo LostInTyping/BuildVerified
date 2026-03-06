@@ -116,7 +116,11 @@ function validatePortfolioFrontmatter(
           `field 'links[${i}].kind' must be one of: ${VALID_LINK_KINDS.join(", ")}`,
         );
       }
-      if (linkRecord.note !== undefined && linkRecord.note !== null && typeof linkRecord.note !== "string") {
+      if (
+        linkRecord.note !== undefined &&
+        linkRecord.note !== null &&
+        typeof linkRecord.note !== "string"
+      ) {
         err(`field 'links[${i}].note' must be a string`);
       }
     }
