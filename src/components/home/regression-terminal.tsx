@@ -36,7 +36,6 @@ function toneClass(tone: LogTone): string {
       return "text-text-muted";
     default: {
       const _exhaustive: never = tone;
-      const _exhaustive: never = tone;
       throw new Error(`Unhandled tone: ${_exhaustive}`);
     }
   }
