@@ -459,7 +459,7 @@ export function RegressionTerminal() {
           key={boxGroup[0].id}
           className="text-text-muted leading-[1.15]"
         >
-          {boxGroup.map((l) => l.message).join("\n")}
+          {boxGroup.map((line) => line.message).join("\n")}
         </pre>,
       );
       boxGroup = [];
