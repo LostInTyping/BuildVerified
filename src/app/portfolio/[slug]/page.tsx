@@ -29,7 +29,7 @@ export async function generateMetadata({
 
 export function generateStaticParams() {
   const items = getAllPortfolioItems();
-  return items.map((s) => ({ slug: s.frontmatter.slug }));
+  return items.map((portfolioItem) => ({ slug: portfolioItem.frontmatter.slug }));
 }
 
 export default async function PortfolioDetailPage({
@@ -41,8 +41,8 @@ export default async function PortfolioDetailPage({
   const item = getPortfolioItemBySlug(slug);
   if (!item) notFound();
 
-  const parentExperience = getAllExperience().find((e) =>
-    e.frontmatter.portfolioSlugs?.includes(slug),
+  const parentExperience = getAllExperience().find((experienceEntry) =>
+    experienceEntry.frontmatter.portfolioSlugs?.includes(slug),
   );
 
   return (

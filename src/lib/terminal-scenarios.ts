@@ -443,7 +443,7 @@ const excludedSlugs: string[] = [];
 
 export function validateScenarioCoverage(portfolioSlugs: string[]): void {
   const scenarioIds = new Set(
-    scenarios.filter((s) => s.portfolio).map((s) => s.id),
+    scenarios.filter((scenario) => scenario.portfolio).map((scenario) => scenario.id),
   );
 
   for (const slug of portfolioSlugs) {

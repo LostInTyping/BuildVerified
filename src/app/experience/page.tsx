@@ -17,7 +17,7 @@ export default function ExperiencePage() {
   const portfolioItems = getAllPortfolioItems();
 
   const slugToTitle = new Map(
-    portfolioItems.map((p) => [p.frontmatter.slug, p.frontmatter.title]),
+    portfolioItems.map((portfolioItem) => [portfolioItem.frontmatter.slug, portfolioItem.frontmatter.title]),
   );
 
   return (
