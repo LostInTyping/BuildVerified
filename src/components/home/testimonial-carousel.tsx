@@ -41,7 +41,7 @@ export function TestimonialCarousel() {
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const goTo = useCallback(
+  const navigateToTestimonial = useCallback(
     (index: number) => {
       if (index === active) return;
       setActive(index);
@@ -49,15 +49,15 @@ export function TestimonialCarousel() {
     [active],
   );
 
-  const next = useCallback(() => {
+  const advanceToNextTestimonial = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
   }, []);
 
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(next, AUTO_INTERVAL_MS);
+    const timer = setInterval(advanceToNextTestimonial, AUTO_INTERVAL_MS);
     return () => clearInterval(timer);
-  }, [isPaused, next]);
+  }, [isPaused, advanceToNextTestimonial]);
 
   return (
     <div
@@ -144,7 +144,7 @@ export function TestimonialCarousel() {
         {testimonials.map((_, i) => (
           <button
             key={i}
-            onClick={() => goTo(i)}
+            onClick={() => navigateToTestimonial(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === active
                 ? "w-6 bg-accent"

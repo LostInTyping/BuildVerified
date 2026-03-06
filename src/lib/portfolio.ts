@@ -101,22 +101,22 @@ function validatePortfolioFrontmatter(
       if (typeof link !== "object" || link === null) {
         err(`field 'links[${i}]' must be an object`);
       }
-      const l = link as Record<string, unknown>;
-      if (typeof l.label !== "string") {
+      const linkRecord = link as Record<string, unknown>;
+      if (typeof linkRecord.label !== "string") {
         err(`field 'links[${i}].label' must be a string`);
       }
-      if (typeof l.url !== "string") {
+      if (typeof linkRecord.url !== "string") {
         err(`field 'links[${i}].url' must be a string`);
       }
       if (
-        typeof l.kind !== "string" ||
-        !VALID_LINK_KINDS.includes(l.kind as PortfolioLinkKind)
+        typeof linkRecord.kind !== "string" ||
+        !VALID_LINK_KINDS.includes(linkRecord.kind as PortfolioLinkKind)
       ) {
         err(
           `field 'links[${i}].kind' must be one of: ${VALID_LINK_KINDS.join(", ")}`,
         );
       }
-      if (l.note !== undefined && l.note !== null && typeof l.note !== "string") {
+      if (linkRecord.note !== undefined && linkRecord.note !== null && typeof linkRecord.note !== "string") {
         err(`field 'links[${i}].note' must be a string`);
       }
     }
@@ -170,9 +170,9 @@ export function getPortfolioItemBySlug(
   slug: string,
 ): PortfolioItem | undefined {
   const allItems = getAllPortfolioItems();
-  return allItems.find((s) => s.frontmatter.slug === slug);
+  return allItems.find((portfolioItem) => portfolioItem.frontmatter.slug === slug);
 }
 
 export function getFeaturedPortfolioItems(): PortfolioItem[] {
-  return getAllPortfolioItems().filter((s) => s.frontmatter.featured);
+  return getAllPortfolioItems().filter((portfolioItem) => portfolioItem.frontmatter.featured);
 }

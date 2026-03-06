@@ -25,19 +25,20 @@ const adjacentKeys: Record<string, string[]> = {
 };
 
 function toneClass(tone: LogTone): string {
-  if (tone === "pass") {
-    return "text-status-pass";
+  switch (tone) {
+    case "pass":
+      return "text-status-pass";
+    case "retry":
+      return "text-status-retry";
+    case "error":
+      return "text-status-error";
+    case "muted":
+      return "text-text-muted";
+    default: {
+      const _exhaustive: never = tone;
+      return _exhaustive;
+    }
   }
-
-  if (tone === "retry") {
-    return "text-status-retry";
-  }
-
-  if (tone === "error") {
-    return "text-status-error";
-  }
-
-  return "text-text-muted";
 }
 
 export function RegressionTerminal() {
@@ -107,7 +108,7 @@ export function RegressionTerminal() {
     setCommandText("");
     setLogLines([]);
 
-    let cancelled = false;
+    let isCancelled = false;
     let cycleNumber = 0;
 
     const wait = async (ms: number) =>
@@ -116,7 +117,7 @@ export function RegressionTerminal() {
       });
 
     const typeChar = async (char: string, speedMs: number) => {
-      if (cancelled) {
+      if (isCancelled) {
         return false;
       }
 
@@ -127,7 +128,7 @@ export function RegressionTerminal() {
 
     const backspace = async (count: number, speedMs: number) => {
       for (let index = 0; index < count; index += 1) {
-        if (cancelled) {
+        if (isCancelled) {
           return false;
         }
 
@@ -147,7 +148,7 @@ export function RegressionTerminal() {
     ) => {
       await wait(delayMs);
 
-      if (cancelled) {
+      if (isCancelled) {
         return false;
       }
 
@@ -243,7 +244,7 @@ export function RegressionTerminal() {
       let index = 0;
 
       while (index < text.length) {
-        if (cancelled) {
+        if (isCancelled) {
           return { completed: false };
         }
 
@@ -297,7 +298,7 @@ export function RegressionTerminal() {
           // Pause to "notice" the mistake
           await wait(200 + Math.random() * 200);
 
-          if (cancelled) {
+          if (isCancelled) {
             return { completed: false };
           }
 
@@ -332,9 +333,9 @@ export function RegressionTerminal() {
           // Find which word was mangled
           let errorWordIndex = 0;
 
-          for (let w = 0; w < typedWords.length; w += 1) {
-            if (typedWords[w] !== correctWords[w]) {
-              errorWordIndex = w;
+          for (let wordIndex = 0; wordIndex < typedWords.length; wordIndex += 1) {
+            if (typedWords[wordIndex] !== correctWords[wordIndex]) {
+              errorWordIndex = wordIndex;
               break;
             }
           }
@@ -351,7 +352,7 @@ export function RegressionTerminal() {
     };
 
     const runLoop = async () => {
-      while (!cancelled) {
+      while (!isCancelled) {
         cycleNumber += 1;
         const cycleId = cycleNumber;
         const lineNumber = { current: 0 };
@@ -359,7 +360,11 @@ export function RegressionTerminal() {
         if (scenarioQueue.current.length === 0) {
           scenarioQueue.current = shuffleScenarios(scenarios);
         }
-        const scenario = scenarioQueue.current.pop()!;
+        const scenario = scenarioQueue.current.pop();
+
+        if (!scenario) {
+          return;
+        }
 
         setCommandText("");
         setIsRunning(false);
@@ -376,7 +381,7 @@ export function RegressionTerminal() {
 
           await wait(240);
 
-          if (cancelled) {
+          if (isCancelled) {
             return;
           }
 
@@ -417,7 +422,7 @@ export function RegressionTerminal() {
 
         await wait(240);
 
-        if (cancelled) {
+        if (isCancelled) {
           return;
         }
 
@@ -459,7 +464,7 @@ export function RegressionTerminal() {
     void runLoop();
 
     return () => {
-      cancelled = true;
+      isCancelled = true;
     };
   }, [shouldReduceMotion]);
 
