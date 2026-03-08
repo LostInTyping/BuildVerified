@@ -6,52 +6,52 @@ const expertiseAreas: Array<{
   icon: ExpertiseIconName;
   hoverColorClass: string;
 }> = [
-    {
-      title: "Test Automation",
-      icon: "beaker",
-      hoverColorClass: "group-hover:text-green-400",
-    },
-    {
-      title: "Defect Lifecycle",
-      icon: "bug",
-      hoverColorClass: "group-hover:text-red-400",
-    },
-    {
-      title: "Test Reporting",
-      icon: "chart-bar",
-      hoverColorClass: "group-hover:text-teal-400",
-    },
-    {
-      title: "CI/CD Pipelines",
-      icon: "git-branch",
-      hoverColorClass: "group-hover:text-violet-400",
-    },
-    {
-      title: "Environments & Infrastructure",
-      icon: "server",
-      hoverColorClass: "group-hover:text-blue-400",
-    },
-    {
-      title: "API Testing",
-      icon: "code-bracket",
-      hoverColorClass: "group-hover:text-orange-400",
-    },
-    {
-      title: "Performance Testing",
-      icon: "bolt",
-      hoverColorClass: "group-hover:text-cyan-400",
-    },
-    {
-      title: "Accessibility Testing",
-      icon: "eye",
-      hoverColorClass: "group-hover:text-amber-400",
-    },
-    {
-      title: "Data Validation",
-      icon: "database",
-      hoverColorClass: "group-hover:text-pink-400",
-    },
-  ];
+  {
+    title: "Test Automation",
+    icon: "beaker",
+    hoverColorClass: "group-hover:text-green-400",
+  },
+  {
+    title: "Defect Lifecycle",
+    icon: "bug",
+    hoverColorClass: "group-hover:text-red-400",
+  },
+  {
+    title: "Test Reporting",
+    icon: "chart-bar",
+    hoverColorClass: "group-hover:text-teal-400",
+  },
+  {
+    title: "CI/CD Pipelines",
+    icon: "git-branch",
+    hoverColorClass: "group-hover:text-violet-400",
+  },
+  {
+    title: "Environments & Infrastructure",
+    icon: "server",
+    hoverColorClass: "group-hover:text-blue-400",
+  },
+  {
+    title: "API Testing",
+    icon: "code-bracket",
+    hoverColorClass: "group-hover:text-orange-400",
+  },
+  {
+    title: "Performance Testing",
+    icon: "bolt",
+    hoverColorClass: "group-hover:text-cyan-400",
+  },
+  {
+    title: "Accessibility Testing",
+    icon: "eye",
+    hoverColorClass: "group-hover:text-amber-400",
+  },
+  {
+    title: "Data Validation",
+    icon: "database",
+    hoverColorClass: "group-hover:text-pink-400",
+  },
+];
 
 const proofItems = [
   {
