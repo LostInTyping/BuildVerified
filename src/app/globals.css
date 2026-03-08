@@ -57,6 +57,7 @@ body {
 
 .marquee-viewport {
   overflow: hidden;
+  padding-bottom: 2px;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -82,6 +83,20 @@ body {
   gap: 0.5rem;
   min-width: max-content;
   padding-right: 0.5rem;
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  max-width: 72rem;
+  margin-inline: auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-border) 80%, transparent) 20%,
+    color-mix(in srgb, var(--color-border) 80%, transparent) 80%,
+    transparent
+  );
 }
 
 .expertise-tile:hover {
