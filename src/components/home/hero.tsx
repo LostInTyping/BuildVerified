@@ -15,8 +15,8 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#4ade80]",
     },
     {
-      title: "Testing Strategy",
-      icon: "clipboard-check",
+      title: "Regression Testing",
+      icon: "arrow-path",
       hoverColorClass: "group-hover:text-[#2dd4bf]",
     },
     {
@@ -30,13 +30,13 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#60a5fa]",
     },
     {
-      title: "CI & Tooling",
+      title: "CI/CD Pipelines",
       icon: "git-branch",
       hoverColorClass: "group-hover:text-[#a78bfa]",
     },
     {
-      title: "Collaboration & Documentation",
-      icon: "users",
+      title: "Mobile Testing",
+      icon: "device-phone",
       hoverColorClass: "group-hover:text-[#fbbf24]",
     },
     {
@@ -50,8 +50,8 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#22d3ee]",
     },
     {
-      title: "Security Testing",
-      icon: "shield-check",
+      title: "Database Testing",
+      icon: "database",
       hoverColorClass: "group-hover:text-[#f472b6]",
     },
   ];

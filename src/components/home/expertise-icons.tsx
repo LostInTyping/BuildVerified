@@ -1,13 +1,13 @@
 export type ExpertiseIconName =
   | "beaker"
-  | "clipboard-check"
+  | "arrow-path"
   | "bug"
   | "server"
   | "git-branch"
-  | "users"
+  | "device-phone"
   | "code-bracket"
   | "bolt"
-  | "shield-check";
+  | "database";
 
 type ExpertiseIconProps = {
   name: ExpertiseIconName;
@@ -28,7 +28,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           <path d="M9 3a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-.5v4.382l5.553 9.26A2 2 0 0 1 17.336 20H6.664a2 2 0 0 1-1.717-3.008L10.5 7.732V4H10a1 1 0 0 1-1-1Zm3.5 1h-1v4a1 1 0 0 1-.138.508L6.32 17.34a.5.5 0 0 0 .166.672.5.5 0 0 0 .178.063.5.5 0 0 0 .083.006h10.506a.5.5 0 0 0 .429-.752L12.638 8.158A1 1 0 0 1 12.5 7.65V4Z" />
         </svg>
       );
-    case "clipboard-check":
+    case "arrow-path":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           focusable="false"
           className={className}
         >
-          <path d="M8.5 2a1.5 1.5 0 0 0-1.415 1H5.5A1.5 1.5 0 0 0 4 4.5v15A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 18.5 3h-1.585A1.5 1.5 0 0 0 15.5 2h-7ZM9 3.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm6.854 7.354-4.5 4.5a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L11 14.293l4.146-4.147a.5.5 0 0 1 .708.708Z" />
+          <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182M21.015 4.357v4.992" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
         </svg>
       );
     case "bug":
@@ -76,7 +76,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           <path d="M6 3a3 3 0 0 1 2 5.236V11h4a3 3 0 0 1 3 3v1.764a3 3 0 1 1-2 0V14a1 1 0 0 0-1-1H8v2.764a3 3 0 1 1-2 0V8.236A3.001 3.001 0 0 1 6 3Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm8 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
         </svg>
       );
-    case "users":
+    case "device-phone":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           focusable="false"
           className={className}
         >
-          <path d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM7 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm-3 9a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 1 1-2 0v-1a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1a1 1 0 1 1-2 0v-1Zm12-7a1 1 0 0 1 1-1 4 4 0 0 1 4 4v1a1 1 0 1 1-2 0v-1a2 2 0 0 0-2-2 1 1 0 0 1-1-1Zm-1-5a1 1 0 0 1 1-1 4 4 0 1 1 0 8 1 1 0 1 1 0-2 2 2 0 1 0 0-4 1 1 0 0 1-1-1Z" />
+          <path d="M7 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm0 2h10v14H7V4Zm5 15a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
         </svg>
       );
     case "code-bracket":
@@ -112,7 +112,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           <path d="M13 2 4 14h5v8l9-12h-5V2Z" />
         </svg>
       );
-    case "shield-check":
+    case "database":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           focusable="false"
           className={className}
         >
-          <path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm-1 15.5-3.5-3.5 1.41-1.41L11 13.67l5.09-5.09L17.5 10 11 16.5Z" />
+          <path d="M12 2C7.58 2 4 3.79 4 6v12c0 2.21 3.58 4 8 4s8-1.79 8-4V6c0-2.21-3.58-4-8-4Zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2ZM6 9.26C7.53 10.03 9.63 10.5 12 10.5s4.47-.47 6-1.24V12c0 .5-2.13 2-6 2s-6-1.5-6-2V9.26ZM6 15.26C7.53 16.03 9.63 16.5 12 16.5s4.47-.47 6-1.24V18c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.74Z" />
         </svg>
       );
     default: {
