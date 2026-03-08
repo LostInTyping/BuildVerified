@@ -86,7 +86,7 @@ const proofItems = [
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-10 pb-8 md:pt-12 md:pb-10">
+    <section className="mx-auto max-w-6xl px-6 pt-10 pb-3 md:pt-12 md:pb-4">
       <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-[300px_minmax(0,1fr)] lg:grid-cols-[350px_minmax(0,1fr)]">
         <FadeIn className="h-full min-w-0">
           <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
@@ -131,58 +131,68 @@ export function Hero() {
         </FadeIn>
       </div>
 
-      <div className="mt-4 grid w-full gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2">
-        <FadeIn delay={0.2} className="h-full min-w-0">
-          <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-              Areas of Expertise
-            </h2>
-            <div className="mt-4 flex-1 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-3 sm:grid-rows-3">
-              {expertiseAreas.map((area, index) => (
-                <FadeIn
-                  key={area.title}
-                  delay={0.14 + index * 0.05}
-                  className="h-full"
-                  scale
-                >
-                  <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
-                    <div
-                      className={`mx-auto flex h-12 w-12 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
-                    >
-                      <ExpertiseIcon
-                        name={area.icon}
-                        className="h-8 w-8 transition duration-300 group-hover:scale-105"
-                      />
+    </section>
+  );
+}
+
+export function ExpertiseSection() {
+  return (
+    <section>
+      <hr className="section-divider" />
+      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
+        <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-2">
+          <FadeIn delay={0.2} className="h-full min-w-0">
+            <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+              <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+                Areas of Expertise
+              </h2>
+              <div className="mt-4 flex-1 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-3 sm:grid-rows-3">
+                {expertiseAreas.map((area, index) => (
+                  <FadeIn
+                    key={area.title}
+                    delay={0.14 + index * 0.05}
+                    className="h-full"
+                    scale
+                  >
+                    <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
+                      <div
+                        className={`mx-auto flex h-12 w-12 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
+                      >
+                        <ExpertiseIcon
+                          name={area.icon}
+                          className="h-8 w-8 transition duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <p className="mt-2 text-[11px] font-medium text-text-secondary sm:text-xs">
+                        {area.title}
+                      </p>
                     </div>
-                    <p className="mt-2 text-[11px] font-medium text-text-secondary sm:text-xs">
-                      {area.title}
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.25} className="h-full min-w-0">
+            <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+              <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+                How I Work
+              </h2>
+              <div className="mt-4 flex-1 flex flex-col justify-between">
+                {proofItems.map((item) => (
+                  <div key={item.title} className="border-l-2 border-accent pl-4">
+                    <h3 className="text-sm font-semibold text-text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-text-secondary">
+                      {item.description}
                     </p>
                   </div>
-                </FadeIn>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.25} className="h-full min-w-0">
-          <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-              How I Work
-            </h2>
-            <div className="mt-4 flex-1 flex flex-col justify-between">
-              {proofItems.map((item) => (
-                <div key={item.title} className="border-l-2 border-accent pl-4">
-                  <h3 className="text-sm font-semibold text-text-primary">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-text-secondary">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );

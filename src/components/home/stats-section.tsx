@@ -30,8 +30,8 @@ const labelClassName = "mt-1.5 text-xs text-text-muted";
 
 export function StatsSection() {
   return (
-    <section className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+    <section>
+      <div className="mx-auto max-w-6xl px-6 pb-3 md:pb-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {stats.map((stat, i) => (
             <FadeIn
@@ -54,7 +54,7 @@ export function StatsSection() {
         </div>
 
         <FadeIn delay={0.3}>
-          <div className="mt-5 marquee-viewport">
+          <div className="mt-3 marquee-viewport">
             <div className="marquee-strip">
               {[0, 1].map((copyIndex) => (
                 <div
