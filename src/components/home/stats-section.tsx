@@ -3,7 +3,7 @@ import { FadeIn } from "@/components/fade-in";
 
 const stats = [
   { target: 3.5, suffix: "+", label: "Years of QA experience", decimals: 1 },
-  { target: 20, suffix: "+", label: "Projects", decimals: 0 },
+  { target: 20, suffix: "+", label: "Client projects", decimals: 0 },
   { target: 10, suffix: "+", label: "Frameworks", decimals: 0 },
   { target: 1000, suffix: "+", label: "Automated test cases", decimals: 0 },
 ];
