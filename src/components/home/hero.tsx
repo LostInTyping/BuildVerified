@@ -139,11 +139,11 @@ export function Hero() {
 
       <div className="mt-4 grid w-full gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2">
         <FadeIn delay={0.2} className="h-full min-w-0">
-          <div className="h-full min-w-0 rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+          <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               Areas of Expertise
             </h2>
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-2.5 sm:grid-cols-3">
+            <div className="mt-4 flex-1 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-3 sm:grid-rows-3">
               {expertiseAreas.map((area, index) => (
                 <FadeIn
                   key={area.title}
@@ -171,11 +171,11 @@ export function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.25} className="h-full min-w-0">
-          <div className="h-full min-w-0 rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+          <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
               How I Work
             </h2>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 flex-1 flex flex-col justify-between">
               {proofItems.map((item) => (
                 <div key={item.title} className="border-l-2 border-accent pl-4">
                   <h3 className="text-sm font-semibold text-text-primary">
