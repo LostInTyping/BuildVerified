@@ -115,18 +115,12 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="mt-auto flex flex-row gap-5 pt-2">
+            <div className="mt-auto pt-2">
               <Link
                 href="/portfolio"
-                className="ghost-btn ghost-btn-accent flex-1"
+                className="ghost-btn ghost-btn-accent w-full"
               >
                 View Portfolio
-              </Link>
-              <Link
-                href="/contact"
-                className="ghost-btn ghost-btn-neutral flex-1"
-              >
-                Get in Touch
               </Link>
             </div>
           </div>
