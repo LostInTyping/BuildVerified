@@ -1,10 +1,10 @@
 export type ExpertiseIconName =
   | "beaker"
-  | "arrow-path"
+  | "chart-bar"
   | "bug"
   | "server"
   | "git-branch"
-  | "device-phone"
+  | "eye"
   | "code-bracket"
   | "bolt"
   | "database";
@@ -28,7 +28,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           <path d="M9 3a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-.5v4.382l5.553 9.26A2 2 0 0 1 17.336 20H6.664a2 2 0 0 1-1.717-3.008L10.5 7.732V4H10a1 1 0 0 1-1-1Zm3.5 1h-1v4a1 1 0 0 1-.138.508L6.32 17.34a.5.5 0 0 0 .166.672.5.5 0 0 0 .178.063.5.5 0 0 0 .083.006h10.506a.5.5 0 0 0 .429-.752L12.638 8.158A1 1 0 0 1 12.5 7.65V4Z" />
         </svg>
       );
-    case "arrow-path":
+    case "chart-bar":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           focusable="false"
           className={className}
         >
-          <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182M21.015 4.357v4.992" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path d="M3 3a1 1 0 0 1 1 1v14h17a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm4 8a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1Zm5-2a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm5-3a1 1 0 0 1 1 1v9a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1Z" />
         </svg>
       );
     case "bug":
@@ -76,7 +76,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           <path d="M6 3a3 3 0 0 1 2 5.236V11h4a3 3 0 0 1 3 3v1.764a3 3 0 1 1-2 0V14a1 1 0 0 0-1-1H8v2.764a3 3 0 1 1-2 0V8.236A3.001 3.001 0 0 1 6 3Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm8 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
         </svg>
       );
-    case "device-phone":
+    case "eye":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           focusable="false"
           className={className}
         >
-          <path d="M7 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm0 2h10v14H7V4Zm5 15a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
+          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5ZM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5Zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3Z" />
         </svg>
       );
     case "code-bracket":

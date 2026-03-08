@@ -15,19 +15,14 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#4ade80]",
     },
     {
-      title: "Regression Testing",
-      icon: "arrow-path",
-      hoverColorClass: "group-hover:text-[#2dd4bf]",
-    },
-    {
       title: "Defect Lifecycle",
       icon: "bug",
       hoverColorClass: "group-hover:text-[#f87171]",
     },
     {
-      title: "Environments & Infrastructure",
-      icon: "server",
-      hoverColorClass: "group-hover:text-[#60a5fa]",
+      title: "Test Reporting",
+      icon: "chart-bar",
+      hoverColorClass: "group-hover:text-[#2dd4bf]",
     },
     {
       title: "CI/CD Pipelines",
@@ -35,9 +30,9 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#a78bfa]",
     },
     {
-      title: "Mobile Testing",
-      icon: "device-phone",
-      hoverColorClass: "group-hover:text-[#fbbf24]",
+      title: "Environments & Infrastructure",
+      icon: "server",
+      hoverColorClass: "group-hover:text-[#60a5fa]",
     },
     {
       title: "API Testing",
@@ -50,7 +45,12 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#22d3ee]",
     },
     {
-      title: "Database Testing",
+      title: "Accessibility Testing",
+      icon: "eye",
+      hoverColorClass: "group-hover:text-[#fbbf24]",
+    },
+    {
+      title: "Data Validation",
       icon: "database",
       hoverColorClass: "group-hover:text-[#f472b6]",
     },
