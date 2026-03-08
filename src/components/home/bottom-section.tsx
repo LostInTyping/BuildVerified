@@ -4,7 +4,7 @@ import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 export function BottomSection() {
   return (
-    <section>
+    <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* Testimonials */}

@@ -14,7 +14,7 @@ export function FeaturedPortfolio() {
     ).slice(0, 4);
 
   return (
-    <section>
+    <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <FadeIn>
           <div className="flex items-center justify-between">

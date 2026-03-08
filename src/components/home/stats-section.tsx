@@ -30,7 +30,7 @@ const labelClassName = "mt-1.5 text-xs text-text-muted";
 
 export function StatsSection() {
   return (
-    <section>
+    <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {stats.map((stat, i) => (
