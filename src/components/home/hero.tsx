@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 import { RegressionTerminal } from "@/components/home/regression-terminal";
-import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 const expertiseAreas: Array<{
   title: string;
@@ -41,6 +40,34 @@ const expertiseAreas: Array<{
       hoverColorClass: "group-hover:text-[#fbbf24]",
     },
   ];
+
+const proofItems = [
+  {
+    title: "CI Pipeline Integration",
+    description:
+      "Automated test runs on every PR with published reports and clear pass/fail gates.",
+  },
+  {
+    title: "Flake Control",
+    description:
+      "Retries, quarantines, and root-cause investigation to keep suites reliable.",
+  },
+  {
+    title: "Release Validation",
+    description:
+      "UAT exit criteria and release readiness summaries that stakeholders trust.",
+  },
+  {
+    title: "Environment Parity",
+    description:
+      "Production-like lab setups with hardware and software matrices that mirror real conditions.",
+  },
+  {
+    title: "Defect Lifecycle Ownership",
+    description:
+      "From log capture and repro isolation through Jira tracking to verified fix in production.",
+  },
+];
 
 export function Hero() {
   return (
@@ -129,7 +156,23 @@ export function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.25} className="h-full min-w-0">
-          <TestimonialCarousel />
+          <div className="h-full min-w-0 rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+              How I Work
+            </h2>
+            <div className="mt-4 space-y-3">
+              {proofItems.map((item) => (
+                <div key={item.title} className="border-l-2 border-accent pl-4">
+                  <h3 className="text-sm font-semibold text-text-primary">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-text-secondary">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </FadeIn>
       </div>
     </section>
