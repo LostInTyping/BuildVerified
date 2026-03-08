@@ -12,33 +12,33 @@ const expertiseAreas: Array<{
 }> = [
     {
       title: "Test Automation",
-      icon: "selenium",
-      hoverColorClass: "group-hover:text-[#43B02A]",
+      icon: "beaker",
+      hoverColorClass: "group-hover:text-[#4ade80]",
     },
     {
       title: "Testing Strategy",
-      icon: "cypress",
-      hoverColorClass: "group-hover:text-[#69D3A7]",
+      icon: "clipboard-check",
+      hoverColorClass: "group-hover:text-[#2dd4bf]",
     },
     {
       title: "Defect Lifecycle",
-      icon: "jira",
-      hoverColorClass: "group-hover:text-[#2684FF]",
+      icon: "bug",
+      hoverColorClass: "group-hover:text-[#f87171]",
     },
     {
       title: "Environments & Infrastructure",
-      icon: "docker",
-      hoverColorClass: "group-hover:text-[#2496ED]",
+      icon: "server",
+      hoverColorClass: "group-hover:text-[#60a5fa]",
     },
     {
       title: "CI & Tooling",
-      icon: "githubactions",
-      hoverColorClass: "group-hover:text-[#2088FF]",
+      icon: "git-branch",
+      hoverColorClass: "group-hover:text-[#a78bfa]",
     },
     {
       title: "Collaboration & Documentation",
-      icon: "confluence",
-      hoverColorClass: "group-hover:text-[#1868DB]",
+      icon: "users",
+      hoverColorClass: "group-hover:text-[#fbbf24]",
     },
   ];
 
