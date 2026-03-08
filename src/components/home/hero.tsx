@@ -39,6 +39,21 @@ const expertiseAreas: Array<{
       icon: "users",
       hoverColorClass: "group-hover:text-[#fbbf24]",
     },
+    {
+      title: "API Testing",
+      icon: "code-bracket",
+      hoverColorClass: "group-hover:text-[#fb923c]",
+    },
+    {
+      title: "Performance Testing",
+      icon: "bolt",
+      hoverColorClass: "group-hover:text-[#22d3ee]",
+    },
+    {
+      title: "Security Testing",
+      icon: "shield-check",
+      hoverColorClass: "group-hover:text-[#f472b6]",
+    },
   ];
 
 const proofItems = [
@@ -138,11 +153,11 @@ export function Hero() {
                 >
                   <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
                     <div
-                      className={`mx-auto flex h-10 w-10 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
+                      className={`mx-auto flex h-12 w-12 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
                     >
                       <ExpertiseIcon
                         name={area.icon}
-                        className="h-6 w-6 transition duration-300 group-hover:scale-105"
+                        className="h-8 w-8 transition duration-300 group-hover:scale-105"
                       />
                     </div>
                     <p className="mt-2 text-[11px] font-medium text-text-secondary sm:text-xs">

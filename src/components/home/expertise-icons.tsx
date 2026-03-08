@@ -4,7 +4,10 @@ export type ExpertiseIconName =
   | "bug"
   | "server"
   | "git-branch"
-  | "users";
+  | "users"
+  | "code-bracket"
+  | "bolt"
+  | "shield-check";
 
 type ExpertiseIconProps = {
   name: ExpertiseIconName;
@@ -83,6 +86,42 @@ export function ExpertiseIcon({ name, className }: ExpertiseIconProps) {
           className={className}
         >
           <path d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM7 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm-3 9a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 1 1-2 0v-1a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1a1 1 0 1 1-2 0v-1Zm12-7a1 1 0 0 1 1-1 4 4 0 0 1 4 4v1a1 1 0 1 1-2 0v-1a2 2 0 0 0-2-2 1 1 0 0 1-1-1Zm-1-5a1 1 0 0 1 1-1 4 4 0 1 1 0 8 1 1 0 1 1 0-2 2 2 0 1 0 0-4 1 1 0 0 1-1-1Z" />
+        </svg>
+      );
+    case "code-bracket":
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+          className={className}
+        >
+          <path d="M9.707 5.293a1 1 0 0 0-1.414 0l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L4.414 12l5.293-5.293a1 1 0 0 0 0-1.414Zm4.586 0a1 1 0 0 1 1.414 0l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414L19.586 12l-5.293-5.293a1 1 0 0 1 0-1.414Z" />
+        </svg>
+      );
+    case "bolt":
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+          className={className}
+        >
+          <path d="M13 2 4 14h5v8l9-12h-5V2Z" />
+        </svg>
+      );
+    case "shield-check":
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+          className={className}
+        >
+          <path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm-1 15.5-3.5-3.5 1.41-1.41L11 13.67l5.09-5.09L17.5 10 11 16.5Z" />
         </svg>
       );
     default: {
