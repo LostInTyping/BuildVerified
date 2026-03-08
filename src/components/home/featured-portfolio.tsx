@@ -15,7 +15,8 @@ export function FeaturedPortfolio() {
 
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+      <hr className="section-divider" />
+      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <FadeIn>
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
@@ -29,7 +30,7 @@ export function FeaturedPortfolio() {
             </Link>
           </div>
         </FadeIn>
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="mt-4 grid gap-4 sm:gap-5 md:grid-cols-2">
           {items.map((item, index) => (
             <FadeIn
               key={item.frontmatter.slug}

@@ -1,58 +1,16 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
-
-const proofItems = [
-  {
-    title: "CI Pipeline Integration",
-    description:
-      "Automated test runs on every PR with published reports and clear pass/fail gates.",
-  },
-  {
-    title: "Flake Control",
-    description:
-      "Retries, quarantines, and root-cause investigation to keep suites reliable.",
-  },
-  {
-    title: "Release Validation",
-    description:
-      "UAT exit criteria and release readiness summaries that stakeholders trust.",
-  },
-  {
-    title: "Environment Parity",
-    description:
-      "Production-like lab setups with hardware and software matrices that mirror real conditions.",
-  },
-  {
-    title: "Defect Lifecycle Ownership",
-    description:
-      "From log capture and repro isolation through Jira tracking to verified fix in production.",
-  },
-];
+import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 export function BottomSection() {
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+      <hr className="section-divider" />
+      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
-          {/* How I Work Card */}
+          {/* Testimonials */}
           <FadeIn className="h-full">
-            <div className="h-full rounded-lg border border-border bg-bg-card p-6">
-              <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-                How I Work
-              </h2>
-              <div className="mt-5 space-y-4">
-                {proofItems.map((item) => (
-                  <div key={item.title}>
-                    <h3 className="text-sm font-semibold text-text-primary">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-text-secondary">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <TestimonialCarousel />
           </FadeIn>
 
           {/* CTA Card */}
