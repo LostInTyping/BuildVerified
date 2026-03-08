@@ -9,47 +9,47 @@ const expertiseAreas: Array<{
     {
       title: "Test Automation",
       icon: "beaker",
-      hoverColorClass: "group-hover:text-[#4ade80]",
+      hoverColorClass: "group-hover:text-green-400",
     },
     {
       title: "Defect Lifecycle",
       icon: "bug",
-      hoverColorClass: "group-hover:text-[#f87171]",
+      hoverColorClass: "group-hover:text-red-400",
     },
     {
       title: "Test Reporting",
       icon: "chart-bar",
-      hoverColorClass: "group-hover:text-[#2dd4bf]",
+      hoverColorClass: "group-hover:text-teal-400",
     },
     {
       title: "CI/CD Pipelines",
       icon: "git-branch",
-      hoverColorClass: "group-hover:text-[#a78bfa]",
+      hoverColorClass: "group-hover:text-violet-400",
     },
     {
       title: "Environments & Infrastructure",
       icon: "server",
-      hoverColorClass: "group-hover:text-[#60a5fa]",
+      hoverColorClass: "group-hover:text-blue-400",
     },
     {
       title: "API Testing",
       icon: "code-bracket",
-      hoverColorClass: "group-hover:text-[#fb923c]",
+      hoverColorClass: "group-hover:text-orange-400",
     },
     {
       title: "Performance Testing",
       icon: "bolt",
-      hoverColorClass: "group-hover:text-[#22d3ee]",
+      hoverColorClass: "group-hover:text-cyan-400",
     },
     {
       title: "Accessibility Testing",
       icon: "eye",
-      hoverColorClass: "group-hover:text-[#fbbf24]",
+      hoverColorClass: "group-hover:text-amber-400",
     },
     {
       title: "Data Validation",
       icon: "database",
-      hoverColorClass: "group-hover:text-[#f472b6]",
+      hoverColorClass: "group-hover:text-pink-400",
     },
   ];
 
