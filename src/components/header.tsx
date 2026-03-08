@@ -61,7 +61,7 @@ export function Header() {
                   href="/"
                   className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
                 >
-                  Ben Armour
+                  BuildVerified
                 </Link>
               </motion.div>
             )}
