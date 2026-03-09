@@ -37,12 +37,12 @@ export function Header() {
             : "navbar-expanded w-full max-w-6xl px-5"
         }`}
       >
-        {/* Left bookend - logo */}
-        <div className="w-[120px] min-w-0 shrink-0">
+        {/* Logo */}
+        <div className="min-w-0 shrink-0">
           {/* Mobile: always show brand */}
           <Link
             href="/"
-            className="whitespace-nowrap text-sm font-bold text-text-primary md:hidden"
+            className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary md:hidden"
           >
             BuildVerified
           </Link>
@@ -69,7 +69,7 @@ export function Header() {
                 >
                   <Link
                     href="/"
-                    className="whitespace-nowrap text-sm font-bold text-text-primary"
+                    className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
                   >
                     BuildVerified
                   </Link>
@@ -79,7 +79,7 @@ export function Header() {
           </div>
         </div>
 
-        {/* Center - nav links (desktop only) */}
+        {/* Nav links (desktop only) */}
         <ul className="hidden flex-1 items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive =
@@ -103,8 +103,8 @@ export function Header() {
           })}
         </ul>
 
-        {/* Right bookend - hamburger (mobile) / spacer (desktop) */}
-        <div className="w-[120px] shrink-0 flex justify-end">
+        {/* Hamburger (mobile) */}
+        <div className="ml-auto shrink-0">
           <MobileNav />
         </div>
       </nav>
