@@ -156,6 +156,25 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .marquee-strip {
     animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .marquee-group {
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .marquee-viewport {
+    overflow: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .marquee-group[aria-hidden="true"] {
+    display: none;
   }
 }
 
