@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 import { scenarios, shuffleScenarios, type TerminalScenario, type LogTone } from "@/lib/terminal-scenarios";
 
@@ -43,11 +43,18 @@ function toneClass(tone: LogTone): string {
 
 export function RegressionTerminal() {
   const prefersReduced = useReducedMotion();
-  // Default to reduced until media query resolves — safer for motion-sensitive users
-  const shouldReduceMotion = prefersReduced ?? true;
+  // Server and first client render both return false, ensuring hydration match.
+  // After mount, switches to true so motion can start if allowed.
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  // Default to reduced motion until both (a) mounted and (b) preference resolved as false
+  const shouldReduceMotion = !isMounted || (prefersReduced ?? true);
   const [commandText, setCommandText] = useState("");
   const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
-  const [label, setLabel] = useState("queued");
+  const [label, setLabel] = useState(scenarios[0].label);
   const outputRef = useRef<HTMLDivElement>(null);
   const scenarioQueue = useRef<TerminalScenario[]>([]);
 
