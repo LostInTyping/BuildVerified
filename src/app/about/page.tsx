@@ -89,6 +89,7 @@ const skillGroups = [
       "Custom Skills & Hooks",
       "Human-in-the-Loop Review",
     ],
+    featured: true,
   },
 ];
 
@@ -206,38 +207,35 @@ export default function AboutPage() {
             Skills &amp; Tools
           </h2>
           <div className="mt-4 grid gap-4 sm:gap-5 sm:grid-cols-2">
-            {skillGroups.map((group) => {
-              const isAI = group.category === "AI-Assisted Development";
-              return (
-                <div
-                  key={group.category}
-                  className={`rounded-lg border border-accent/20 bg-bg-card p-4 sm:p-5 transition-all duration-300 hover:border-accent/30 hover:shadow-accent-sm ${
-                    isAI ? "sm:col-span-2" : ""
-                  }`}
-                >
-                  <h3 className="text-sm font-semibold text-accent">
-                    {group.category}
-                  </h3>
-                  <p className="mt-2 text-sm text-text-secondary">
-                    {group.description}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {group.pills.map((pill) => (
-                      <span
-                        key={pill}
-                        className={
-                          isAI
-                            ? "rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80"
-                            : "rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted"
-                        }
-                      >
-                        {pill}
-                      </span>
-                    ))}
-                  </div>
+            {skillGroups.map((group) => (
+              <div
+                key={group.category}
+                className={`rounded-lg border border-accent/20 bg-bg-card p-4 sm:p-5 transition-[border-color,box-shadow] duration-300 hover:border-accent/30 hover:shadow-accent-sm ${
+                  group.featured ? "sm:col-span-2" : ""
+                }`}
+              >
+                <h3 className="text-sm font-semibold text-accent">
+                  {group.category}
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary">
+                  {group.description}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {group.pills.map((pill) => (
+                    <span
+                      key={pill}
+                      className={
+                        group.featured
+                          ? "rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80"
+                          : "rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted"
+                      }
+                    >
+                      {pill}
+                    </span>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
