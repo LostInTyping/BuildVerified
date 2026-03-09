@@ -185,6 +185,19 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: max-width, padding;
+  border: 1px solid var(--color-border);
+  background-color: color-mix(in srgb, var(--color-bg-card) 60%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@media (max-width: 767px) {
+  .navbar-inner {
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    border-radius: 0;
+    background-color: color-mix(in srgb, var(--color-bg-primary) 80%, transparent);
+  }
 }
 
 .nav-pill-link {
@@ -219,12 +232,6 @@ body {
   transition-duration: 520ms, 520ms;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1),
                               cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (max-width: 767px) {
-  .navbar-expanded {
-    --navbar-radius: 2rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

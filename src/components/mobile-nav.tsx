@@ -118,7 +118,7 @@ export function MobileNav() {
   );
 
   return (
-    <div className="ml-auto md:hidden">
+    <div className="md:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-text-secondary hover:text-text-primary"
