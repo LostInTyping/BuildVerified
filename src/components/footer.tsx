@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-bg-primary">
       <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-row items-center justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-text-primary">
               Ben Armour
@@ -27,7 +27,7 @@ export function Footer() {
               Email
             </a>
           </div>
-          <p className="text-xs text-text-muted md:text-right">
+          <p className="text-xs text-text-muted text-right">
             &copy; {new Date().getFullYear()} Ben Armour
           </p>
         </div>
