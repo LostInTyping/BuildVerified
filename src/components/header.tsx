@@ -31,24 +31,24 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
-        className={`navbar-inner relative flex h-12 items-center gap-1 px-3 ${
+        className={`navbar-inner relative flex h-12 items-center gap-1 w-full max-w-6xl px-5 ${
           isScrolled
-            ? "navbar-collapsed w-full max-w-[34rem]"
-            : "navbar-expanded w-full max-w-6xl px-5"
+            ? "navbar-collapsed lg:max-w-[34rem] lg:px-3"
+            : "navbar-expanded"
         }`}
       >
         {/* Logo */}
         <div className="min-w-0 shrink-0">
-          {/* Mobile: always show brand */}
+          {/* Mobile/tablet: static brand (below lg) */}
           <Link
             href="/"
-            className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary md:hidden"
+            className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary lg:hidden"
           >
             BuildVerified
           </Link>
 
-          {/* Desktop: animate brand on scroll */}
-          <div className="hidden md:block">
+          {/* Desktop: animate brand on scroll (lg+) */}
+          <div className="hidden lg:block">
             <AnimatePresence initial={false}>
               {showExpandedContent && (
                 <motion.div
@@ -79,8 +79,8 @@ export function Header() {
           </div>
         </div>
 
-        {/* Nav links (desktop only) */}
-        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-1 md:flex">
+        {/* Nav links: flex centered at md-lg, absolute centered at lg+ */}
+        <ul className="hidden items-center justify-center gap-1 md:flex md:flex-1 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:flex-initial">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -103,7 +103,7 @@ export function Header() {
           })}
         </ul>
 
-        {/* Hamburger (mobile) */}
+        {/* Menu button */}
         <div className="ml-auto shrink-0">
           <MobileNav />
         </div>

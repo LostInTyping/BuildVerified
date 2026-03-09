@@ -213,19 +213,37 @@ body {
 
 .navbar-collapsed {
   --navbar-radius: 2rem;
-  transition-duration: 320ms, 320ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-                              cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-expanded {
   --navbar-radius: 0.75rem;
-  transition-duration: 520ms, 520ms;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1),
-                              cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Only animate pill morph on desktop (lg+) */
+@media (min-width: 1024px) {
+  .navbar-collapsed {
+    transition-duration: 320ms, 320ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+                                cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navbar-expanded {
+    transition-duration: 520ms, 520ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1),
+                                cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Below desktop: consistent radius regardless of scroll */
+@media (max-width: 1023px) {
+  .navbar-collapsed {
+    --navbar-radius: 0.75rem;
+  }
+}
+
+/* Mobile: pill shape */
 @media (max-width: 767px) {
+  .navbar-collapsed,
   .navbar-expanded {
     --navbar-radius: 2rem;
   }
