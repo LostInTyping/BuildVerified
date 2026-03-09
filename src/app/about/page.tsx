@@ -224,11 +224,7 @@ export default function AboutPage() {
                   {group.pills.map((pill) => (
                     <span
                       key={pill}
-                      className={
-                        group.featured
-                          ? "rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80"
-                          : "rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted"
-                      }
+                      className="rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted"
                     >
                       {pill}
                     </span>
