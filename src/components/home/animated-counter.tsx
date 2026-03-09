@@ -26,12 +26,7 @@ export function AnimatedCounter({
   const shouldReduceMotion = useReducedMotion() ?? true;
 
   useEffect(() => {
-    if (!isInView) return;
-
-    if (shouldReduceMotion) {
-      setCount(target);
-      return;
-    }
+    if (!isInView || shouldReduceMotion) return;
 
     let current = 0;
     const duration = 1000;
@@ -54,13 +49,15 @@ export function AnimatedCounter({
     return () => clearInterval(timer);
   }, [isInView, target, decimals, shouldReduceMotion]);
 
-  const displayValue = decimals > 0 ? (isInView ? count : 0).toFixed(decimals) : (isInView ? count : 0);
+  // When reduced motion is active, show the target value immediately — no animation
+  const displayCount = shouldReduceMotion ? (isInView ? target : 0) : (isInView ? count : 0);
+  const displayValue = decimals > 0 ? displayCount.toFixed(decimals) : displayCount;
 
   return (
     <div ref={ref} className="text-center">
       <p className={valueClassName}>
         {displayValue}
-        {count === target ? suffix : ""}
+        {displayCount === target ? suffix : ""}
       </p>
       <p className={labelClassName}>
         {label}
