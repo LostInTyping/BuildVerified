@@ -51,6 +51,26 @@ export function RegressionTerminal() {
   const outputRef = useRef<HTMLDivElement>(null);
   const scenarioQueue = useRef<TerminalScenario[]>([]);
 
+  // Static content for reduced-motion — derived during render, not in an effect
+  const staticReducedMotion = useMemo(() => {
+    const firstScenario = scenarios[0];
+    return {
+      logLines: [
+        {
+          id: "s-prompt",
+          message: `ben@qa-runner:~$ ${firstScenario.command}`,
+          tone: "muted" as LogTone,
+        },
+        ...firstScenario.logEntries.map((entry, i) => ({
+          id: `s-${i}`,
+          message: entry.message,
+          tone: entry.tone,
+        })),
+      ],
+      label: firstScenario.label,
+    };
+  }, []);
+
   useEffect(() => {
     const el = outputRef.current;
 
@@ -68,27 +88,7 @@ export function RegressionTerminal() {
   }, [commandText, logLines]);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
-      const firstScenario = scenarios[0];
-      setCommandText("");
-      setLogLines([
-        {
-          id: "s-prompt",
-          message: `ben@qa-runner:~$ ${firstScenario.command}`,
-          tone: "muted",
-        },
-        ...firstScenario.logEntries.map((entry, i) => ({
-          id: `s-${i}`,
-          message: entry.message,
-          tone: entry.tone,
-        })),
-      ]);
-      setLabel(firstScenario.label);
-      return;
-    }
-
-    setCommandText("");
-    setLogLines([]);
+    if (shouldReduceMotion) return;
 
     let isCancelled = false;
     let cycleNumber = 0;
@@ -448,6 +448,11 @@ export function RegressionTerminal() {
     };
   }, [shouldReduceMotion]);
 
+  // When reduced motion, use pre-computed static content; otherwise use animated state
+  const activeLogLines = shouldReduceMotion ? staticReducedMotion.logLines : logLines;
+  const activeLabel = shouldReduceMotion ? staticReducedMotion.label : label;
+  const activeCommandText = shouldReduceMotion ? "" : commandText;
+
   const renderedLogLines = useMemo(() => {
     const elements: React.ReactNode[] = [];
     let boxGroup: TerminalLogLine[] = [];
@@ -465,7 +470,7 @@ export function RegressionTerminal() {
       boxGroup = [];
     };
 
-    for (const line of logLines) {
+    for (const line of activeLogLines) {
       const isBox = /[\u2500-\u257F]/.test(line.message);
       if (isBox) {
         boxGroup.push(line);
@@ -480,7 +485,7 @@ export function RegressionTerminal() {
     }
     flushBoxGroup();
     return elements;
-  }, [logLines]);
+  }, [activeLogLines]);
 
   return (
     <div className="flex h-full min-w-0 flex-col">
@@ -493,7 +498,7 @@ export function RegressionTerminal() {
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
           <span className="ml-1.5 text-[10px] text-text-muted">
-            {label}
+            {activeLabel}
           </span>
         </div>
         <div
@@ -514,7 +519,7 @@ export function RegressionTerminal() {
           <p className="text-text-secondary">
             <span className="text-text-muted">ben@qa-runner</span>
             <span className="text-text-muted">:~$ </span>
-            <span>{commandText}</span>
+            <span>{activeCommandText}</span>
             <span
               aria-hidden="true"
               className="text-accent terminal-cursor"
