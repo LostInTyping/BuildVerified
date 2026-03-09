@@ -29,7 +29,7 @@ export function Header() {
   }, [isScrolled]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center md:px-4 md:py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
         className={`navbar-inner relative flex h-12 items-center gap-1 px-3 ${
           isScrolled
@@ -80,7 +80,7 @@ export function Header() {
         </div>
 
         {/* Nav links (desktop only) */}
-        <ul className="hidden flex-1 items-center justify-center gap-1 md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
