@@ -9,12 +9,12 @@ export function BottomSection() {
       <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* Testimonials */}
-          <FadeIn className="h-full">
+          <FadeIn className="h-full min-w-0">
             <TestimonialCarousel />
           </FadeIn>
 
           {/* CTA Card */}
-          <FadeIn delay={0.1} className="h-full">
+          <FadeIn delay={0.1} className="h-full min-w-0">
             <div className="flex h-full flex-col rounded-lg border border-border bg-bg-card p-6">
               <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
                 Available for new opportunities

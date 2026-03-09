@@ -118,25 +118,21 @@ export function MobileNav() {
   );
 
   return (
-    <div className="ml-auto md:hidden">
+    <div className="md:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-text-secondary hover:text-text-primary"
+        className="flex items-center justify-center text-text-secondary hover:text-text-primary"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
       >
         <svg
-          className="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
+          className="h-5 w-5"
+          fill="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
+          <circle cx="12" cy="4" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="12" cy="20" r="2" />
         </svg>
       </button>
       {isMounted && createPortal(overlay, document.body)}
