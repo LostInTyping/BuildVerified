@@ -10,44 +10,85 @@ export const metadata: Metadata = {
   },
 };
 
-const skillCategories = [
+const skillGroups = [
   {
     category: "Test Automation",
-    skills: ["Cypress", "Jest", "Playwright"],
+    description:
+      "Designed test automation architecture and built Cypress E2E suites with reusable commands and custom utilities across multi-app platforms. Integrated Jest for unit coverage and Playwright for cross-browser validation.",
+    pills: ["Cypress", "Jest", "Playwright"],
   },
   {
-    category: "Manual Testing & Documentation",
-    skills: [
-      "Test planning and execution",
-      "Exploratory testing",
-      "Regression and smoke testing",
-      "Test case documentation",
-      "Defect lifecycle management",
+    category: "Manual Testing & QA Process",
+    description:
+      "Test planning and execution from exploratory testing through regression and smoke cycles. Cross-browser and cross-device validation including a custom 1:1 production-parity test lab. Owned the full defect lifecycle from triage to verified fix.",
+    pills: [
+      "Test Planning",
+      "Exploratory Testing",
+      "Regression Testing",
+      "Cross-Browser Testing",
+      "Defect Lifecycle",
+      "Test Documentation",
     ],
   },
   {
+    category: "API Testing",
+    description:
+      "Validated REST API endpoints with Postman across full request/response cycles. Verified integrations between frontend, backend, and third-party services.",
+    pills: ["Postman", "REST APIs"],
+  },
+  {
     category: "Languages",
-    skills: ["JavaScript", "TypeScript", "Python", "SQL"],
+    description:
+      "Primary languages for test automation, application code, and database queries. TypeScript and JavaScript for test suites and app code, Python for scripting, SQL for data validation.",
+    pills: ["JavaScript", "TypeScript", "Python", "SQL"],
   },
   {
-    category: "Application Stacks",
-    skills: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB"],
-  },
-  {
-    category: "API & Tools",
-    skills: ["Postman", "REST APIs", "Tableau"],
+    category: "Frameworks & Data",
+    description:
+      "Tested against React frontends and Node.js/Express backends with PostgreSQL and MongoDB data layers. Wrote queries to validate data integrity across service boundaries.",
+    pills: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB"],
   },
   {
     category: "CI & Infrastructure",
-    skills: ["GitHub Actions", "GitLab", "Git", "Docker", "Linux"],
+    description:
+      "Configured GitHub Actions pipelines for automated test runs on PRs. Managed test environments with Docker containers and Linux-based staging setups.",
+    pills: ["GitHub Actions", "GitLab", "Git", "Docker", "Linux"],
   },
   {
-    category: "Management & Reporting",
-    skills: ["Jira", "QMetry", "Confluence"],
+    category: "Tools & Reporting",
+    description:
+      "Tracked defects and test cases through Jira and QMetry, documented processes in Confluence, and built Tableau dashboards for test reporting and coverage metrics.",
+    pills: ["GitHub", "Jira", "QMetry", "Confluence", "Tableau"],
+  },
+  {
+    category: "Agile & Collaboration",
+    description:
+      "Active in Scrum ceremonies - sprint planning, standups, retrospectives, and story grooming. Reviewed test automation code and worked with developers, PMs, and stakeholders on architecture decisions and branching workflows.",
+    pills: [
+      "Scrum",
+      "Sprint Planning",
+      "Code Review",
+      "Cross-Functional Teams",
+    ],
   },
   {
     category: "AI-Assisted Development",
-    skills: ["AI-accelerated test development", "Human-in-the-loop review"],
+    description:
+      "Coordinating multiple AI models in parallel to accelerate development and QA workflows. Using Claude Code, Codex, Gemini, and Kimi concurrently through custom skills, MCP servers, and hook automation - with multi-agent code review pipelines that compare findings across models. Designing agentic workflows that break tasks into independent work streams with human review at every checkpoint.",
+    pills: [
+      "Claude Code",
+      "Codex",
+      "Gemini",
+      "Kimi",
+      "Agent Deck",
+      "MCP Servers",
+      "Multi-Agent Orchestration",
+      "Prompt Engineering",
+      "Context Engineering",
+      "Agentic Workflows",
+      "Custom Skills & Hooks",
+      "Human-in-the-Loop Review",
+    ],
   },
 ];
 
@@ -157,31 +198,46 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Skills grid */}
+      {/* Skills & Tools */}
       <section>
         <hr className="section-divider" />
         <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
           <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
             Skills &amp; Tools
           </h2>
-          <div className="mt-4 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skillCategories.map((cat) => (
-              <div
-                key={cat.category}
-                className="rounded-lg border border-border bg-bg-card p-4 sm:p-5"
-              >
-                <h3 className="text-sm font-semibold text-text-primary">
-                  {cat.category}
-                </h3>
-                <ul className="mt-3 space-y-1.5">
-                  {cat.skills.map((skill) => (
-                    <li key={skill} className="text-sm text-text-secondary">
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="mt-4 grid gap-4 sm:gap-5 sm:grid-cols-2">
+            {skillGroups.map((group) => {
+              const isAI = group.category === "AI-Assisted Development";
+              return (
+                <div
+                  key={group.category}
+                  className={`rounded-lg border border-accent/20 bg-bg-card p-4 sm:p-5 transition-all duration-300 hover:border-accent/30 hover:shadow-accent-sm ${
+                    isAI ? "sm:col-span-2" : ""
+                  }`}
+                >
+                  <h3 className="text-sm font-semibold text-accent">
+                    {group.category}
+                  </h3>
+                  <p className="mt-2 text-sm text-text-secondary">
+                    {group.description}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {group.pills.map((pill) => (
+                      <span
+                        key={pill}
+                        className={
+                          isAI
+                            ? "rounded-full border border-accent/15 bg-accent/5 px-3 py-1 text-xs text-accent/80"
+                            : "rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted"
+                        }
+                      >
+                        {pill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
