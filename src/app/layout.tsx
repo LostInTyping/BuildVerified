@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
-      <body className="antialiased">
+      <body className="flex min-h-screen flex-col antialiased">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-bg-card focus:px-4 focus:py-2 focus:text-accent focus:outline focus:outline-2 focus:outline-accent"
@@ -48,7 +48,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main" className="pt-20">
+        <main id="main" className="flex-1 pt-20">
           {children}
         </main>
         <Footer />
