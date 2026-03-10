@@ -155,9 +155,11 @@ export default function AboutPage() {
                 Background
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                Hi, I&apos;m Ben, a Software QA Engineer based in Mason, Ohio. I help
-                teams ship with confidence by combining practical test automation
-                with deep manual validation from planning through release.
+                Hi, I&apos;m Ben, a Software QA Engineer with 3.5 years of
+                experience in test automation, risk-based test planning, and
+                full defect lifecycle ownership. I help teams ship with
+                confidence by aligning test strategy with release schedules
+                and reducing production risk.
               </p>
               <div className="mt-5 space-y-4">
                 <div className="border-l-2 border-accent pl-4">
@@ -165,12 +167,20 @@ export default function AboutPage() {
                     STRATACACHE
                   </h3>
                   <p className="mt-1 text-sm text-text-secondary">
-                    Led QA across digital menu board programs for national brands
-                    including McDonald&apos;s, Taco Bell, KFC, and Burger King.
-                    Built Cypress automation suites with reusable utilities,
-                    increasing workflow efficiency and accuracy. Designed a
-                    custom test lab with 1:1 staging/production parity and owned
-                    the full defect lifecycle from triage through verified fix.
+                    Performed risk-based test planning for digital menu board
+                    launches across McDonald&apos;s, Taco Bell, KFC, Burger
+                    King, and other national QSR brands on a platform powering
+                    4 million deployed signs globally. Designed the Cypress
+                    automation architecture from scratch, including test
+                    structure, shared utilities, and CI-friendly execution,
+                    replacing manual regression cycles with automated,
+                    repeatable runs. Built and maintained custom test lab
+                    infrastructure with 1:1 staging-to-production hardware and
+                    software parity. Performed log-based defect investigation
+                    and owned the full defect lifecycle from triage through
+                    verified resolution, using Tableau dashboards to assess
+                    impact and prioritize issues based on real client deployment
+                    data.
                   </p>
                 </div>
                 <div className="border-l-2 border-accent pl-4">
@@ -178,21 +188,24 @@ export default function AboutPage() {
                     University of Cincinnati IT Solutions Center
                   </h3>
                   <p className="mt-1 text-sm text-text-secondary">
-                    Built Cypress suites from scratch and validated applications
-                    across multiple domains: criminal justice platforms serving
-                    20+ states (OSDP, OCP, Risk Assessment, Case Management),
-                    university systems like IT Expo and TeamEval, and
-                    restricted-access programs including DRF-CoApp. Created test
-                    plans, structured test data, and QA workflows that enabled
-                    team scalability while partnering with developers to
-                    prioritize risk and speed up defect resolution.
+                    Developed Cypress test suites for criminal justice platforms
+                    (OSDP, OCP, Risk Assessment, Recertify) serving numerous
+                    states across the country. Validated enterprise and
+                    university systems for clients including Macy&apos;s and
+                    Brooksource, plus internal platforms like IT Expo and
+                    TeamEval, testing across React/Node.js/PostgreSQL stacks.
+                    Created test plans, structured test data, and QA workflows
+                    that enabled consistent defect reproduction and team
+                    scalability while partnering with developers and
+                    stakeholders to align test coverage and support release
+                    readiness across multiple concurrent projects.
                   </p>
                 </div>
               </div>
               <p className="mt-5 text-sm leading-relaxed text-text-secondary">
-                My focus is consistent, actionable quality work: test plans tied to
-                risk, defect reports developers can act on quickly, and automation
-                that stays reliable as products evolve.
+                My focus is consistent, actionable quality work: test plans tied
+                to risk, defect reports developers can act on quickly, and
+                automation that stays reliable as products evolve.
               </p>
             </div>
           </div>
@@ -251,10 +264,14 @@ export default function AboutPage() {
               University of Cincinnati
             </h3>
             <p className="mt-2 text-sm text-text-secondary">
-              BSc in Information Technology
+              BS in Information Technology
             </p>
             <p className="text-sm text-text-secondary">
               Double Major: Software Development &amp; Game Design and Simulation
+            </p>
+            <p className="mt-1 text-sm text-text-muted">
+              Completed in 4 years while working full-time; graduated one year
+              early
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted">
@@ -264,7 +281,7 @@ export default function AboutPage() {
                 Magna Cum Laude
               </span>
               <span className="rounded-full border border-border bg-bg-elevated px-3 py-1 text-xs text-text-muted">
-                Dean&apos;s List
+                Dean&apos;s List (all semesters)
               </span>
             </div>
           </div>
