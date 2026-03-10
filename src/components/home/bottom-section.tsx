@@ -5,7 +5,9 @@ import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 export function BottomSection() {
   return (
     <section>
-      <hr className="section-divider" />
+      <FadeIn>
+        <hr className="section-divider" />
+      </FadeIn>
       <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* Testimonials */}

@@ -15,7 +15,9 @@ export function FeaturedPortfolio() {
 
   return (
     <section>
-      <hr className="section-divider" />
+      <FadeIn>
+        <hr className="section-divider" />
+      </FadeIn>
       <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <FadeIn>
           <div className="flex items-center justify-between">
