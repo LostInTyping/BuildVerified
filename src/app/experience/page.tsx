@@ -40,10 +40,10 @@ export default function ExperiencePage() {
             <div key={entry.frontmatter.title} className="relative pl-8">
               {/* Timeline line */}
               {index < experience.length - 1 && (
-                <div className="absolute left-[7px] top-4 h-full w-px bg-border" />
+                <div className="absolute left-[7px] top-4 h-full w-px bg-border" aria-hidden="true" />
               )}
               {/* Timeline dot */}
-              <div className="absolute left-0 top-[18px] h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg-primary" />
+              <div className="absolute left-0 top-[18px] h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg-primary" aria-hidden="true" />
 
               <div className="mb-8 rounded-lg border border-border bg-bg-card p-6">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">

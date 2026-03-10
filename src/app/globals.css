@@ -7,7 +7,7 @@
   --color-bg-elevated: #1e1e1e;
   --color-text-primary: #f5f5f5;
   --color-text-secondary: #a0a0a0;
-  --color-text-muted: #6b6b6b;
+  --color-text-muted: #8a8a8a;
   --color-accent: #60a5fa;
   --color-accent-hover: #93c5fd;
   --color-border: rgba(255, 255, 255, 0.1);
@@ -74,7 +74,8 @@ body {
   );
 }
 
-.marquee-viewport:hover .marquee-strip {
+.marquee-viewport:hover .marquee-strip,
+.marquee-viewport:focus-within .marquee-strip {
   animation-play-state: paused;
 }
 
@@ -122,7 +123,7 @@ body {
 .ghost-btn-accent {
   border-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
   background-color: color-mix(in srgb, var(--color-accent) 4%, transparent);
-  color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 80%, transparent);
 }
 
 .ghost-btn-accent:hover {

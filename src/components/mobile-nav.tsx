@@ -1,14 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -28,34 +30,56 @@ export function MobileNav() {
     };
   }, [isOpen]);
 
-  // Close on Escape
-  const closeOnEscapeKey = useCallback((e: KeyboardEvent) => {
-    if (e.key === "Escape") setIsOpen(false);
+  // Close on Escape and trap focus inside panel
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsOpen(false);
+      return;
+    }
+
+    if (e.key === "Tab" && panelRef.current) {
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("keydown", closeOnEscapeKey);
-      return () => document.removeEventListener("keydown", closeOnEscapeKey);
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
     }
-  }, [isOpen, closeOnEscapeKey]);
+  }, [isOpen, handleKeyDown]);
 
   const overlay = (
     <AnimatePresence>
       {isOpen && (
         <motion.div
           className="fixed inset-0 z-[60] bg-bg-primary/70 px-4 pb-4 pt-20 backdrop-blur-sm md:hidden"
-          initial={{ opacity: 0 }}
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
           onClick={() => setIsOpen(false)}
         >
           <motion.div
-            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            ref={panelRef}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.25 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.25 }}
             className="mx-auto flex h-auto max-h-[calc(100dvh-6rem)] w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-border bg-bg-card"
             onClick={(event) => event.stopPropagation()}
           >
@@ -91,9 +115,9 @@ export function MobileNav() {
                 return (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 * index, duration: 0.3 }}
+                    transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.05 * index, duration: 0.3 }}
                   >
                     <Link
                       href={link.href}
@@ -121,7 +145,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center text-text-secondary hover:text-text-primary"
+        className="flex min-h-11 min-w-11 items-center justify-center text-text-secondary hover:text-text-primary"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
       >
