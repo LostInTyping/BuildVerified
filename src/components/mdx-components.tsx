@@ -22,12 +22,17 @@ export const mdxComponents = {
   p: (props: ComponentPropsWithoutRef<"p">) => (
     <p className="mb-4 text-text-secondary" {...props} />
   ),
-  a: (props: ComponentPropsWithoutRef<"a">) => (
-    <a
-      className="text-accent underline transition-colors hover:text-accent-hover"
-      {...props}
-    />
-  ),
+  a: ({ href, ...props }: ComponentPropsWithoutRef<"a">) => {
+    const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+    return (
+      <a
+        href={href}
+        className="text-accent underline transition-colors hover:text-accent-hover"
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...props}
+      />
+    );
+  },
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
     <strong className="font-semibold text-text-primary" {...props} />
   ),

@@ -41,10 +41,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
       <body className="antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-bg-card focus:px-4 focus:py-2 focus:text-accent focus:outline focus:outline-2 focus:outline-accent"
+        >
+          Skip to content
+        </a>
         <Header />
-        <div className="pt-20">
+        <main id="main" className="pt-20">
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>
