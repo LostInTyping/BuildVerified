@@ -13,15 +13,11 @@ interface FadeInProps {
 export function FadeIn({ children, delay = 0, className, scale = false }: FadeInProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, ...(scale ? { scale: 0.95 } : {}) }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 20, ...(scale ? { scale: 0.95 } : {}) }}
       animate={{ opacity: 1, y: 0, ...(scale ? { scale: 1 } : {}) }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
