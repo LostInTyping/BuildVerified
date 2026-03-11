@@ -10,6 +10,7 @@ import { navLinks } from "@/lib/nav-links";
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const isMounted = useSyncExternalStore(
     () => () => {},
@@ -34,6 +35,7 @@ export function MobileNav() {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
       setIsOpen(false);
+      triggerRef.current?.focus();
       return;
     }
 
@@ -76,6 +78,8 @@ export function MobileNav() {
         >
           <motion.div
             ref={panelRef}
+            role="dialog"
+            aria-modal="true"
             initial={prefersReducedMotion ? false : { opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
@@ -144,6 +148,7 @@ export function MobileNav() {
   return (
     <div className="md:hidden">
       <button
+        ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
         className="flex min-h-11 min-w-11 items-center justify-center text-text-secondary hover:text-text-primary"
         aria-label="Toggle menu"

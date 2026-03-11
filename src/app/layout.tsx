@@ -48,9 +48,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <div id="main" className="pt-20">
+        <main id="main" className="pt-20">
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>
