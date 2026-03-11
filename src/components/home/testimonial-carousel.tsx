@@ -147,7 +147,7 @@ export function TestimonialCarousel() {
           <button
             key={i}
             onClick={() => navigateToTestimonial(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
+            className={`h-1.5 rounded-full ${prefersReducedMotion ? "" : "transition-all duration-300 "}${
               i === active
                 ? "w-6 bg-accent"
                 : "w-1.5 bg-text-muted/30 hover:bg-text-muted/50"
