@@ -84,7 +84,9 @@ const proofItems = [
 export function ExpertiseSection() {
   return (
     <section>
-      <hr className="section-divider" />
+      <FadeIn>
+        <hr className="section-divider" />
+      </FadeIn>
       <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
         <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-2">
           <FadeIn delay={0.2} className="h-full min-w-0">

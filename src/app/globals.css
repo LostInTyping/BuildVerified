@@ -17,6 +17,9 @@
   --color-status-retry: #facc15;
   --color-status-error: #f87171;
   --shadow-expertise-glow: 4px 4px 10px 4px rgba(76, 154, 255, 0.09);
+  --color-surface-highlight: color-mix(in srgb, var(--color-border) 75%, transparent);
+  --color-surface-highlight-strong: color-mix(in srgb, var(--color-border) 100%, transparent);
+  --color-surface-shadow: color-mix(in srgb, black 30%, transparent);
   --shadow-accent-sm: 0 0 12px color-mix(in srgb, var(--color-accent) 30%, transparent);
   --shadow-accent-md: 0 0 14px color-mix(in srgb, var(--color-accent) 24%, transparent);
   --shadow-accent-lg: 0 0 28px color-mix(in srgb, var(--color-accent) 18%, transparent);
@@ -182,13 +185,19 @@ body {
 .navbar-inner {
   border-radius: var(--navbar-radius, 9999px);
   transition-property: max-width, padding;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: max-width, padding;
-  border: 1px solid var(--color-border);
-  background-color: color-mix(in srgb, var(--color-bg-card) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  border-top-color: var(--color-surface-highlight-strong);
+  border-bottom-color: color-mix(in srgb, var(--color-border) 40%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-bg-card) 94%, var(--color-surface-highlight)) 0%,
+    color-mix(in srgb, var(--color-bg-card) 94%, transparent) 50%,
+    color-mix(in srgb, var(--color-bg-card) 91%, transparent) 100%
+  );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 0 var(--color-surface-highlight-strong),
+              0 2px 8px -2px var(--color-surface-shadow);
 }
 
 .nav-pill-link {
