@@ -31,11 +31,15 @@ export function MobileNav() {
     };
   }, [isOpen]);
 
+  const close = useCallback(() => {
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  }, []);
+
   // Close on Escape and trap focus inside panel
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      setIsOpen(false);
-      triggerRef.current?.focus();
+      close();
       return;
     }
 
@@ -56,7 +60,7 @@ export function MobileNav() {
         first.focus();
       }
     }
-  }, []);
+  }, [close]);
 
   useEffect(() => {
     if (isOpen) {
@@ -74,12 +78,13 @@ export function MobileNav() {
           animate={{ opacity: 1 }}
           exit={prefersReducedMotion ? undefined : { opacity: 0 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
-          onClick={() => setIsOpen(false)}
+          onClick={close}
         >
           <motion.div
             ref={panelRef}
             role="dialog"
             aria-modal="true"
+            aria-label="Navigation menu"
             initial={prefersReducedMotion ? false : { opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
@@ -90,7 +95,7 @@ export function MobileNav() {
             {/* Close button */}
             <div className="flex justify-end border-b border-border px-4 py-3">
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={close}
                 className="text-text-secondary hover:text-text-primary"
                 aria-label="Close menu"
               >
@@ -125,7 +130,7 @@ export function MobileNav() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={close}
                       aria-current={isActive ? "page" : undefined}
                       className={`text-xl font-medium transition-colors sm:text-2xl ${
                         isActive
