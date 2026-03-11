@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface Testimonial {
   name: string;
@@ -40,6 +41,7 @@ const AUTO_INTERVAL_MS = 8000;
 export function TestimonialCarousel() {
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const navigateToTestimonial = useCallback(
     (index: number) => {
@@ -90,8 +92,8 @@ export function TestimonialCarousel() {
               aria-hidden={!isActive}
               style={{
                 opacity: isActive ? 1 : 0,
-                transform: `translateX(${isActive ? 0 : 20}px)`,
-                transition: `opacity ${DURATION_MS}ms ease-in-out, transform ${DURATION_MS}ms ease-in-out`,
+                transform: prefersReducedMotion ? undefined : `translateX(${isActive ? 0 : 20}px)`,
+                transition: prefersReducedMotion ? undefined : `opacity ${DURATION_MS}ms ease-in-out, transform ${DURATION_MS}ms ease-in-out`,
                 visibility: isActive ? "visible" : "hidden",
               }}
             >
@@ -128,8 +130,8 @@ export function TestimonialCarousel() {
               aria-hidden={!isActive}
               style={{
                 opacity: isActive ? 1 : 0,
-                transform: `translateX(${isActive ? 0 : 20}px)`,
-                transition: `opacity ${DURATION_MS}ms ease-in-out, transform ${DURATION_MS}ms ease-in-out`,
+                transform: prefersReducedMotion ? undefined : `translateX(${isActive ? 0 : 20}px)`,
+                transition: prefersReducedMotion ? undefined : `opacity ${DURATION_MS}ms ease-in-out, transform ${DURATION_MS}ms ease-in-out`,
                 visibility: isActive ? "visible" : "hidden",
               }}
             >
@@ -145,7 +147,7 @@ export function TestimonialCarousel() {
           <button
             key={i}
             onClick={() => navigateToTestimonial(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
+            className={`h-1.5 rounded-full ${prefersReducedMotion ? "" : "transition-all duration-300 "}${
               i === active
                 ? "w-6 bg-accent"
                 : "w-1.5 bg-text-muted/30 hover:bg-text-muted/50"

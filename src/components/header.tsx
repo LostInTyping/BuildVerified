@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
 import { MobileNav } from "@/components/mobile-nav";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showExpandedContent, setShowExpandedContent] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -49,33 +50,46 @@ export function Header() {
 
           {/* Desktop: animate brand on scroll (lg+) */}
           <div className="hidden lg:block">
-            <AnimatePresence initial={false}>
-              {showExpandedContent && (
-                <motion.div
-                  key="logo"
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: "auto" }}
-                  exit={{
-                    opacity: 0,
-                    width: 0,
-                    transition: { duration: 0.18, ease: [0.4, 0, 1, 1] },
-                  }}
-                  transition={{
-                    duration: 0.34,
-                    delay: 0.08,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="overflow-hidden"
-                >
+            {prefersReducedMotion ? (
+              showExpandedContent && (
+                <div className="overflow-hidden">
                   <Link
                     href="/"
                     className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
                   >
                     BuildVerified
                   </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </div>
+              )
+            ) : (
+              <AnimatePresence initial={false}>
+                {showExpandedContent && (
+                  <motion.div
+                    key="logo"
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: "auto" }}
+                    exit={{
+                      opacity: 0,
+                      width: 0,
+                      transition: { duration: 0.18, ease: [0.4, 0, 1, 1] },
+                    }}
+                    transition={{
+                      duration: 0.34,
+                      delay: 0.08,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="overflow-hidden"
+                  >
+                    <Link
+                      href="/"
+                      className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
+                    >
+                      BuildVerified
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
           </div>
         </div>
 
