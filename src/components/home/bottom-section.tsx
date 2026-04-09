@@ -25,7 +25,7 @@ export function BottomSection() {
               <h2
                 className="font-display mt-4 inline-block text-3xl font-bold leading-tight"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #ff7439 0%, #ffad8e 65%, #e7e5e4 100%)",
+                  backgroundImage: "linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-fixed) 65%, var(--color-text-primary) 100%)",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",

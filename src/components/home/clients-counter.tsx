@@ -38,7 +38,7 @@ export function ClientsCounter() {
 
   return (
     <span ref={ref} className="inline-flex items-baseline gap-1.5">
-      <span className="font-display text-base font-bold leading-none tabular-nums text-[#ffad8e]">
+      <span className="font-display text-base font-bold leading-none tabular-nums text-brand-primary-fixed">
         {displayCount}{displayCount === TARGET ? "+" : ""}
       </span>
       <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-secondary">

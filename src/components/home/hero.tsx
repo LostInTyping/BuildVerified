@@ -8,11 +8,11 @@ import { ClientsCounter } from "@/components/home/clients-counter";
 type Industry = "qsr" | "retail" | "gov" | "staffing" | "edu";
 
 const industryColors: Record<Industry, string> = {
-  qsr: "#ff7439",
-  retail: "#00dbe9",
-  gov: "#ecb1ff",
-  staffing: "#ffad8e",
-  edu: "#ff716c",
+  qsr: "var(--color-brand-primary)",
+  retail: "var(--color-brand-secondary)",
+  gov: "var(--color-brand-tertiary)",
+  staffing: "var(--color-brand-primary-fixed)",
+  edu: "var(--color-brand-error)",
 };
 
 const clientsTyped: { name: string; industry: Industry }[] = [
@@ -32,9 +32,9 @@ const clientsTyped: { name: string; industry: Industry }[] = [
 ];
 
 const metrics = [
-  { target: 1000, suffix: "+", label: "automated tests", decimals: 0, accent: "#ff7439" },
-  { target: 10, suffix: "+", label: "frameworks", decimals: 0, accent: "#00dbe9" },
-  { target: 3.5, suffix: "+", label: "years experience", decimals: 1, accent: "#ecb1ff" },
+  { target: 1000, suffix: "+", label: "automated tests", decimals: 0, accent: "var(--color-brand-primary)" },
+  { target: 10, suffix: "+", label: "frameworks", decimals: 0, accent: "var(--color-brand-secondary)" },
+  { target: 3.5, suffix: "+", label: "years experience", decimals: 1, accent: "var(--color-brand-tertiary)" },
 ];
 
 function ClientsMarqueeChips() {
@@ -52,15 +52,15 @@ function ClientsMarqueeChips() {
               return (
                 <span
                   key={`${client.name}-${copyIndex}`}
-                  className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-[#131313] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
-                  style={{ borderColor: `${color}30` }}
+                  className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-bg-card px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
+                  style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)` }}
                 >
                   <span
                     aria-hidden="true"
                     className="inline-block h-1.5 w-1.5 rounded-full"
                     style={{
                       backgroundColor: color,
-                      boxShadow: `0 0 6px ${color}60`,
+                      boxShadow: `0 0 6px color-mix(in srgb, ${color} 38%, transparent)`,
                     }}
                   />
                   {client.name}
@@ -84,7 +84,7 @@ export function Hero() {
             className="font-display mt-6 inline-block text-5xl font-bold uppercase leading-[0.95] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[6.5rem]"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, #ff7439 0%, #ffad8e 65%, #e7e5e4 100%)",
+                "linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-fixed) 65%, var(--color-text-primary) 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -122,7 +122,7 @@ export function Hero() {
                 cy="50"
                 r="48"
                 fill="none"
-                stroke="#ff7439"
+                stroke="var(--color-brand-primary)"
                 strokeWidth="0.6"
                 strokeDasharray="45 80 30 146"
                 strokeLinecap="round"
@@ -141,7 +141,7 @@ export function Hero() {
                 cy="50"
                 r="48"
                 fill="none"
-                stroke="#00dbe9"
+                stroke="var(--color-brand-secondary)"
                 strokeWidth="0.5"
                 strokeDasharray="25 55 20 60 15 126"
                 strokeLinecap="round"
@@ -151,7 +151,7 @@ export function Hero() {
             </svg>
 
             {/* Photo */}
-            <div className="absolute inset-[10%] overflow-hidden rounded-full bg-[#0e0e0e]">
+            <div className="absolute inset-[10%] overflow-hidden rounded-full bg-bg-primary">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0"
@@ -191,7 +191,7 @@ export function Hero() {
                 cy="50"
                 r="49"
                 fill="none"
-                stroke="#ecb1ff"
+                stroke="var(--color-brand-tertiary)"
                 strokeWidth="0.8"
                 strokeLinecap="round"
                 opacity="0.75"
@@ -203,7 +203,7 @@ export function Hero() {
 
           {/* LEFT — subtitle + tagline + stamp */}
           <SlideIn direction="left" delay={0.4} className="absolute left-0 top-1/2 hidden w-[250px] -translate-y-1/2 flex-col gap-4 text-left md:flex lg:left-2">
-            <p className="font-display text-2xl italic leading-[1.05] text-[#ff7439] md:text-3xl lg:text-4xl">
+            <p className="font-display text-2xl italic leading-[1.05] text-brand-primary md:text-3xl lg:text-4xl">
               Software QA
               <br />
               Engineer
@@ -221,7 +221,7 @@ export function Hero() {
               <br />
               <span className="font-mono text-[14px] uppercase tracking-[0.18em]">
                 <span className="font-medium text-text-secondary">every</span>{" "}
-                <span className="font-bold text-text-primary">Build</span><span className="font-bold text-[#ff7439]">Verified</span>.
+                <span className="font-bold text-text-primary">Build</span><span className="font-bold text-brand-primary">Verified</span>.
               </span>
             </p>
           </SlideIn>
@@ -231,9 +231,9 @@ export function Hero() {
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rounded-full bg-[#00dbe9] shadow-[0_0_8px_rgba(0,219,233,0.7)]"
+                className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_rgba(0,219,233,0.7)]"
               />
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#00dbe9]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-secondary">
                 available for work
               </p>
             </div>
@@ -241,7 +241,7 @@ export function Hero() {
               <p className="text-text-secondary">immediate availability</p>
               <p className="text-text-secondary">contract · full-time</p>
             </div>
-            <div aria-hidden="true" className="h-px w-12 bg-[#484848]" />
+            <div aria-hidden="true" className="h-px w-12 bg-outline-variant" />
             <div className="flex flex-col items-end gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em]">
               <p className="text-text-secondary">Cincinnati, OH</p>
               <p className="text-text-secondary">on-site · hybrid · remote</p>
@@ -252,7 +252,7 @@ export function Hero() {
 
         {/* Mobile fallback */}
         <div className="mt-6 flex flex-col items-center gap-4 text-center md:hidden">
-          <p className="font-display text-xl italic text-[#ff7439]">
+          <p className="font-display text-xl italic text-brand-primary">
             Software QA Engineer
           </p>
           <p className="max-w-sm text-sm leading-[1.55] text-text-secondary">
@@ -267,18 +267,18 @@ export function Hero() {
             .
           </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-muted">
-            every build, <span className="text-[#ff7439]">verified</span>.
+            every build, <span className="text-brand-primary">verified</span>.
           </p>
           <div className="flex justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-[#ff7439] to-[#fc5b00] px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:shadow-[0_0_18px_rgba(255,116,57,0.4)]"
+              className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-brand-primary to-brand-primary-container px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:shadow-[0_0_18px_rgba(255,116,57,0.4)]"
             >
               get in touch <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 rounded-sm border border-[#484848] px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-text-secondary transition-colors hover:text-text-primary"
+              className="inline-flex items-center gap-2 rounded-sm border border-outline-variant px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-text-secondary transition-colors hover:text-text-primary"
             >
               portfolio
             </Link>
@@ -291,7 +291,7 @@ export function Hero() {
           <div className="hidden items-center justify-between py-6 md:flex">
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#ff7439] transition-colors hover:text-[#ff9971] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7439]"
+              className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
               <span aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:-translate-x-0.5">←</span>
               view portfolio
@@ -311,7 +311,7 @@ export function Hero() {
                   {i < metrics.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="h-1 w-1 rounded-full bg-[#484848]"
+                      className="h-1 w-1 rounded-full bg-outline-variant"
                     />
                   )}
                 </div>
@@ -319,7 +319,7 @@ export function Hero() {
             </div>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#ff7439] transition-colors hover:text-[#ff9971] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff7439]"
+              className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
               get in touch
               <span aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">→</span>
@@ -341,7 +341,7 @@ export function Hero() {
                 {i < metrics.length - 1 && (
                   <span
                     aria-hidden="true"
-                    className="h-1 w-1 rounded-full bg-[#484848]"
+                    className="h-1 w-1 rounded-full bg-outline-variant"
                   />
                 )}
               </div>
@@ -352,7 +352,7 @@ export function Hero() {
           <hr className="section-divider mt-4" />
           <div className="relative pt-8">
             <div
-              className="absolute left-1/2 top-0 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-baseline gap-1.5 rounded-sm border border-[#ffad8e]/60 bg-[#0e0e0e] px-3 py-1 shadow-[0_0_18px_rgba(255,173,142,0.18)]"
+              className="absolute left-1/2 top-0 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-baseline gap-1.5 rounded-sm border border-brand-primary-fixed/60 bg-bg-primary px-3 py-1 shadow-[0_0_18px_rgba(255,173,142,0.18)]"
             >
               <ClientsCounter />
             </div>

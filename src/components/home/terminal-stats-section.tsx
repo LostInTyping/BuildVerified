@@ -5,11 +5,11 @@ import { RegressionTerminal } from "@/components/home/regression-terminal";
 type ToolCategory = "test" | "lang" | "framework" | "infra" | "reporting";
 
 const toolColors: Record<ToolCategory, string> = {
-  test: "#ff7439",
-  lang: "#00dbe9",
-  framework: "#ecb1ff",
-  infra: "#ffad8e",
-  reporting: "#ff716c",
+  test: "var(--color-brand-primary)",
+  lang: "var(--color-brand-secondary)",
+  framework: "var(--color-brand-tertiary)",
+  infra: "var(--color-brand-primary-fixed)",
+  reporting: "var(--color-brand-error)",
 };
 
 const tools: { name: string; category: ToolCategory }[] = [
@@ -61,15 +61,15 @@ export function TerminalStatsSection() {
                       return (
                         <span
                           key={`${t.name}-${copyIndex}`}
-                          className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-[#131313] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
-                          style={{ borderColor: `${color}30` }}
+                          className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-bg-card px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
+                          style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)` }}
                         >
                           <span
                             aria-hidden="true"
                             className="inline-block h-1.5 w-1.5 rounded-full"
                             style={{
                               backgroundColor: color,
-                              boxShadow: `0 0 6px ${color}60`,
+                              boxShadow: `0 0 6px color-mix(in srgb, ${color} 38%, transparent)`,
                             }}
                           />
                           {t.name}

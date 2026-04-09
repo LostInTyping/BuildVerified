@@ -45,7 +45,7 @@ export function Header() {
             href="/"
             className="mr-4 whitespace-nowrap font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-text-primary lg:hidden"
           >
-            Build<span className="text-[#ff7439]">Verified</span>
+            Build<span className="text-brand-primary">Verified</span>
           </Link>
 
           {/* Desktop: animate brand on scroll (lg+) */}
@@ -70,7 +70,7 @@ export function Header() {
                     href="/"
                     className="mr-4 whitespace-nowrap font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-text-primary"
                   >
-                    Build<span className="text-[#ff7439]">Verified</span>
+                    Build<span className="text-brand-primary">Verified</span>
                   </Link>
                 </motion.div>
               )}
