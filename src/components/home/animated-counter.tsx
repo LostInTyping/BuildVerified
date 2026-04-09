@@ -9,6 +9,7 @@ interface AnimatedCounterProps {
   label: string;
   decimals?: number;
   valueClassName?: string;
+  valueStyle?: React.CSSProperties;
   labelClassName?: string;
 }
 
@@ -18,6 +19,7 @@ export function AnimatedCounter({
   label,
   decimals = 0,
   valueClassName = "text-2xl font-bold text-text-primary sm:text-3xl",
+  valueStyle,
   labelClassName = "mt-1 text-[10px] font-medium uppercase tracking-[0.15em] text-text-muted",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,7 +57,7 @@ export function AnimatedCounter({
 
   return (
     <div ref={ref} className="text-center">
-      <p className={valueClassName}>
+      <p className={valueClassName} style={valueStyle}>
         {displayValue}
         {displayCount === target ? suffix : ""}
       </p>

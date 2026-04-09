@@ -304,7 +304,8 @@ export function Hero() {
                     suffix={m.suffix}
                     label={m.label}
                     decimals={m.decimals}
-                    valueClassName={`font-display text-2xl font-bold leading-none tabular-nums sm:text-3xl text-[${m.accent}]`}
+                    valueClassName="font-display text-2xl font-bold leading-none tabular-nums sm:text-3xl"
+                    valueStyle={{ color: m.accent }}
                     labelClassName="mt-1 font-mono text-[9px] uppercase tracking-[0.22em] text-text-muted"
                   />
                   {i < metrics.length - 1 && (
@@ -333,7 +334,8 @@ export function Hero() {
                   suffix={m.suffix}
                   label={m.label}
                   decimals={m.decimals}
-                  valueClassName={`font-display text-2xl font-bold leading-none tabular-nums text-[${m.accent}]`}
+                  valueClassName="font-display text-2xl font-bold leading-none tabular-nums"
+                  valueStyle={{ color: m.accent }}
                   labelClassName="mt-1 font-mono text-[9px] uppercase tracking-[0.22em] text-text-muted"
                 />
                 {i < metrics.length - 1 && (
