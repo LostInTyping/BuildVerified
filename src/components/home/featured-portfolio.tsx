@@ -51,7 +51,7 @@ export function FeaturedPortfolio() {
                   <span
                     className="shrink-0 font-mono text-5xl font-bold transition-colors"
                     style={{
-                      color: ["#ff7439", "#00dbe9", "#ecb1ff", "#ffad8e"][index % 4] + "30",
+                      color: `color-mix(in srgb, ${["var(--color-brand-primary)", "var(--color-brand-secondary)", "var(--color-brand-tertiary)", "var(--color-brand-primary-fixed)"][index % 4]} 19%, transparent)`,
                     }}
                   >
                     {String(index + 1).padStart(2, "0")}
