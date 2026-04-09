@@ -32,9 +32,9 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 sm:px-6">
       <nav
-        className={`navbar-inner relative flex h-12 items-center gap-1 w-full max-w-6xl px-5 ${
+        className={`navbar-inner relative flex h-12 items-center gap-1 w-full max-w-7xl px-5 ${
           isScrolled
-            ? "navbar-collapsed lg:max-w-[34rem] lg:px-3"
+            ? "navbar-collapsed lg:max-w-[38rem] lg:px-3"
             : "navbar-expanded"
         }`}
       >
@@ -43,9 +43,9 @@ export function Header() {
           {/* Mobile/tablet: static brand (below lg) */}
           <Link
             href="/"
-            className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary lg:hidden"
+            className="mr-4 whitespace-nowrap font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-text-primary lg:hidden"
           >
-            BuildVerified
+            Build<span className="text-[#ff7439]">Verified</span>
           </Link>
 
           {/* Desktop: animate brand on scroll (lg+) */}
@@ -68,9 +68,9 @@ export function Header() {
                 >
                   <Link
                     href="/"
-                    className="mr-4 whitespace-nowrap text-sm font-bold text-text-primary"
+                    className="mr-4 whitespace-nowrap font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-text-primary"
                   >
-                    BuildVerified
+                    Build<span className="text-[#ff7439]">Verified</span>
                   </Link>
                 </motion.div>
               )}
@@ -89,7 +89,7 @@ export function Header() {
                 <Link
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`nav-pill-link whitespace-nowrap rounded-full px-3 py-1.5 text-sm ${
+                  className={`nav-pill-link whitespace-nowrap rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] ${
                     isActive
                       ? "nav-pill-link-active text-text-primary"
                       : "text-text-secondary hover:text-text-primary"
