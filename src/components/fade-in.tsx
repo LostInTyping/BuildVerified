@@ -16,7 +16,8 @@ export function FadeIn({ children, delay = 0, className, scale = false }: FadeIn
   return (
     <motion.div
       initial={prefersReducedMotion ? false : { opacity: 0, y: 20, ...(scale ? { scale: 0.95 } : {}) }}
-      animate={{ opacity: 1, y: 0, ...(scale ? { scale: 1 } : {}) }}
+      whileInView={{ opacity: 1, y: 0, ...(scale ? { scale: 1 } : {}) }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: "easeOut" }}
       className={className}
     >
