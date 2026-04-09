@@ -104,7 +104,7 @@ export function Hero() {
               className="pointer-events-none absolute inset-[2%] rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, rgba(255,116,57,0.25) 0%, rgba(0,219,233,0.15) 33%, rgba(236,177,255,0.14) 66%, rgba(255,116,57,0.25) 100%)",
+                  "conic-gradient(from 0deg, color-mix(in srgb, var(--color-brand-primary) 25%, transparent) 0%, color-mix(in srgb, var(--color-brand-secondary) 15%, transparent) 33%, color-mix(in srgb, var(--color-brand-tertiary) 14%, transparent) 66%, color-mix(in srgb, var(--color-brand-primary) 25%, transparent) 100%)",
                 filter: "blur(28px)",
               }}
             />
@@ -157,7 +157,7 @@ export function Hero() {
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "conic-gradient(from 0deg, rgba(255,116,57,0.1) 0%, rgba(255,173,142,0.08) 15%, rgba(0,219,233,0.07) 33%, rgba(0,219,233,0.06) 45%, rgba(236,177,255,0.06) 60%, rgba(236,177,255,0.05) 80%, rgba(255,116,57,0.1) 100%)",
+                    "conic-gradient(from 0deg, color-mix(in srgb, var(--color-brand-primary) 10%, transparent) 0%, color-mix(in srgb, var(--color-brand-primary-fixed) 8%, transparent) 15%, color-mix(in srgb, var(--color-brand-secondary) 7%, transparent) 33%, color-mix(in srgb, var(--color-brand-secondary) 6%, transparent) 45%, color-mix(in srgb, var(--color-brand-tertiary) 6%, transparent) 60%, color-mix(in srgb, var(--color-brand-tertiary) 5%, transparent) 80%, color-mix(in srgb, var(--color-brand-primary) 10%, transparent) 100%)",
                   filter: "blur(8px)",
                 }}
               />
@@ -175,7 +175,7 @@ export function Hero() {
             <div
               aria-hidden="true"
               className="ring-breathe pointer-events-none absolute inset-[10%] z-20 rounded-full"
-              style={{ border: "1px solid rgba(236, 177, 255, 0.35)" }}
+              style={{ border: "1px solid color-mix(in srgb, var(--color-brand-tertiary) 35%, transparent)" }}
             />
 
             {/* Inner lilac arc — above photo */}
@@ -231,7 +231,7 @@ export function Hero() {
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_rgba(0,219,233,0.7)]"
+                className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]"
               />
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-secondary">
                 available for work
@@ -272,7 +272,7 @@ export function Hero() {
           <div className="flex justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-brand-primary to-brand-primary-container px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:shadow-[0_0_18px_rgba(255,116,57,0.4)]"
+              className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-brand-primary to-brand-primary-container px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:shadow-[0_0_18px_color-mix(in_srgb,var(--color-brand-primary)_40%,transparent)]"
             >
               get in touch <span aria-hidden="true">→</span>
             </Link>
@@ -352,7 +352,7 @@ export function Hero() {
           <hr className="section-divider mt-4" />
           <div className="relative pt-8">
             <div
-              className="absolute left-1/2 top-0 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-baseline gap-1.5 rounded-sm border border-brand-primary-fixed/60 bg-bg-primary px-3 py-1 shadow-[0_0_18px_rgba(255,173,142,0.18)]"
+              className="absolute left-1/2 top-0 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-baseline gap-1.5 rounded-sm border border-brand-primary-fixed/60 bg-bg-primary px-3 py-1 shadow-[0_0_18px_color-mix(in_srgb,var(--color-brand-primary-fixed)_18%,transparent)]"
             >
               <ClientsCounter />
             </div>
