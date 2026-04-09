@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/fade-in";
+import { SlideIn } from "@/components/slide-in";
 import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/expertise-icons";
 
 const expertiseAreas: Array<{
@@ -9,47 +10,47 @@ const expertiseAreas: Array<{
   {
     title: "Test Automation",
     icon: "beaker",
-    hoverColorClass: "group-hover:text-green-400",
+    hoverColorClass: "group-hover:text-[#ff7439]",
   },
   {
     title: "Defect Lifecycle",
     icon: "bug",
-    hoverColorClass: "group-hover:text-red-400",
+    hoverColorClass: "group-hover:text-[#ff716c]",
   },
   {
     title: "Test Reporting",
     icon: "chart-bar",
-    hoverColorClass: "group-hover:text-teal-400",
+    hoverColorClass: "group-hover:text-[#00dbe9]",
   },
   {
     title: "CI/CD Pipelines",
     icon: "git-branch",
-    hoverColorClass: "group-hover:text-violet-400",
+    hoverColorClass: "group-hover:text-[#ff7439]",
   },
   {
     title: "Environments & Infrastructure",
     icon: "server",
-    hoverColorClass: "group-hover:text-blue-400",
+    hoverColorClass: "group-hover:text-[#00dbe9]",
   },
   {
     title: "API Testing",
     icon: "code-bracket",
-    hoverColorClass: "group-hover:text-orange-400",
+    hoverColorClass: "group-hover:text-[#ff7439]",
   },
   {
     title: "Performance Testing",
     icon: "bolt",
-    hoverColorClass: "group-hover:text-cyan-400",
+    hoverColorClass: "group-hover:text-[#00dbe9]",
   },
   {
     title: "Accessibility Testing",
     icon: "eye",
-    hoverColorClass: "group-hover:text-amber-400",
+    hoverColorClass: "group-hover:text-[#ecb1ff]",
   },
   {
     title: "Data Validation",
     icon: "database",
-    hoverColorClass: "group-hover:text-pink-400",
+    hoverColorClass: "group-hover:text-[#ecb1ff]",
   },
 ];
 
@@ -87,10 +88,10 @@ export function ExpertiseSection() {
       <FadeIn>
         <hr className="section-divider" />
       </FadeIn>
-      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-8 md:py-12">
         <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-2">
-          <FadeIn delay={0.2} className="h-full min-w-0">
-            <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+          <SlideIn direction="left" delay={0.1} className="h-full min-w-0">
+            <div className="flex h-full min-w-0 flex-col rounded-sm border border-border bg-bg-card p-4 sm:p-5">
               <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
                 Areas of Expertise
               </h2>
@@ -102,7 +103,7 @@ export function ExpertiseSection() {
                     className="h-full"
                     scale
                   >
-                    <div className="expertise-tile group h-full rounded-md border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
+                    <div className="expertise-tile group h-full rounded-sm border border-border bg-bg-elevated px-2.5 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-border-hover sm:px-3 sm:py-3">
                       <div
                         className={`mx-auto flex h-12 w-12 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
                       >
@@ -119,27 +120,32 @@ export function ExpertiseSection() {
                 ))}
               </div>
             </div>
-          </FadeIn>
+          </SlideIn>
 
-          <FadeIn delay={0.25} className="h-full min-w-0">
-            <div className="flex h-full min-w-0 flex-col rounded-lg border border-border bg-bg-card p-4 sm:p-5">
+          <SlideIn direction="right" delay={0.15} className="h-full min-w-0">
+            <div className="flex h-full min-w-0 flex-col rounded-sm border border-border bg-bg-card p-4 sm:p-5">
               <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
                 How I Work
               </h2>
-              <div className="mt-4 flex-1 flex flex-col justify-between">
-                {proofItems.map((item) => (
-                  <div key={item.title} className="border-l-2 border-accent pl-4">
-                    <h3 className="text-sm font-semibold text-text-primary">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-text-secondary">
-                      {item.description}
-                    </p>
+              <div className="mt-4 flex flex-1 flex-col gap-5">
+                {proofItems.map((item, index) => (
+                  <div key={item.title} className="flex gap-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                      0{index + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-sm font-semibold text-text-primary">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-text-secondary">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </FadeIn>
+          </SlideIn>
         </div>
       </div>
     </section>

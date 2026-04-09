@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
+import { SlideIn } from "@/components/slide-in";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 
 export function BottomSection() {
@@ -8,22 +9,30 @@ export function BottomSection() {
       <FadeIn>
         <hr className="section-divider" />
       </FadeIn>
-      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
         <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* Testimonials */}
-          <FadeIn className="h-full min-w-0">
+          <SlideIn direction="left" delay={0.1} className="h-full min-w-0">
             <TestimonialCarousel />
-          </FadeIn>
+          </SlideIn>
 
           {/* CTA Card */}
-          <FadeIn delay={0.1} className="h-full min-w-0">
-            <div className="flex h-full flex-col rounded-lg border border-border bg-bg-card p-6">
+          <SlideIn direction="right" delay={0.15} className="h-full min-w-0">
+            <div className="flex h-full flex-col rounded-sm border border-border bg-bg-card p-6">
               <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
                 Available for new opportunities
               </p>
-              <h2 className="mt-4 text-3xl font-bold leading-tight">
-                Let&apos;s work{" "}
-                <span className="text-accent">together.</span>
+              <h2
+                className="font-display mt-4 inline-block text-3xl font-bold leading-tight"
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #ff7439 0%, #ffad8e 65%, #e7e5e4 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                }}
+              >
+                Let&apos;s work together.
               </h2>
               <p className="mt-3 text-sm text-text-secondary">
                 Looking for a QA engineer who owns quality end-to-end?
@@ -47,7 +56,7 @@ export function BottomSection() {
                 </a>
               </div>
             </div>
-          </FadeIn>
+          </SlideIn>
         </div>
       </div>
     </section>
