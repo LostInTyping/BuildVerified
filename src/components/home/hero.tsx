@@ -162,7 +162,7 @@ export function Hero() {
                 }}
               />
               <Image
-                src="/headshot-cutout.png"
+                src="/headshot-cutout.webp"
                 alt="Ben Armour"
                 fill
                 className="relative z-10 object-cover object-[65%_18%] scale-110 transition-all duration-700 group-hover/photo:scale-[1.14]"
