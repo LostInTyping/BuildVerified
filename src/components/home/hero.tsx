@@ -26,9 +26,14 @@ const clientsTyped: { name: string; industry: Industry }[] = [
   { name: "Popeyes", industry: "qsr" },
   { name: "Macy's", industry: "retail" },
   { name: "Ohio Sentencing Data Platform", industry: "gov" },
+  { name: "Ohio Offense Code Portal", industry: "gov" },
+  { name: "Risk Assessment System", industry: "gov" },
+  { name: "Recertify", industry: "gov" },
+  { name: "TTS", industry: "gov" },
   { name: "DRF-CoApp", industry: "gov" },
   { name: "Brooksource", industry: "staffing" },
   { name: "University of Cincinnati", industry: "edu" },
+  { name: "Team Eval", industry: "edu" },
 ];
 
 const metrics = [
