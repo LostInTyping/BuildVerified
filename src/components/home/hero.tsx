@@ -266,19 +266,20 @@ export function Hero() {
             </span>
             .
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-muted">
-            every build, <span className="text-brand-primary">verified</span>.
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em]">
+            <span className="font-medium text-text-secondary">every</span>{" "}
+            <span className="font-bold text-text-primary">Build</span><span className="font-bold text-brand-primary">Verified</span>.
           </p>
           <div className="flex justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-sm bg-gradient-to-br from-brand-primary to-brand-primary-container px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all hover:shadow-[0_0_18px_color-mix(in_srgb,var(--color-brand-primary)_40%,transparent)]"
+              className="ghost-btn ghost-btn-accent font-mono text-[11px] font-bold uppercase tracking-[0.18em]"
             >
               get in touch <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 rounded-sm border border-outline-variant px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-text-secondary transition-colors hover:text-text-primary"
+              className="ghost-btn ghost-btn-neutral font-mono text-[11px] font-bold uppercase tracking-[0.18em]"
             >
               portfolio
             </Link>

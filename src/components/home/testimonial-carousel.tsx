@@ -82,13 +82,13 @@ export function TestimonialCarousel() {
       </h2>
 
       {/* Identity: photo + name/title — grid overlap for slide-fade */}
-      <div className="mt-3 grid">
+      <div className="mt-3 grid min-w-0">
         {testimonials.map((testimonial, i) => {
           const isActive = i === active;
           return (
             <div
               key={testimonial.name}
-              className="col-start-1 row-start-1 flex items-center gap-3"
+              className="col-start-1 row-start-1 flex min-w-0 items-center gap-3"
               aria-hidden={!isActive}
               style={{
                 opacity: isActive ? 1 : 0,
