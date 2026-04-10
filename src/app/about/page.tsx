@@ -25,6 +25,8 @@ const skillGroups = [
       "Test Planning",
       "Exploratory Testing",
       "Regression Testing",
+      "UAT",
+      "Performance Testing",
       "Cross-Browser Testing",
       "Defect Lifecycle",
       "Test Documentation",
@@ -66,6 +68,7 @@ const skillGroups = [
       "Active in Scrum ceremonies - sprint planning, standups, retrospectives, and story grooming. Reviewed test automation code and worked with developers, PMs, and stakeholders on architecture decisions and branching workflows.",
     pills: [
       "Scrum",
+      "Kanban",
       "Sprint Planning",
       "Code Review",
       "Cross-Functional Teams",
