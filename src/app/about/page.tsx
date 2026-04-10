@@ -4,7 +4,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Career background, education, and approach to software quality.",
+    "Career background, capabilities, education, and approach to software quality.",
   openGraph: {
     url: "/about",
   },
