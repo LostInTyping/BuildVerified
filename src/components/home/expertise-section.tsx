@@ -131,7 +131,7 @@ export function ExpertiseSection() {
                 {proofItems.map((item, index) => (
                   <div key={item.title} className="flex gap-3">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">
                       <h3 className="text-sm font-semibold text-text-primary">
