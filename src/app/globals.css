@@ -6,12 +6,6 @@
   --color-bg-card: #131313;
   --color-bg-card-hover: #1a1a19;
   --color-bg-elevated: #202020;
-  --color-surface-container-lowest: #000000;
-  --color-surface-container-low: #131313;
-  --color-surface-container: #1a1a19;
-  --color-surface-container-high: #202020;
-  --color-surface-container-highest: #262626;
-  --color-surface-bright: #2c2c2c;
 
   /* Text */
   --color-text-primary: #e7e5e4;
@@ -20,7 +14,6 @@
 
   /* Brand: orange-led ops console palette */
   --color-brand-primary: #ff7439;
-  --color-brand-primary-container: #fc5b00;
   --color-brand-primary-fixed: #ffad8e;
   --color-brand-secondary: #00dbe9;
   --color-brand-tertiary: #ecb1ff;
