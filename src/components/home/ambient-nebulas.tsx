@@ -14,7 +14,7 @@ export function AmbientNebulas() {
         style={{
           bottom: "-15%",
           left: "-15%",
-          background: "radial-gradient(circle, rgba(255,116,57,0.08), transparent 70%)",
+          background: "radial-gradient(circle, color-mix(in srgb, var(--color-brand-primary) 8%, transparent), transparent 70%)",
         }}
       />
     </div>
