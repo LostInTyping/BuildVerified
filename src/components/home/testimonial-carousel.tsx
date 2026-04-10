@@ -63,7 +63,7 @@ export function TestimonialCarousel() {
 
   return (
     <div
-      className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-4 sm:p-5"
+      className="flex h-full min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-bg-card p-4 sm:p-5"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
