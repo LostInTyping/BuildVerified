@@ -18,7 +18,7 @@ export function FeaturedPortfolio() {
       <FadeIn>
         <hr className="section-divider" />
       </FadeIn>
-      <div className="mx-auto max-w-6xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
         <FadeIn>
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
@@ -28,7 +28,7 @@ export function FeaturedPortfolio() {
               href="/portfolio"
               className="text-sm text-accent transition-colors hover:text-accent-hover"
             >
-              View all &rarr;
+              View all →
             </Link>
           </div>
         </FadeIn>
@@ -36,18 +36,24 @@ export function FeaturedPortfolio() {
           {items.map((item, index) => (
             <FadeIn
               key={item.frontmatter.slug}
-              delay={index * 0.1}
+              delay={0.1 + index * 0.1}
               className={index >= 2 ? "hidden h-full md:block" : "h-full"}
+              scale
             >
               <Link
                 href={`/portfolio/${item.frontmatter.slug}`}
-                className="portfolio-card group flex h-full flex-col rounded-lg border border-border bg-bg-card p-6 hover:bg-bg-card-hover"
+                className="portfolio-card group flex h-full flex-col rounded-sm border border-border bg-bg-card p-6 hover:bg-bg-card-hover"
               >
                 <div className="flex items-start justify-between gap-4">
                   <p className="text-xs font-medium uppercase tracking-wider text-text-muted">
                     {item.frontmatter.clientType}
                   </p>
-                  <span className="shrink-0 font-mono text-5xl font-bold text-text-muted/30 transition-colors group-hover:text-accent/40">
+                  <span
+                    className="shrink-0 font-mono text-5xl font-bold transition-colors"
+                    style={{
+                      color: `color-mix(in srgb, ${["var(--color-brand-primary)", "var(--color-brand-secondary)", "var(--color-brand-tertiary)", "var(--color-brand-primary-fixed)"][index % 4]} 19%, transparent)`,
+                    }}
+                  >
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>

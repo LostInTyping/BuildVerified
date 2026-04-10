@@ -496,10 +496,7 @@ export function RegressionTerminal() {
 
   return (
     <div className="flex h-full min-w-0 flex-col">
-      <p className="mb-2 text-xs font-medium uppercase tracking-widest text-text-muted">
-        CI / QA Terminal
-      </p>
-      <div className="flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-lg bg-bg-elevated font-mono text-[11px] sm:min-h-[360px] sm:text-xs lg:min-h-[420px]">
+      <div className="flex h-[320px] min-w-0 flex-col overflow-hidden rounded-sm bg-bg-elevated font-mono text-[11px] sm:h-[360px] sm:text-xs lg:h-[420px]">
         <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
@@ -514,7 +511,7 @@ export function RegressionTerminal() {
           aria-label="CI terminal output"
           aria-live="off"
           tabIndex={0}
-          className="max-h-[340px] flex-1 overflow-y-auto p-2.5 leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:p-3 lg:max-h-[460px]"
+          className="min-h-0 flex-1 overflow-y-auto p-2.5 leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:p-3"
         >
           <p className="sr-only">
             Automated CI terminal showing test and deployment scenarios

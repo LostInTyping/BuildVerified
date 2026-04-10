@@ -1,29 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0a0a0a;
-  --color-bg-card: #141414;
-  --color-bg-card-hover: #1a1a1a;
-  --color-bg-elevated: #1e1e1e;
-  --color-text-primary: #f5f5f5;
-  --color-text-secondary: #a0a0a0;
-  --color-text-muted: #8a8a8a;
-  --color-accent: #60a5fa;
-  --color-accent-hover: #93c5fd;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-hover: rgba(255, 255, 255, 0.2);
+  /* Surfaces */
+  --color-bg-primary: #0e0e0e;
+  --color-bg-card: #131313;
+  --color-bg-card-hover: #1a1a19;
+  --color-bg-elevated: #202020;
+
+  /* Text */
+  --color-text-primary: #e7e5e4;
+  --color-text-secondary: #acabaa;
+  --color-text-muted: #767575;
+
+  /* Brand: orange-led ops console palette */
+  --color-brand-primary: #ff7439;
+  --color-brand-primary-fixed: #ffad8e;
+  --color-brand-secondary: #00dbe9;
+  --color-brand-tertiary: #ecb1ff;
+  --color-brand-error: #ff716c;
+
+  /* Accent (replaces legacy blue site-wide) */
+  --color-accent: #ff7439;
+  --color-accent-hover: #ff9971;
+
+  /* Borders / outlines */
+  --color-outline: #767575;
+  --color-outline-variant: #484848;
+  --color-border: rgba(72, 72, 72, 0.6);
+  --color-border-hover: rgba(72, 72, 72, 1);
+
   /* Status colors — regression terminal */
   --color-status-pass: #4ade80;
   --color-status-retry: #facc15;
-  --color-status-error: #f87171;
-  --shadow-expertise-glow: 4px 4px 10px 4px rgba(76, 154, 255, 0.09);
+  --color-status-error: #ff716c;
+
+  /* Shadows / glows (now orange) */
+  --shadow-expertise-glow: 4px 4px 10px 4px color-mix(in srgb, var(--color-brand-primary) 9%, transparent);
   --color-surface-highlight: color-mix(in srgb, var(--color-border) 75%, transparent);
   --color-surface-highlight-strong: color-mix(in srgb, var(--color-border) 100%, transparent);
   --color-surface-shadow: color-mix(in srgb, black 30%, transparent);
   --shadow-accent-sm: 0 0 12px color-mix(in srgb, var(--color-accent) 30%, transparent);
   --shadow-accent-md: 0 0 14px color-mix(in srgb, var(--color-accent) 24%, transparent);
   --shadow-accent-lg: 0 0 28px color-mix(in srgb, var(--color-accent) 18%, transparent);
+
+  /* Fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -92,13 +114,13 @@ body {
 .section-divider {
   border: none;
   height: 1px;
-  max-width: 72rem;
+  max-width: 80rem;
   margin-inline: auto;
   background: linear-gradient(
     to right,
     transparent,
-    color-mix(in srgb, var(--color-border) 80%, transparent) 20%,
-    color-mix(in srgb, var(--color-border) 80%, transparent) 80%,
+    color-mix(in srgb, var(--color-border) 80%, transparent) 10%,
+    color-mix(in srgb, var(--color-border) 80%, transparent) 90%,
     transparent
   );
 }
@@ -124,14 +146,16 @@ body {
 }
 
 .ghost-btn-accent {
-  border-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
-  background-color: color-mix(in srgb, var(--color-accent) 4%, transparent);
-  color: color-mix(in srgb, var(--color-accent) 80%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  color: var(--color-accent);
 }
 
 .ghost-btn-accent:hover {
-  background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
-  color: color-mix(in srgb, var(--color-accent) 90%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent-hover);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
 .ghost-btn-neutral {
@@ -215,9 +239,9 @@ body {
 }
 
 .nav-pill-link-active {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background-color: color-mix(in srgb, var(--color-brand-primary) 6%, transparent);
+  border-color: color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-brand-primary) 8%, transparent);
 }
 
 .navbar-collapsed {
@@ -272,6 +296,161 @@ body {
 .terminal-cursor {
   animation: cursor-blink 920ms step-end infinite;
 }
+
+/* === Redesign: asymmetric bento === */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-void-glow {
+  text-shadow: 0 0 18px color-mix(in srgb, var(--color-brand-primary) 35%, transparent);
+}
+
+/* Spinning loader rings for stylized hero (B10) */
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-spin-slow {
+  animation: loader-spin 18s linear infinite;
+}
+
+.loader-spin-med {
+  animation: loader-spin 12s linear infinite;
+}
+
+.loader-spin-reverse {
+  animation: loader-spin 22s linear infinite reverse;
+}
+
+/* Spinner arcs — smooth stroke transition for hover fill effect */
+.spinner-arc {
+  transition: stroke-dasharray 0.8s ease-in-out, stroke-width 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+/* Hover: speed up rotations + fill arcs into full rings + pulse */
+.spinner-group:hover .loader-spin-slow {
+  animation-duration: 2.5s;
+}
+
+.spinner-group:hover .loader-spin-med {
+  animation-duration: 1.8s;
+}
+
+.spinner-group:hover .loader-spin-reverse {
+  animation-duration: 3s;
+}
+
+.spinner-group:hover .spinner-arc {
+  stroke-dasharray: 301 0 !important;
+  opacity: 1 !important;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.spinner-group:hover .spinner-ring-pulse {
+  animation: ring-pulse 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-spin-slow,
+  .loader-spin-med,
+  .loader-spin-reverse {
+    animation: none;
+  }
+
+  .spinner-group:hover .loader-spin-slow,
+  .spinner-group:hover .loader-spin-med,
+  .spinner-group:hover .loader-spin-reverse {
+    animation-duration: unset;
+  }
+
+  .spinner-group:hover .spinner-arc {
+    stroke-dasharray: unset !important;
+  }
+
+  .spinner-ring-pulse {
+    animation: none !important;
+  }
+}
+
+/* Static ring breathe */
+@keyframes ring-breathe {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.55; }
+}
+
+.ring-breathe {
+  animation: ring-breathe 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-breathe {
+    animation: none;
+  }
+
+  /* Disable hover transitions on hero photo and CTA arrows */
+  .spinner-group img {
+    transition: none !important;
+  }
+
+  .group-hover\:translate-x-0\.5:hover,
+  .group-hover\:-translate-x-0\.5:hover,
+  [class*="group-hover:translate-x-0.5"],
+  [class*="group-hover:-translate-x-0.5"] {
+    transition: none;
+  }
+}
+
+/* Hero photo: rotating diamond frames */
+@keyframes diamond-spin {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
+}
+
+@keyframes diamond-spin-reverse {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(-315deg); }
+}
+
+.ring-spin-slow {
+  animation: diamond-spin 30s linear infinite;
+  transform: rotate(45deg);
+}
+
+.ring-spin-reverse {
+  animation: diamond-spin-reverse 45s linear infinite;
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-spin-slow,
+  .ring-spin-reverse {
+    animation: none;
+  }
+}
+
+/* Ambient nebulas */
+.nebula-pulse {
+  animation: nebula-pulse 8s ease-in-out infinite;
+}
+
+@keyframes nebula-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nebula-pulse {
+    animation: none;
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .terminal-cursor {
