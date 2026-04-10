@@ -399,8 +399,10 @@ body {
     transition: none !important;
   }
 
-  .group-hover\:translate-x-1:hover,
-  [class*="group-hover:translate-x-1"] {
+  .group-hover\:translate-x-0\.5:hover,
+  .group-hover\:-translate-x-0\.5:hover,
+  [class*="group-hover:translate-x-0.5"],
+  [class*="group-hover:-translate-x-0.5"] {
     transition: none;
   }
 }

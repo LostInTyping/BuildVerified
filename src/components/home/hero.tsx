@@ -202,7 +202,7 @@ export function Hero() {
           </div>
 
           {/* LEFT — subtitle + tagline + stamp */}
-          <SlideIn direction="left" delay={0.4} className="absolute left-0 top-1/2 hidden w-[250px] -translate-y-1/2 flex-col gap-4 text-left md:flex lg:left-2">
+          <SlideIn direction="left" delay={0.4} className="absolute left-0 top-1/2 hidden w-[250px] -translate-y-1/2 flex-col gap-4 text-left lg:flex lg:left-2">
             <p className="font-display text-2xl italic leading-[1.05] text-brand-primary md:text-3xl lg:text-4xl">
               Software QA
               <br />
@@ -227,7 +227,7 @@ export function Hero() {
           </SlideIn>
 
           {/* RIGHT — availability + location + CTA */}
-          <SlideIn direction="right" delay={0.4} className="absolute right-0 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-4 text-right md:flex lg:right-2">
+          <SlideIn direction="right" delay={0.4} className="absolute right-0 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-4 text-right lg:flex lg:right-2">
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
