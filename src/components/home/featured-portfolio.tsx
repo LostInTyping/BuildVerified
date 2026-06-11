@@ -37,7 +37,7 @@ export function FeaturedPortfolio() {
             <FadeIn
               key={item.frontmatter.slug}
               delay={0.1 + index * 0.1}
-              className={index >= 2 ? "hidden h-full md:block" : "h-full"}
+              className="h-full"
               scale
             >
               <Link

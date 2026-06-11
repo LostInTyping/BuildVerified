@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
 
 interface SlideInProps {
   children: ReactNode;
@@ -17,6 +17,11 @@ export function SlideIn({
   className,
 }: SlideInProps) {
   const prefersReducedMotion = useReducedMotion();
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const x = direction === "left" ? -30 : 30;
 
   return (
@@ -29,7 +34,7 @@ export function SlideIn({
           ? { duration: 0 }
           : { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }
       }
-      className={className}
+      className={isMounted ? className : `${className ?? ""} motion-fallback`.trim()}
     >
       {children}
     </motion.div>

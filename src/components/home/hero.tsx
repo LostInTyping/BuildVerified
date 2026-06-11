@@ -321,7 +321,7 @@ export function Hero() {
             >
               <ClientsCounter />
             </div>
-            <MarqueeChips chips={clientChips} />
+            <MarqueeChips chips={clientChips} label="Clients and platforms tested" />
           </div>
         </FadeIn>
       </div>

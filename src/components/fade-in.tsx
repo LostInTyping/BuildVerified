@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
 
 interface FadeInProps {
   children: ReactNode;
@@ -12,6 +12,11 @@ interface FadeInProps {
 
 export function FadeIn({ children, delay = 0, className, scale = false }: FadeInProps) {
   const prefersReducedMotion = useReducedMotion();
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   return (
     <motion.div
@@ -19,7 +24,7 @@ export function FadeIn({ children, delay = 0, className, scale = false }: FadeIn
       whileInView={{ opacity: 1, y: 0, ...(scale ? { scale: 1 } : {}) }}
       viewport={{ once: true, margin: "-50px" }}
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: "easeOut" }}
-      className={className}
+      className={isMounted ? className : `${className ?? ""} motion-fallback`.trim()}
     >
       {children}
     </motion.div>

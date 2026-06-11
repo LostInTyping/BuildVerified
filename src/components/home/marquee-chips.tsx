@@ -3,9 +3,14 @@ export interface MarqueeChip {
   color: string;
 }
 
-export function MarqueeChips({ chips }: { chips: MarqueeChip[] }) {
+interface MarqueeChipsProps {
+  chips: MarqueeChip[];
+  label: string;
+}
+
+export function MarqueeChips({ chips, label }: MarqueeChipsProps) {
   return (
-    <div className="marquee-viewport">
+    <div className="marquee-viewport" role="group" aria-label={label} tabIndex={0}>
       <div className="marquee-strip">
         {[0, 1].map((copyIndex) => (
           <div
