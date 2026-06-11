@@ -40,7 +40,7 @@ const clientsTyped: { name: string; industry: Industry }[] = [
 const metrics = [
   { target: 1000, suffix: "+", label: "automated tests", decimals: 0, accent: "var(--color-brand-primary)" },
   { target: 10, suffix: "+", label: "frameworks", decimals: 0, accent: "var(--color-brand-secondary)" },
-  { target: 3.5, suffix: "+", label: "years experience", decimals: 1, accent: "var(--color-brand-tertiary)" },
+  { target: 4, suffix: "+", label: "years experience", decimals: 0, accent: "var(--color-brand-tertiary)" },
 ];
 
 const clientChips = clientsTyped.map((client) => ({

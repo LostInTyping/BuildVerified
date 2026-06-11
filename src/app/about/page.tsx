@@ -159,7 +159,7 @@ export default function AboutPage() {
                 Background
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                Hi, I&apos;m Ben, a Software QA Engineer with 3.5 years of
+                Hi, I&apos;m Ben, a Software QA Engineer with 4 years of
                 experience in test automation, risk-based test planning, and
                 full defect lifecycle ownership. I help teams ship with
                 confidence by aligning test strategy with release schedules
