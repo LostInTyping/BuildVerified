@@ -24,6 +24,23 @@ const adjacentKeys: Record<string, string[]> = {
   n: ["b", "h", "j", "m"], m: ["n", "j", "k"],
 };
 
+const initialScenario = scenarios[0];
+
+const initialLogLines: TerminalLogLine[] = [
+  {
+    id: "s-prompt",
+    message: `ben@qa-runner:~$ ${initialScenario.command}`,
+    tone: "muted",
+  },
+  ...initialScenario.logEntries.map((entry, i) => ({
+    id: `s-${i}`,
+    message: entry.message,
+    tone: entry.tone,
+  })),
+];
+
+const initialLabel = `${initialScenario.label} — complete`;
+
 function toneClass(tone: LogTone): string {
   switch (tone) {
     case "pass":
@@ -53,29 +70,16 @@ export function RegressionTerminal() {
   // Default to reduced motion until both (a) mounted and (b) preference resolved as false
   const shouldReduceMotion = !isMounted || (prefersReduced ?? true);
   const [commandText, setCommandText] = useState("");
-  const [logLines, setLogLines] = useState<TerminalLogLine[]>([]);
-  const [label, setLabel] = useState(scenarios[0].label);
+  const [logLines, setLogLines] = useState<TerminalLogLine[]>(initialLogLines);
+  const [label, setLabel] = useState(initialLabel);
   const outputRef = useRef<HTMLDivElement>(null);
   const scenarioQueue = useRef<TerminalScenario[]>([]);
 
-  // Static content for reduced-motion — derived during render, not in an effect
-  const staticReducedMotion = useMemo(() => {
-    const firstScenario = scenarios[0];
-    return {
-      logLines: [
-        {
-          id: "s-prompt",
-          message: `ben@qa-runner:~$ ${firstScenario.command}`,
-          tone: "muted" as LogTone,
-        },
-        ...firstScenario.logEntries.map((entry, i) => ({
-          id: `s-${i}`,
-          message: entry.message,
-          tone: entry.tone,
-        })),
-      ],
-      label: firstScenario.label,
-    };
+  useEffect(() => {
+    const el = outputRef.current;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
   }, []);
 
   useEffect(() => {
@@ -341,6 +345,8 @@ export function RegressionTerminal() {
     };
 
     const runLoop = async () => {
+      await wait(4000);
+
       while (!isCancelled) {
         cycleNumber += 1;
         const cycleId = cycleNumber;
@@ -456,8 +462,8 @@ export function RegressionTerminal() {
   }, [shouldReduceMotion]);
 
   // When reduced motion, use pre-computed static content; otherwise use animated state
-  const activeLogLines = shouldReduceMotion ? staticReducedMotion.logLines : logLines;
-  const activeLabel = shouldReduceMotion ? staticReducedMotion.label : label;
+  const activeLogLines = shouldReduceMotion ? initialLogLines : logLines;
+  const activeLabel = shouldReduceMotion ? initialLabel : label;
   const activeCommandText = shouldReduceMotion ? "" : commandText;
 
   const renderedLogLines = useMemo(() => {
@@ -496,7 +502,7 @@ export function RegressionTerminal() {
 
   return (
     <div className="flex h-full min-w-0 flex-col">
-      <div className="flex h-[320px] min-w-0 flex-col overflow-hidden rounded-sm bg-bg-elevated font-mono text-[11px] sm:h-[360px] sm:text-xs lg:h-[420px]">
+      <div className="flex h-[320px] min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-bg-card font-mono text-[11px] sm:h-[360px] sm:text-xs lg:h-full">
         <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
