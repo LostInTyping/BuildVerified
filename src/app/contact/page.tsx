@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -25,10 +26,10 @@ export default function ContactPage() {
               Email
             </h2>
             <a
-              href="mailto:armourbl@mail.uc.edu"
+              href={`mailto:${site.email}`}
               className="mt-2 block text-accent transition-colors hover:text-accent-hover"
             >
-              armourbl@mail.uc.edu
+              {site.email}
             </a>
           </div>
           <div>
@@ -36,12 +37,12 @@ export default function ContactPage() {
               LinkedIn
             </h2>
             <a
-              href="https://linkedin.com/in/ben-armour"
+              href={site.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 block text-accent transition-colors hover:text-accent-hover"
             >
-              linkedin.com/in/ben-armour
+              {site.linkedinLabel}
             </a>
           </div>
           <div>

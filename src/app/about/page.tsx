@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -136,7 +137,7 @@ export default function AboutPage() {
               </div>
               <div className="mt-auto flex flex-col gap-2 pt-4">
                 <a
-                  href="https://linkedin.com/in/ben-armour"
+                  href={site.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"
@@ -144,10 +145,10 @@ export default function AboutPage() {
                   LinkedIn ↗
                 </a>
                 <a
-                  href="mailto:armourbl@mail.uc.edu"
+                  href={`mailto:${site.email}`}
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  armourbl@mail.uc.edu ↗
+                  {site.email} ↗
                 </a>
               </div>
             </div>
