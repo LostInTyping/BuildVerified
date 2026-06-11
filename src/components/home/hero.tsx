@@ -51,7 +51,7 @@ const clientChips = clientsTyped.map((client) => ({
 export function Hero() {
   return (
     <section className="relative">
-      <div className="mx-auto max-w-7xl px-6 pt-10 pb-8 text-center md:pt-16 md:pb-12">
+      <div className="mx-auto max-w-7xl px-6 pt-10 pb-4 text-center md:pt-16 md:pb-6">
         {/* H1 with gradient */}
         <FadeIn>
           <h1 className="gradient-text-brand font-display mt-6 inline-block text-5xl font-bold uppercase leading-[0.95] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[6.5rem]">

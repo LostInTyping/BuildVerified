@@ -15,18 +15,21 @@ export function FeaturedPortfolio() {
 
   return (
     <section>
-      <FadeIn>
-        <hr className="section-divider" />
-      </FadeIn>
-      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
         <FadeIn>
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-              Portfolio
-            </h2>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+                Portfolio
+              </h2>
+              <p className="font-display mt-1 text-2xl italic text-text-primary sm:text-3xl">
+                Selected work,{" "}
+                <span className="text-brand-primary">verified in production.</span>
+              </p>
+            </div>
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover"
+              className="group inline-flex shrink-0 items-center gap-2 pb-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover"
             >
               view all
               <span

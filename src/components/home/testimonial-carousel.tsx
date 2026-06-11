@@ -83,12 +83,8 @@ export function TestimonialCarousel() {
       >
         &ldquo;
       </span>
-      <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-        Testimonials
-      </h2>
-
       {/* Identity: photo + name/title — grid overlap for slide-fade */}
-      <div className="mt-3 grid min-w-0">
+      <div className="grid min-w-0">
         {testimonials.map((testimonial, i) => {
           const isActive = i === active;
           return (

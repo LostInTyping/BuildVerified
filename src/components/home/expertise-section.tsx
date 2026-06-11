@@ -66,14 +66,15 @@ const expertiseAreas: Array<{
 export function ExpertiseSection() {
   return (
     <section>
-      <FadeIn>
-        <hr className="section-divider" />
-      </FadeIn>
-      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
         <FadeIn>
           <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
             Areas of Expertise
           </h2>
+          <p className="font-display mt-1 text-2xl italic text-text-primary sm:text-3xl">
+            Coverage across the{" "}
+            <span className="text-brand-primary">whole stack.</span>
+          </p>
         </FadeIn>
         <div className="mt-4 grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
           {expertiseAreas.map((area, index) => (

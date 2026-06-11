@@ -41,14 +41,15 @@ export function TerminalSection() {
             "radial-gradient(ellipse 55% 90% at 68% 50%, color-mix(in srgb, var(--color-brand-primary) 4%, transparent), transparent 70%)",
         }}
       />
-      <FadeIn>
-        <hr className="section-divider" />
-      </FadeIn>
-      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
         <FadeIn>
           <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
             How I Work
           </h2>
+          <p className="font-display mt-1 text-2xl italic text-text-primary sm:text-3xl">
+            Repeatable process.{" "}
+            <span className="text-brand-primary">Verifiable results.</span>
+          </p>
         </FadeIn>
         <div className="mt-4 grid gap-4 sm:gap-5 lg:grid-cols-[2fr_3fr]">
           <SlideIn direction="left" delay={0.1} className="h-full min-w-0">
