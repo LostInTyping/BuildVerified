@@ -26,9 +26,15 @@ export function FeaturedPortfolio() {
             </h2>
             <Link
               href="/portfolio"
-              className="text-sm text-accent transition-colors hover:text-accent-hover"
+              className="group inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover"
             >
-              View all →
+              view all
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+              >
+                →
+              </span>
             </Link>
           </div>
         </FadeIn>

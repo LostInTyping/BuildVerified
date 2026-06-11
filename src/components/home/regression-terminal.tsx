@@ -517,7 +517,7 @@ export function RegressionTerminal() {
           aria-label="CI terminal output"
           aria-live="off"
           tabIndex={0}
-          className="min-h-0 flex-1 overflow-y-auto p-2.5 leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:p-3"
+          className="min-h-0 flex-1 overflow-y-auto bg-bg-primary p-2.5 leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:p-3"
         >
           <p className="sr-only">
             Automated CI terminal showing test and deployment scenarios

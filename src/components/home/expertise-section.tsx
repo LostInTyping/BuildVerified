@@ -4,61 +4,61 @@ import { ExpertiseIcon, type ExpertiseIconName } from "@/components/home/experti
 const expertiseAreas: Array<{
   title: string;
   icon: ExpertiseIconName;
-  hoverColorClass: string;
+  colorClass: string;
   tools: string;
 }> = [
   {
     title: "Test Automation",
     icon: "beaker",
-    hoverColorClass: "group-hover:text-brand-primary",
+    colorClass: "text-brand-primary/75 group-hover:text-brand-primary",
     tools: "Cypress · Playwright · Jest",
   },
   {
     title: "Defect Lifecycle",
     icon: "bug",
-    hoverColorClass: "group-hover:text-brand-error",
+    colorClass: "text-brand-error/75 group-hover:text-brand-error",
     tools: "Jira · GitHub",
   },
   {
     title: "Test Reporting",
     icon: "chart-bar",
-    hoverColorClass: "group-hover:text-brand-secondary",
+    colorClass: "text-brand-secondary/75 group-hover:text-brand-secondary",
     tools: "Tableau · Confluence",
   },
   {
     title: "CI/CD Pipelines",
     icon: "git-branch",
-    hoverColorClass: "group-hover:text-brand-primary",
+    colorClass: "text-brand-primary/75 group-hover:text-brand-primary",
     tools: "GitHub Actions · Git",
   },
   {
     title: "Environments & Infrastructure",
     icon: "server",
-    hoverColorClass: "group-hover:text-brand-secondary",
+    colorClass: "text-brand-secondary/75 group-hover:text-brand-secondary",
     tools: "Docker · Linux",
   },
   {
     title: "API Testing",
     icon: "code-bracket",
-    hoverColorClass: "group-hover:text-brand-primary",
+    colorClass: "text-brand-primary/75 group-hover:text-brand-primary",
     tools: "Postman · REST APIs",
   },
   {
     title: "Performance Testing",
     icon: "bolt",
-    hoverColorClass: "group-hover:text-brand-secondary",
+    colorClass: "text-brand-secondary/75 group-hover:text-brand-secondary",
     tools: "Lighthouse",
   },
   {
     title: "Accessibility Testing",
     icon: "eye",
-    hoverColorClass: "group-hover:text-brand-tertiary",
+    colorClass: "text-brand-tertiary/75 group-hover:text-brand-tertiary",
     tools: "axe-core · WCAG",
   },
   {
     title: "Data Validation",
     icon: "database",
-    hoverColorClass: "group-hover:text-brand-tertiary",
+    colorClass: "text-brand-tertiary/75 group-hover:text-brand-tertiary",
     tools: "SQL · PostgreSQL · MongoDB",
   },
 ];
@@ -85,7 +85,7 @@ export function ExpertiseSection() {
             >
               <div className="expertise-tile group flex h-full items-center gap-3 rounded-sm border border-border bg-bg-card px-4 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover">
                 <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center text-text-secondary transition-colors duration-300 ${area.hoverColorClass}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center transition-colors duration-300 ${area.colorClass}`}
                 >
                   <ExpertiseIcon
                     name={area.icon}

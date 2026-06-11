@@ -32,7 +32,15 @@ const proofItems = [
 
 export function TerminalSection() {
   return (
-    <section>
+    <section className="relative">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-[480px] -translate-y-1/2"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 68% 50%, color-mix(in srgb, var(--color-brand-primary) 4%, transparent), transparent 70%)",
+        }}
+      />
       <FadeIn>
         <hr className="section-divider" />
       </FadeIn>
