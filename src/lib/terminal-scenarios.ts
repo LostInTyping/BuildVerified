@@ -12,6 +12,7 @@ export interface TerminalScenario {
   command: string;
   logEntries: LogEntry[];
   portfolio?: boolean;
+  outcome?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -21,7 +22,7 @@ export interface TerminalScenario {
 const sharedApiContracts: TerminalScenario = {
   id: "shared-api-contracts",
   label: "API Contract Tests",
-  command: "pnpm exec jest --project api-contracts --verbose",
+  command: "pnpm exec jest --selectProjects api-contracts --verbose",
   logEntries: [
     { message: " PASS  tests/contracts/auth.spec.ts", tone: "pass", delayMs: 200 },
     { message: "  auth endpoints", tone: "muted", delayMs: 100 },
@@ -142,6 +143,48 @@ const sharedDeploy: TerminalScenario = {
   ],
 };
 
+const sharedRegressionCatch: TerminalScenario = {
+  id: "shared-regression-catch",
+  label: "Nightly Regression",
+  command: 'npx cypress run --spec "tests/e2e/orders/**"',
+  outcome: "1 failed, defect filed",
+  logEntries: [
+    { message: "  (Run Starting)", tone: "muted", delayMs: 160 },
+    { message: "", tone: "muted", delayMs: 80 },
+    { message: "  ┌──────────────────────────────────────────────┐", tone: "muted", delayMs: 60 },
+    { message: "  │ Cypress:    15.4.0                           │", tone: "muted", delayMs: 60 },
+    { message: "  │ Browser:    Chrome 142 (headless)            │", tone: "muted", delayMs: 60 },
+    { message: "  │ Specs:      1 found                          │", tone: "muted", delayMs: 60 },
+    { message: "  └──────────────────────────────────────────────┘", tone: "muted", delayMs: 80 },
+    { message: "", tone: "muted", delayMs: 100 },
+    { message: "  Running:  order-totals.cy.ts              (1 of 1)", tone: "muted", delayMs: 160 },
+    { message: "", tone: "muted", delayMs: 80 },
+    { message: "  Order Totals", tone: "muted", delayMs: 120 },
+    { message: "    ✓ calculates subtotal for multi-item cart (1204ms)", tone: "pass", delayMs: 160 },
+    { message: "    ✓ applies regional tax rate at checkout (986ms)", tone: "pass", delayMs: 130 },
+    { message: "    (Attempt 1 of 2) rounds line-item discounts consistently", tone: "retry", delayMs: 260 },
+    { message: "    (Attempt 2 of 2) rounds line-item discounts consistently", tone: "retry", delayMs: 280 },
+    { message: "    ✗ rounds line-item discounts consistently (2418ms)", tone: "error", delayMs: 200 },
+    { message: "", tone: "muted", delayMs: 80 },
+    { message: "  2 passing (6s)", tone: "pass", delayMs: 120 },
+    { message: "  1 failing", tone: "error", delayMs: 140 },
+    { message: "", tone: "muted", delayMs: 80 },
+    { message: "  1) Order Totals > rounds line-item discounts consistently:", tone: "muted", delayMs: 120 },
+    { message: "     AssertionError: expected order total to equal 84.97 but got 84.99", tone: "error", delayMs: 160 },
+    { message: "     + expected - actual", tone: "muted", delayMs: 80 },
+    { message: "     -  84.99", tone: "error", delayMs: 80 },
+    { message: "     +  84.97", tone: "pass", delayMs: 80 },
+    { message: "     at Context.eval (order-totals.cy.ts:118:32)", tone: "muted", delayMs: 100 },
+    { message: "", tone: "muted", delayMs: 80 },
+    { message: "  ✖  1 of 1 failed                       00:09", tone: "error", delayMs: 140 },
+    { message: "", tone: "muted", delayMs: 100 },
+    { message: "[triage] Saving screenshot + video artifacts for failed spec", tone: "muted", delayMs: 180 },
+    { message: "[triage] Compared against last 14 nightly runs — new failure, not flaky", tone: "muted", delayMs: 200 },
+    { message: "[triage] Defect filed: QA-1482 — rounding regression in discount engine (severity: high)", tone: "retry", delayMs: 220 },
+    { message: "[triage] Exit code 1 — release gate blocked until QA-1482 is resolved", tone: "error", delayMs: 160 },
+  ],
+};
+
 // ---------------------------------------------------------------------------
 // Portfolio-linked scenarios
 // ---------------------------------------------------------------------------
@@ -155,8 +198,8 @@ const macysMissionCritical: TerminalScenario = {
     { message: "  (Run Starting)", tone: "muted", delayMs: 160 },
     { message: "", tone: "muted", delayMs: 80 },
     { message: "  \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Cypress:    13.8.0                           \u2502", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Browser:    Electron 118 (headless)          \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Cypress:    15.4.0                           \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Browser:    Electron 136 (headless)          \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2502 Specs:      2 found                          \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518", tone: "muted", delayMs: 80 },
     { message: "", tone: "muted", delayMs: 100 },
@@ -193,8 +236,8 @@ const digitalMenuPlatform: TerminalScenario = {
     { message: "  (Run Starting)", tone: "muted", delayMs: 160 },
     { message: "", tone: "muted", delayMs: 80 },
     { message: "  \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Cypress:    13.8.0                           \u2502", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Browser:    Chrome 124 (headless)            \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Cypress:    15.4.0                           \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Browser:    Chrome 142 (headless)            \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2502 Specs:      2 found                          \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518", tone: "muted", delayMs: 80 },
     { message: "", tone: "muted", delayMs: 100 },
@@ -225,7 +268,7 @@ const digitalMenuPlatform: TerminalScenario = {
 const offenderRiskAssessment: TerminalScenario = {
   id: "offender-risk-assessment-case-planning",
   label: "Risk Assessment API Tests",
-  command: "pnpm exec jest --project risk-scoring --verbose",
+  command: "pnpm exec jest --selectProjects risk-scoring --verbose",
   portfolio: true,
   logEntries: [
     { message: " PASS  tests/api/risk-scoring.spec.ts", tone: "pass", delayMs: 200 },
@@ -256,7 +299,7 @@ const offenderRiskAssessment: TerminalScenario = {
 const ohioSentencingData: TerminalScenario = {
   id: "ohio-sentencing-data-platform",
   label: "OSDP Data Validation",
-  command: "pnpm exec jest --project data-integrity --verbose",
+  command: "pnpm exec jest --selectProjects data-integrity --verbose",
   portfolio: true,
   logEntries: [
     { message: " PASS  tests/etl/integrity.spec.ts", tone: "pass", delayMs: 200 },
@@ -347,8 +390,8 @@ const teamEval: TerminalScenario = {
     { message: "  (Run Starting)", tone: "muted", delayMs: 160 },
     { message: "", tone: "muted", delayMs: 80 },
     { message: "  \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Cypress:    13.8.0                           \u2502", tone: "muted", delayMs: 60 },
-    { message: "  \u2502 Browser:    Electron 118 (headless)          \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Cypress:    15.4.0                           \u2502", tone: "muted", delayMs: 60 },
+    { message: "  \u2502 Browser:    Electron 136 (headless)          \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2502 Specs:      2 found                          \u2502", tone: "muted", delayMs: 60 },
     { message: "  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518", tone: "muted", delayMs: 80 },
     { message: "", tone: "muted", delayMs: 100 },
@@ -380,7 +423,7 @@ const teamEval: TerminalScenario = {
 const ohioOffenseCodePortal: TerminalScenario = {
   id: "ohio-offense-code-portal",
   label: "OCP Offense Code Tests",
-  command: "pnpm exec jest --project offense-codes --verbose",
+  command: "pnpm exec jest --selectProjects offense-codes --verbose",
   portfolio: true,
   logEntries: [
     { message: " PASS  tests/api/offense-codes.spec.ts", tone: "pass", delayMs: 200 },
@@ -406,7 +449,7 @@ const ohioOffenseCodePortal: TerminalScenario = {
 const itExpo: TerminalScenario = {
   id: "it-expo",
   label: "IT Expo Smoke Test",
-  command: "curl -sS https://itexpo.live/ -o /dev/null -w '%{http_code} %{time_total}s'",
+  command: "./scripts/launch-checklist.sh itexpo.live",
   portfolio: true,
   logEntries: [
     { message: "Running manual test checklist verification...", tone: "muted", delayMs: 200 },
@@ -439,6 +482,7 @@ export const scenarios: TerminalScenario[] = [
   sharedLighthouse,
   sharedAxeA11y,
   sharedDeploy,
+  sharedRegressionCatch,
   // Portfolio-linked
   macysMissionCritical,
   digitalMenuPlatform,

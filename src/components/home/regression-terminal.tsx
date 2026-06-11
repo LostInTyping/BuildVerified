@@ -361,8 +361,22 @@ export function RegressionTerminal() {
           return;
         }
 
+        const clearTyped = await typeTextWithTypos("clear", 40, 0, 0);
+
+        if (!clearTyped.completed) {
+          return;
+        }
+
+        await wait(260);
+
+        if (isCancelled) {
+          return;
+        }
+
         setCommandText("");
         setLogLines([]);
+
+        await wait(420);
 
         const typoResult = await typeTextWithTypos(scenario.command, 26);
 
@@ -449,7 +463,7 @@ export function RegressionTerminal() {
           }
         }
 
-        setLabel(scenario.label + " \u2014 complete");
+        setLabel(scenario.label + " \u2014 " + (scenario.outcome ?? "complete"));
         await wait(3000);
       }
     };
