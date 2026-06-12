@@ -74,45 +74,51 @@ export function Hero() {
             />
 
             {/* Multi-segment spinning arcs */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              className="loader-spin-slow spinner-ring-pulse pointer-events-none absolute inset-[3%] h-[94%] w-[94%]"
-              style={{ transformOrigin: "center" }}
-            >
-              <circle
-                className="spinner-arc"
-                cx="50"
-                cy="50"
-                r="48"
-                fill="none"
-                stroke="var(--color-brand-primary)"
-                strokeWidth="0.6"
-                strokeDasharray="45 80 30 146"
-                strokeLinecap="round"
-                opacity="0.85"
-              />
-            </svg>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              className="loader-spin-reverse spinner-ring-pulse pointer-events-none absolute inset-[6%] h-[88%] w-[88%]"
-              style={{ transformOrigin: "center" }}
-            >
-              <circle
-                className="spinner-arc"
-                cx="50"
-                cy="50"
-                r="48"
-                fill="none"
-                stroke="var(--color-brand-secondary)"
-                strokeWidth="0.5"
-                strokeDasharray="25 55 20 60 15 126"
-                strokeLinecap="round"
-                opacity="0.8"
-                strokeDashoffset="40"
-              />
-            </svg>
+            <div className="spinner-boost pointer-events-none absolute inset-[3%] h-[94%] w-[94%]">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 100 100"
+                className="loader-spin-slow h-full w-full"
+                style={{ transformOrigin: "center" }}
+              >
+                <circle
+                  className="spinner-arc"
+                  cx="50"
+                  cy="50"
+                  r="47"
+                  fill="none"
+                  stroke="var(--color-brand-primary)"
+                  strokeWidth="0.6"
+                  strokeDasharray="45 80 30 146"
+                  strokeLinecap="round"
+                  opacity="0.85"
+                  style={{ "--arc-color": "var(--color-brand-primary)" } as React.CSSProperties}
+                />
+              </svg>
+            </div>
+            <div className="spinner-boost spinner-boost-reverse pointer-events-none absolute inset-[6%] h-[88%] w-[88%]">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 100 100"
+                className="loader-spin-reverse h-full w-full"
+                style={{ transformOrigin: "center" }}
+              >
+                <circle
+                  className="spinner-arc"
+                  cx="50"
+                  cy="50"
+                  r="48"
+                  fill="none"
+                  stroke="var(--color-brand-secondary)"
+                  strokeWidth="0.5"
+                  strokeDasharray="25 55 20 60 15 126"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                  strokeDashoffset="40"
+                  style={{ "--arc-color": "var(--color-brand-secondary)" } as React.CSSProperties}
+                />
+              </svg>
+            </div>
 
             {/* Photo */}
             <div className="absolute inset-[10%] overflow-hidden rounded-full bg-bg-primary">
@@ -143,26 +149,29 @@ export function Hero() {
             />
 
             {/* Inner lilac arc — above photo */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              className="loader-spin-med spinner-ring-pulse pointer-events-none absolute inset-[9%] z-20 h-[82%] w-[82%]"
-              style={{ transformOrigin: "center" }}
-            >
-              <circle
-                className="spinner-arc"
-                cx="50"
-                cy="50"
-                r="49"
-                fill="none"
-                stroke="var(--color-brand-tertiary)"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-                opacity="0.75"
-                strokeDasharray="35 90 20 162"
-                strokeDashoffset="100"
-              />
-            </svg>
+            <div className="spinner-boost spinner-boost-med pointer-events-none absolute inset-[9%] z-20 h-[82%] w-[82%]">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 100 100"
+                className="loader-spin-med h-full w-full"
+                style={{ transformOrigin: "center" }}
+              >
+                <circle
+                  className="spinner-arc"
+                  cx="50"
+                  cy="50"
+                  r="49"
+                  fill="none"
+                  stroke="var(--color-brand-tertiary)"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  opacity="0.75"
+                  strokeDasharray="35 90 20 162"
+                  strokeDashoffset="100"
+                  style={{ "--arc-color": "var(--color-brand-tertiary)" } as React.CSSProperties}
+                />
+              </svg>
+            </div>
           </div>
 
           {/* LEFT — subtitle + tagline + stamp */}

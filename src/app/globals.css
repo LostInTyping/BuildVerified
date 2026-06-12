@@ -359,55 +359,61 @@ body {
 
 /* Spinner arcs — smooth stroke transition for hover fill effect */
 .spinner-arc {
-  transition: stroke-dasharray 0.8s ease-in-out, stroke-width 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  stroke: var(--arc-color);
+  transition: stroke-dasharray 0.8s ease-in-out, stroke-width 0.8s ease-in-out,
+              stroke 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
 
-/* Hover: speed up rotations + fill arcs into full rings + pulse */
-.spinner-group:hover .loader-spin-slow {
-  animation-duration: 2.5s;
+/* Hover acceleration layer: a paused rotation that composes additively with
+   the base spin, so speed-up and slow-down stay continuous (no angle jump) */
+.spinner-boost {
+  animation: loader-spin 2.6s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
 }
 
-.spinner-group:hover .loader-spin-med {
-  animation-duration: 1.8s;
+.spinner-boost svg {
+  overflow: visible;
 }
 
-.spinner-group:hover .loader-spin-reverse {
+.spinner-boost-reverse {
   animation-duration: 3s;
+  animation-direction: reverse;
 }
 
-.spinner-group:hover .spinner-arc {
-  stroke-dasharray: 301 0 !important;
-  opacity: 1 !important;
+.spinner-boost-med {
+  animation-duration: 1.9s;
 }
 
+.spinner-group:hover .spinner-boost {
+  animation-play-state: running;
+}
+
+/* Hover: arcs fill into full rings and breathe */
 @keyframes ring-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.03); }
 }
 
-.spinner-group:hover .spinner-ring-pulse {
+.spinner-group:hover .spinner-arc {
+  stroke-dasharray: 301 0;
+  opacity: 1;
+  transform-box: fill-box;
+  transform-origin: center;
   animation: ring-pulse 1.2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .loader-spin-slow,
   .loader-spin-med,
-  .loader-spin-reverse {
+  .loader-spin-reverse,
+  .spinner-boost {
     animation: none;
   }
 
-  .spinner-group:hover .loader-spin-slow,
-  .spinner-group:hover .loader-spin-med,
-  .spinner-group:hover .loader-spin-reverse {
-    animation-duration: unset;
-  }
-
   .spinner-group:hover .spinner-arc {
-    stroke-dasharray: unset !important;
-  }
-
-  .spinner-ring-pulse {
-    animation: none !important;
+    stroke-dasharray: unset;
+    animation: none;
   }
 }
 
