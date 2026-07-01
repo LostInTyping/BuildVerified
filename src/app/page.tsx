@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
-import { TerminalStatsSection } from "@/components/home/terminal-stats-section";
+import { TerminalSection } from "@/components/home/terminal-section";
 import { ExpertiseSection } from "@/components/home/expertise-section";
 import { FeaturedPortfolio } from "@/components/home/featured-portfolio";
 import { BottomSection } from "@/components/home/bottom-section";
@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <AmbientNebulas />
       <Hero />
-      <TerminalStatsSection />
+      <TerminalSection />
       <ExpertiseSection />
       <FeaturedPortfolio />
       <BottomSection />
