@@ -21,7 +21,7 @@ export function PortfolioLinks({ links, className = "" }: PortfolioLinksProps) {
       </p>
       <div className="mt-2 space-y-1.5">
         {links.map((link) => (
-          <p key={`${link.label}-${link.url}`} className="text-xs text-text-secondary">
+          <p key={link.url} className="text-xs text-text-secondary">
             <a
               href={link.url}
               target="_blank"

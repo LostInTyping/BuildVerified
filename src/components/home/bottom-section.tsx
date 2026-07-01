@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { SlideIn } from "@/components/slide-in";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
+import { site } from "@/lib/site";
 
 export function BottomSection() {
   return (
@@ -22,16 +23,7 @@ export function BottomSection() {
               <p className="text-xs font-medium uppercase tracking-widest text-text-muted">
                 Available for new opportunities
               </p>
-              <h2
-                className="font-display mt-4 inline-block text-3xl font-bold leading-tight"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-fixed) 65%, var(--color-text-primary) 100%)",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }}
-              >
+              <h2 className="gradient-text-brand font-display mt-4 inline-block text-3xl font-bold leading-tight">
                 Let&apos;s work together.
               </h2>
               <p className="mt-3 text-sm text-text-secondary">
@@ -47,7 +39,7 @@ export function BottomSection() {
                   Get in Touch
                 </Link>
                 <a
-                  href="https://linkedin.com/in/ben-armour"
+                  href={site.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"

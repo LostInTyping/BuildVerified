@@ -4,6 +4,7 @@ import { FadeIn } from "@/components/fade-in";
 import { SlideIn } from "@/components/slide-in";
 import { AnimatedCounter } from "@/components/home/animated-counter";
 import { ClientsCounter } from "@/components/home/clients-counter";
+import { MarqueeChips } from "@/components/home/marquee-chips";
 
 type Industry = "qsr" | "retail" | "gov" | "staffing" | "edu";
 
@@ -42,42 +43,10 @@ const metrics = [
   { target: 3.5, suffix: "+", label: "years experience", decimals: 1, accent: "var(--color-brand-tertiary)" },
 ];
 
-function ClientsMarqueeChips() {
-  return (
-    <div className="marquee-viewport">
-      <div className="marquee-strip">
-        {[0, 1].map((copyIndex) => (
-          <div
-            key={copyIndex}
-            className="marquee-group"
-            aria-hidden={copyIndex === 1}
-          >
-            {clientsTyped.map((client) => {
-              const color = industryColors[client.industry];
-              return (
-                <span
-                  key={`${client.name}-${copyIndex}`}
-                  className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-bg-card px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
-                  style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)` }}
-                >
-                  <span
-                    aria-hidden="true"
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{
-                      backgroundColor: color,
-                      boxShadow: `0 0 6px color-mix(in srgb, ${color} 38%, transparent)`,
-                    }}
-                  />
-                  {client.name}
-                </span>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+const clientChips = clientsTyped.map((client) => ({
+  label: client.name,
+  color: industryColors[client.industry],
+}));
 
 export function Hero() {
   return (
@@ -85,17 +54,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 pt-10 pb-8 text-center md:pt-16 md:pb-12">
         {/* H1 with gradient */}
         <FadeIn>
-          <h1
-            className="font-display mt-6 inline-block text-5xl font-bold uppercase leading-[0.95] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[6.5rem]"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-fixed) 65%, var(--color-text-primary) 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            }}
-          >
+          <h1 className="gradient-text-brand font-display mt-6 inline-block text-5xl font-bold uppercase leading-[0.95] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[6.5rem]">
             Hi, I&rsquo;m Ben!
           </h1>
         </FadeIn>
@@ -362,7 +321,7 @@ export function Hero() {
             >
               <ClientsCounter />
             </div>
-            <ClientsMarqueeChips />
+            <MarqueeChips chips={clientChips} />
           </div>
         </FadeIn>
       </div>

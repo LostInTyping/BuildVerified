@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/fade-in";
 import { SlideIn } from "@/components/slide-in";
 import { RegressionTerminal } from "@/components/home/regression-terminal";
+import { MarqueeChips } from "@/components/home/marquee-chips";
 
 type ToolCategory = "test" | "lang" | "framework" | "infra" | "reporting";
 
@@ -34,6 +35,11 @@ const tools: { name: string; category: ToolCategory }[] = [
   { name: "Tableau", category: "reporting" },
 ];
 
+const toolChips = tools.map((tool) => ({
+  label: tool.name,
+  color: toolColors[tool.category],
+}));
+
 export function TerminalStatsSection() {
   return (
     <section>
@@ -48,38 +54,7 @@ export function TerminalStatsSection() {
         {/* Tools marquee */}
         <FadeIn delay={0.2}>
           <div className="mt-6">
-            <div className="marquee-viewport">
-              <div className="marquee-strip">
-                {[0, 1].map((copyIndex) => (
-                  <div
-                    key={copyIndex}
-                    className="marquee-group"
-                    aria-hidden={copyIndex === 1}
-                  >
-                    {tools.map((t) => {
-                      const color = toolColors[t.category];
-                      return (
-                        <span
-                          key={`${t.name}-${copyIndex}`}
-                          className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-sm border bg-bg-card px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.15em] text-text-secondary transition-colors hover:text-text-primary"
-                          style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)` }}
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="inline-block h-1.5 w-1.5 rounded-full"
-                            style={{
-                              backgroundColor: color,
-                              boxShadow: `0 0 6px color-mix(in srgb, ${color} 38%, transparent)`,
-                            }}
-                          />
-                          {t.name}
-                        </span>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <MarqueeChips chips={toolChips} />
           </div>
         </FadeIn>
       </div>
