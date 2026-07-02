@@ -14,21 +14,21 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     name: "Josh Kremer",
-    title: "Business Administrator, School of IT — University of Cincinnati",
+    title: "Business Administrator, School of IT, University of Cincinnati",
     photo: "/testimonials/josh.jpg",
     quote:
       "Ben consistently produces superior quality work, on time, and within budgetary targets. He invariably understands exactly what a project is all about from the outset, and how to get it done quickly and effectively. He is an example of the type of employee every employer wants.",
   },
   {
     name: "Vineela Kunapareddi",
-    title: "IT Project & Product Manager",
+    title: "ITSC Project Manager",
     photo: "/testimonials/vineela.jpg",
     quote:
       "Ben's dedication to personal and professional growth is truly commendable. His ability to effectively communicate and engage within the QA and development teams has been instrumental in our project success. He seamlessly integrates diverse perspectives and goes above and beyond to use his skills to meet the organization's needs.",
   },
   {
     name: "Yahya Gilany",
-    title: "Engineering Manager",
+    title: "ITSC Technology Lead",
     photo: "/testimonials/yahya.jpg",
     quote:
       "His attention to detail and organizational skills significantly improved our product quality, impressing both myself and the team. His reports were always thorough, showcasing his deep understanding of quality assurance. I would rehire Ben in a heartbeat and encourage any team looking for top-notch QA talent to snap him up.",
