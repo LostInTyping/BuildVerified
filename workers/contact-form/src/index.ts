@@ -6,6 +6,7 @@ interface Env {
 }
 
 const FROM_ADDR = "noreply@buildverified.com";
+// Must match destination_address in wrangler.jsonc.
 const DEST_ADDR = "benarmour72@gmail.com";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -46,17 +47,17 @@ function parseSubmission(
   return { ok: true, value: { name, email, message } };
 }
 
-function json(status: number, body: Record<string, unknown>): Response {
+function json(status: number, body: Record<string, unknown>, extraHeaders?: Record<string, string>): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...extraHeaders },
   });
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method !== "POST") {
-      return json(405, { ok: false, error: "Method not allowed" });
+      return json(405, { ok: false, error: "Method not allowed" }, { Allow: "POST" });
     }
 
     let data: unknown;

@@ -6,6 +6,7 @@
   "send_email": [
     {
       "name": "CONTACT_EMAIL",
+      // Must match DEST_ADDR in src/index.ts.
       "destination_address": "benarmour72@gmail.com"
     }
   ],
