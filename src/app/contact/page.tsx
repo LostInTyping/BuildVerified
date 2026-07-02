@@ -71,49 +71,51 @@ export default function ContactPage() {
 
       <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.2fr]">
         {/* Contact rail */}
-        <SlideIn direction="left" delay={0.1}>
-          <ul className="space-y-3">
-            {railItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  {...(item.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="expertise-tile group flex items-center gap-3.5 rounded-sm border border-border bg-bg-card px-4 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                    className="h-5 w-5 shrink-0 text-accent transition duration-300 group-hover:scale-105"
+        <SlideIn direction="left" delay={0.1} className="h-full">
+          <div className="flex h-full flex-col">
+            <ul className="flex flex-1 flex-col gap-3">
+              {railItems.map((item) => (
+                <li key={item.label} className="flex flex-1">
+                  <a
+                    href={item.href}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="expertise-tile group flex w-full items-center gap-3.5 rounded-sm border border-border bg-bg-card px-4 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
                   >
-                    {item.icon}
-                  </svg>
-                  <div className="min-w-0">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted transition-colors duration-300 group-hover:text-text-secondary">
-                      {item.label}
-                    </p>
-                    <p className="mt-0.5 truncate text-sm text-text-primary transition-colors duration-300 group-hover:text-accent">
-                      {item.text}
-                    </p>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      className="h-5 w-5 shrink-0 text-accent transition duration-300 group-hover:scale-105"
+                    >
+                      {item.icon}
+                    </svg>
+                    <div className="min-w-0">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted transition-colors duration-300 group-hover:text-text-secondary">
+                        {item.label}
+                      </p>
+                      <p className="mt-0.5 truncate text-sm text-text-primary transition-colors duration-300 group-hover:text-accent">
+                        {item.text}
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-          {/* Location metadata */}
-          <div className="mt-8">
-            <div aria-hidden="true" className="h-px w-12 bg-outline-variant" />
-            <div className="mt-4 flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-text-secondary">
-              <p>Mason, OH</p>
-              <p>on-site · hybrid · remote</p>
-              <p>open to relocation, US or abroad</p>
+            {/* Location metadata */}
+            <div className="mt-8">
+              <div aria-hidden="true" className="h-px w-12 bg-outline-variant" />
+              <div className="mt-4 flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-text-secondary">
+                <p>Mason, OH</p>
+                <p>on-site · hybrid · remote</p>
+                <p>open to relocation, US or abroad</p>
+              </div>
             </div>
           </div>
         </SlideIn>
