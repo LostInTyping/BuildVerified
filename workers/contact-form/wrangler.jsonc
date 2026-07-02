@@ -1,0 +1,16 @@
+{
+  "name": "buildverified-contact-form",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "destination_address": "benarmour72@gmail.com"
+    }
+  ],
+  "routes": [
+    { "pattern": "buildverified.com/api/contact*", "zone_name": "buildverified.com" },
+    { "pattern": "www.buildverified.com/api/contact*", "zone_name": "buildverified.com" }
+  ]
+}
