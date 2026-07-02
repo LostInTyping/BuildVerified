@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { SlideIn } from "@/components/slide-in";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/components/icons";
 import { AnimatedCounter } from "@/components/home/animated-counter";
 import { ClientsCounter } from "@/components/home/clients-counter";
 import { MarqueeChips } from "@/components/home/marquee-chips";
@@ -248,7 +249,8 @@ export function Hero() {
               href="/contact"
               className="ghost-btn ghost-btn-accent font-mono text-[11px] font-bold uppercase tracking-[0.18em]"
             >
-              get in touch <span aria-hidden="true">→</span>
+              get in touch
+              <ArrowRightIcon className="h-3 w-3" />
             </Link>
             <Link
               href="/portfolio"
@@ -267,7 +269,7 @@ export function Hero() {
               href="/portfolio"
               className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
-              <span aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:-translate-x-0.5">←</span>
+              <ArrowLeftIcon className="h-3 w-3 transition-transform duration-200 ease-out group-hover:-translate-x-0.5" />
               view portfolio
             </Link>
             <div className="flex items-center gap-8 lg:gap-12">
@@ -296,7 +298,7 @@ export function Hero() {
               className="group inline-flex items-center gap-2 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
               get in touch
-              <span aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">→</span>
+              <ArrowRightIcon className="h-3 w-3 transition-transform duration-200 ease-out group-hover:translate-x-0.5" />
             </Link>
           </div>
           {/* Mobile metrics — no side CTAs */}

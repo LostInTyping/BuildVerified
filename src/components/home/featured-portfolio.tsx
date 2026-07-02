@@ -4,6 +4,7 @@ import {
   getFeaturedPortfolioItems,
 } from "@/lib/portfolio";
 import { FadeIn } from "@/components/fade-in";
+import { ArrowRightIcon } from "@/components/icons";
 
 export function FeaturedPortfolio() {
   const featuredItems = getFeaturedPortfolioItems();
@@ -32,12 +33,7 @@ export function FeaturedPortfolio() {
               className="group inline-flex shrink-0 items-center gap-2 pb-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover"
             >
               view all
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-200 ease-out group-hover:translate-x-0.5"
-              >
-                →
-              </span>
+              <ArrowRightIcon className="h-3 w-3 transition-transform duration-200 ease-out group-hover:translate-x-0.5" />
             </Link>
           </div>
         </FadeIn>

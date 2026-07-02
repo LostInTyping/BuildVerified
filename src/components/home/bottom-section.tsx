@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
+import { ArrowUpRightIcon } from "@/components/icons";
 import { SlideIn } from "@/components/slide-in";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 import { site } from "@/lib/site";
@@ -50,7 +51,8 @@ export function BottomSection() {
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  LinkedIn ↗
+                  LinkedIn
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>

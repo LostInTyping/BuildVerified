@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -144,13 +145,15 @@ export default function AboutPage() {
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  LinkedIn ↗
+                  LinkedIn
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
                 <a
                   href={`mailto:${site.email}`}
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  {site.email} ↗
+                  {site.email}
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
