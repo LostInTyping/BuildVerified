@@ -50,19 +50,20 @@ export default function ContactPage() {
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
           Get in touch<span className="terminal-cursor">_</span>
         </p>
-        <div className="mt-4 flex items-center justify-center gap-2">
-          <span
-            aria-hidden="true"
-            className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]"
-          />
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-secondary">
-            Open to QA · SDET · Software Dev roles
-          </p>
-        </div>
-        <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
+        <h1 className="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
           Let&apos;s Build
           <span className="text-brand-primary">Verified</span>
         </h1>
+        <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-border bg-bg-card px-4 py-1.5">
+          <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]" />
+          </span>
+          <p className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.12em] text-text-secondary sm:text-[11px] sm:tracking-[0.15em]">
+            Open to QA <span className="text-accent">/</span> SDET{" "}
+            <span className="text-accent">/</span> Software Dev roles
+          </p>
+        </div>
         <p className="mx-auto mt-4 max-w-lg text-text-secondary">
           Reach out directly or use the form. Either way it lands in my inbox.
         </p>
@@ -114,7 +115,7 @@ export default function ContactPage() {
             <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
             <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
             <span className="ml-1.5 font-mono text-[10px] text-text-muted">
-              ben@buildverified:~/contact
+              armourbl@buildverified:~/contact
             </span>
           </div>
           <div className="p-6 sm:p-8">
