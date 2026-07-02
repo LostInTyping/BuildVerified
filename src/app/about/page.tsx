@@ -126,7 +126,9 @@ export default function AboutPage() {
                   </h1>
                 </div>
                 <div className="space-y-0.5">
-                  <p className="text-sm text-text-secondary">Mason, OH</p>
+                  <p className="text-sm text-text-secondary">
+                    {site.location}
+                  </p>
                   <p className="text-sm text-text-secondary">
                     Open to on-site, hybrid &amp; remote
                   </p>

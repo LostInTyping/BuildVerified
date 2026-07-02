@@ -1,7 +1,8 @@
 export const site = {
   name: "Ben Armour",
   role: "Software QA Engineer",
-  location: "Mason, OH",
+  url: "https://buildverified.com",
+  location: "Liberty Township, OH",
   email: "Armourbl@buildverified.com",
   linkedinUrl: "https://linkedin.com/in/ben-armour",
   linkedinLabel: "linkedin.com/in/ben-armour",
