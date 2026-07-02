@@ -29,7 +29,7 @@ const initialScenario = scenarios[0];
 const initialLogLines: TerminalLogLine[] = [
   {
     id: "s-prompt",
-    message: `ben@qa-runner:~$ ${initialScenario.command}`,
+    message: `armourbl@qa-runner:~$ ${initialScenario.command}`,
     tone: "muted",
   },
   ...initialScenario.logEntries.map((entry, i) => ({
@@ -401,7 +401,7 @@ export function RegressionTerminal() {
             ...lines,
             {
               id: promptLineId,
-              message: `ben@qa-runner:~$ ${typedCommand}`,
+              message: `armourbl@qa-runner:~$ ${typedCommand}`,
               tone: "muted",
             },
           ]);
@@ -441,7 +441,7 @@ export function RegressionTerminal() {
           ...lines,
           {
             id: `${cycleId}-${lineNumber.current}`,
-            message: `ben@qa-runner:~$ ${scenario.command}`,
+            message: `armourbl@qa-runner:~$ ${scenario.command}`,
             tone: "muted",
           },
         ]);
@@ -541,7 +541,7 @@ export function RegressionTerminal() {
 
           {/* Active prompt — renders at the bottom, scrolls naturally */}
           <p className="text-text-secondary">
-            <span className="text-text-muted">ben@qa-runner</span>
+            <span className="text-text-muted">armourbl@qa-runner</span>
             <span className="text-text-muted">:~$ </span>
             <span>{activeCommandText}</span>
             <span
