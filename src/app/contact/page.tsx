@@ -60,8 +60,8 @@ export default function ContactPage() {
           </p>
         </div>
         <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
-          Let&apos;s build{" "}
-          <span className="gradient-text-brand italic">verified.</span>
+          Let&apos;s Build
+          <span className="text-brand-primary">Verified</span>.
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-text-secondary">
           Reach out directly or use the form. Either way it lands in my inbox.
