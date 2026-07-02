@@ -48,33 +48,35 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="name" className={labelClasses}>
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          maxLength={200}
-          className={inputClasses}
-          placeholder="Your name"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className={labelClasses}>
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          maxLength={320}
-          className={inputClasses}
-          placeholder="you@email.com"
-        />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="name" className={labelClasses}>
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            maxLength={200}
+            className={inputClasses}
+            placeholder="Your name"
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className={labelClasses}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            maxLength={320}
+            className={inputClasses}
+            placeholder="you@email.com"
+          />
+        </div>
       </div>
       <div>
         <label htmlFor="message" className={labelClasses}>

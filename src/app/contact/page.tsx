@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/fade-in";
-import { SlideIn } from "@/components/slide-in";
 import { AmbientNebulas } from "@/components/home/ambient-nebulas";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/lib/site";
@@ -45,13 +44,13 @@ const railItems = [
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
+    <main className="mx-auto max-w-3xl px-6 py-16 text-center">
       <AmbientNebulas />
       <FadeIn>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
           Get in touch<span className="terminal-cursor">_</span>
         </p>
-        <div className="mt-4 flex items-center gap-2">
+        <div className="mt-4 flex items-center justify-center gap-2">
           <span
             aria-hidden="true"
             className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]"
@@ -61,85 +60,75 @@ export default function ContactPage() {
           </p>
         </div>
         <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
-          Let&apos;s build something{" "}
+          Let&apos;s build{" "}
           <span className="gradient-text-brand italic">verified.</span>
         </h1>
-        <p className="mt-4 max-w-xl text-text-secondary">
+        <p className="mx-auto mt-4 max-w-lg text-text-secondary">
           Reach out directly or use the form. Either way it lands in my inbox.
         </p>
       </FadeIn>
 
-      <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.2fr]">
-        {/* Contact rail */}
-        <SlideIn direction="left" delay={0.1} className="h-full">
-          <div className="flex h-full flex-col">
-            <ul className="flex flex-1 flex-col gap-3">
-              {railItems.map((item) => (
-                <li key={item.label} className="flex flex-1">
-                  <a
-                    href={item.href}
-                    {...(item.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="expertise-tile group flex w-full items-center gap-3.5 rounded-sm border border-border bg-bg-card px-4 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                      className="h-5 w-5 shrink-0 text-accent transition duration-300 group-hover:scale-105"
-                    >
-                      {item.icon}
-                    </svg>
-                    <div className="min-w-0">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted transition-colors duration-300 group-hover:text-text-secondary">
-                        {item.label}
-                      </p>
-                      <p className="mt-0.5 truncate text-sm text-text-primary transition-colors duration-300 group-hover:text-accent">
-                        {item.text}
-                      </p>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
+      {/* Contact chips */}
+      <FadeIn delay={0.1}>
+        <ul className="mt-9 grid gap-3 sm:grid-cols-3">
+          {railItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                aria-label={`${item.label}: ${item.text}`}
+                title={item.text}
+                className="expertise-tile group flex items-center justify-center gap-2.5 rounded-sm border border-border bg-bg-card px-3 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="h-[17px] w-[17px] shrink-0 text-accent transition duration-300 group-hover:scale-105"
+                >
+                  {item.icon}
+                </svg>
+                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300 group-hover:text-text-primary">
+                  {item.label}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </FadeIn>
 
-            {/* Location metadata */}
-            <div className="mt-8">
-              <div aria-hidden="true" className="h-px w-12 bg-outline-variant" />
-              <div className="mt-4 flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-text-secondary">
-                <p>Mason, OH</p>
-                <p>on-site · hybrid · remote</p>
-                <p>open to relocation, US or abroad</p>
-              </div>
-            </div>
+      {/* Form: terminal window */}
+      <FadeIn delay={0.15}>
+        <div className="portfolio-card mt-4 overflow-hidden rounded-sm border border-border bg-bg-card text-left">
+          <div
+            aria-hidden="true"
+            className="flex items-center gap-1.5 border-b border-border px-3 py-2"
+          >
+            <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
+            <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
+            <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+            <span className="ml-1.5 font-mono text-[10px] text-text-muted">
+              ben@buildverified:~/contact
+            </span>
           </div>
-        </SlideIn>
+          <div className="p-6 sm:p-8">
+            <ContactForm />
+          </div>
+        </div>
+      </FadeIn>
 
-        {/* Form panel */}
-        <SlideIn direction="right" delay={0.15}>
-          <div className="portfolio-card overflow-hidden rounded-sm border border-border bg-bg-card">
-            <div
-              aria-hidden="true"
-              className="flex items-center gap-1.5 border-b border-border px-3 py-2"
-            >
-              <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-              <span className="ml-1.5 font-mono text-[10px] text-text-muted">
-                ben@buildverified:~/contact
-              </span>
-            </div>
-            <div className="p-6 sm:p-8">
-              <ContactForm />
-            </div>
-          </div>
-        </SlideIn>
-      </div>
+      {/* Location */}
+      <FadeIn delay={0.2}>
+        <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">
+          Mason, OH · on-site / hybrid / remote · open to relocation
+        </p>
+      </FadeIn>
     </main>
   );
 }
