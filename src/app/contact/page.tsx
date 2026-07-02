@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
+import type { ComponentType, SVGProps } from "react";
 import { FadeIn } from "@/components/fade-in";
+import { SlideIn } from "@/components/slide-in";
 import { AmbientNebulas } from "@/components/home/ambient-nebulas";
 import { ContactForm } from "@/components/contact-form";
+import { CopyEmail } from "@/components/copy-email";
+import {
+  ArrowDownIcon,
+  ArrowUpRightIcon,
+  FileTextIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  MailIcon,
+  MapPinIcon,
+} from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -12,122 +24,167 @@ export const metadata: Metadata = {
   },
 };
 
-const railItems = [
+type ContactLink = {
+  label: string;
+  href: string;
+  text: string;
+  external: boolean;
+  // trailing affordance; rows without one get the ↗ arrow
+  action?: "copy" | "download";
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+};
+
+const resumeFile = "Ben-Armour-Resume.pdf";
+
+const contactLinks: ContactLink[] = [
   {
     label: "Email",
     href: `mailto:${site.email}`,
     text: site.email,
     external: false,
-    icon: (
-      <path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm0 2.4 8 5.1 8-5.1" />
-    ),
+    action: "copy",
+    icon: MailIcon,
   },
   {
     label: "GitHub",
     href: site.githubUrl,
     text: site.githubLabel,
     external: true,
-    icon: (
-      <path d="M12 3a9 9 0 0 0-2.85 17.54c.45.08.62-.2.62-.44v-1.68c-2.5.55-3.03-1.07-3.03-1.07-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.06 1.38.93 1.38.93.8 1.38 2.11.98 2.63.75.08-.58.31-.98.57-1.2-2-.23-4.1-1-4.1-4.45 0-.98.35-1.79.93-2.42-.1-.23-.4-1.15.08-2.4 0 0 .76-.24 2.48.92a8.6 8.6 0 0 1 4.51 0c1.72-1.16 2.47-.92 2.47-.92.49 1.25.18 2.17.09 2.4.58.63.93 1.44.93 2.42 0 3.47-2.11 4.22-4.12 4.44.32.28.61.83.61 1.67v2.48c0 .24.16.52.62.43A9 9 0 0 0 12 3Z" />
-    ),
+    icon: GitHubIcon,
   },
   {
     label: "LinkedIn",
     href: site.linkedinUrl,
     text: site.linkedinLabel,
     external: true,
-    icon: (
-      <path d="M6.5 8.8v9.7M6.5 5.5v.1m4.3 3.2v9.7m0-6.8c0-1.6 1.3-2.9 2.9-2.9s2.9 1.3 2.9 2.9v6.8" />
-    ),
+    icon: LinkedInIcon,
+  },
+  {
+    label: "Resume",
+    href: `/${resumeFile}`,
+    text: resumeFile,
+    external: true,
+    action: "download",
+    icon: FileTextIcon,
   },
 ];
 
+const [locality, region] = site.location.split(", ");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  url: `${site.url}/contact`,
+  mainEntity: {
+    "@type": "Person",
+    name: site.name,
+    jobTitle: site.role,
+    email: `mailto:${site.email}`,
+    url: site.url,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: locality,
+      addressRegion: region,
+      addressCountry: "US",
+    },
+    sameAs: [site.githubUrl, site.linkedinUrl],
+  },
+};
+
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 text-center">
+    <main className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <AmbientNebulas />
-      <FadeIn>
-        <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
-          Get in touch<span className="terminal-cursor">_</span>
-        </p>
-        <h1 className="font-display mt-4 text-4xl font-bold leading-tight sm:text-5xl">
-          Let&apos;s Build
-          <span className="text-brand-primary">Verified</span>
-        </h1>
-        <div className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-border bg-bg-card px-4 py-1.5">
-          <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]" />
-          </span>
-          <p className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.12em] text-text-secondary sm:text-[11px] sm:tracking-[0.15em]">
-            Open to QA <span className="text-accent">/</span> SDET{" "}
-            <span className="text-accent">/</span> Software Dev roles
+      <div className="grid gap-12 md:grid-cols-[1fr_1.35fr] lg:gap-16">
+        {/* Identity column */}
+        <SlideIn direction="left">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
+            Get in touch<span className="terminal-cursor">_</span>
           </p>
-        </div>
-        <p className="mx-auto mt-4 max-w-lg text-text-secondary">
-          Reach out directly or use the form. Either way it lands in my inbox.
-        </p>
-      </FadeIn>
-
-      {/* Contact chips */}
-      <FadeIn delay={0.1}>
-        <ul className="mt-9 grid gap-3 sm:grid-cols-3">
-          {railItems.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                aria-label={`${item.label}: ${item.text}`}
-                title={item.text}
-                className="expertise-tile group flex items-center justify-center gap-2.5 rounded-sm border border-border bg-bg-card px-3 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  className="h-[17px] w-[17px] shrink-0 text-accent transition duration-300 group-hover:scale-105"
-                >
-                  {item.icon}
-                </svg>
-                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300 group-hover:text-text-primary">
-                  {item.label}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </FadeIn>
-
-      {/* Form: terminal window */}
-      <FadeIn delay={0.15}>
-        <div className="portfolio-card mt-4 overflow-hidden rounded-sm border border-border bg-bg-card text-left">
-          <div
-            aria-hidden="true"
-            className="flex items-center gap-1.5 border-b border-border px-3 py-2"
-          >
-            <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-            <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-            <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-            <span className="ml-1.5 font-mono text-[10px] text-text-muted">
-              armourbl@buildverified:~/contact
+          <h1 className="font-display mt-4 text-4xl font-bold leading-[1.1] sm:text-[52px]">
+            Let&apos;s Build
+            <span className="text-brand-primary">Verified</span>
+          </h1>
+          <p className="mt-4 max-w-md text-[15px] leading-[1.65] text-text-secondary">
+            Looking for someone who owns{" "}
+            <em className="font-display italic text-text-primary">quality</em>{" "}
+            end-to-end? Reach out directly or use the form. Either way it lands
+            in my inbox.
+          </p>
+          <div className="mt-8 flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-60 motion-reduce:animate-none" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]" />
             </span>
+            <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-brand-secondary [text-shadow:0_0_12px_color-mix(in_srgb,var(--color-brand-secondary)_35%,transparent)]">
+              Available now
+            </p>
           </div>
-          <div className="p-6 sm:p-8">
-            <ContactForm />
-          </div>
-        </div>
-      </FadeIn>
+          <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.18em] text-text-secondary">
+            QA <span className="text-accent">/</span> SDET{" "}
+            <span className="text-accent">/</span> Software Dev
+          </p>
+          <ul className="mt-10">
+            {contactLinks.map((item, index) => (
+              <li key={item.label} className="group/row relative">
+                <a
+                  href={item.href}
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className={`flex items-center justify-between gap-3 border-t border-border px-0.5 py-5 transition-[padding,border-color] duration-300 group-hover/row:border-border-hover group-hover/row:pl-2.5 ${
+                    index === contactLinks.length - 1 ? "border-b" : ""
+                  }`}
+                >
+                  <item.icon className="h-[17px] w-[17px] shrink-0 text-accent transition duration-300 group-hover/row:scale-105" />
+                  <span className="text-sm font-medium text-text-primary">
+                    {item.label}
+                  </span>
+                  <span className="ml-auto min-w-0 truncate font-mono text-[11.5px] text-text-muted transition-colors duration-300 group-hover/row:text-accent">
+                    {item.text}
+                  </span>
+                  {item.action === "copy" ? (
+                    <span aria-hidden="true" className="w-[22px] shrink-0" />
+                  ) : item.action === "download" ? (
+                    <ArrowDownIcon className="h-3.5 w-3.5 shrink-0 text-text-muted transition-all duration-300 group-hover/row:translate-y-0.5 group-hover/row:text-accent" />
+                  ) : (
+                    <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-text-muted transition-all duration-300 group-hover/row:-translate-y-0.5 group-hover/row:translate-x-0.5 group-hover/row:text-accent" />
+                  )}
+                </a>
+                {item.action === "copy" && <CopyEmail value={item.text} />}
+              </li>
+            ))}
+          </ul>
+        </SlideIn>
+
+        {/* Form: terminal window */}
+        <SlideIn direction="right" delay={0.1} className="h-full">
+          <ContactForm />
+        </SlideIn>
+      </div>
 
       {/* Location */}
       <FadeIn delay={0.2}>
-        <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">
-          Mason, OH · on-site / hybrid / remote · open to relocation
+        <p className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
+          <MapPinIcon className="h-3 w-3 text-accent" />
+          <span className="text-text-secondary">{site.location}</span>
+          <span aria-hidden="true" className="text-accent">
+            ·
+          </span>
+          <span>
+            on-site <span className="text-accent">/</span> hybrid{" "}
+            <span className="text-accent">/</span> remote
+          </span>
+          <span aria-hidden="true" className="text-accent">
+            ·
+          </span>
+          <span>open to relocation, US or abroad</span>
         </p>
       </FadeIn>
     </main>
