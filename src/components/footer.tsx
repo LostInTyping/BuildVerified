@@ -1,66 +1,52 @@
-import Link from "next/link";
-import { navLinks } from "@/lib/nav-links";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import { site } from "@/lib/site";
+
+const socialLinks = [
+  { label: "Email", href: `mailto:${site.email}`, icon: MailIcon, external: false },
+  { label: "GitHub", href: site.githubUrl, icon: GitHubIcon, external: true },
+  { label: "LinkedIn", href: site.linkedinUrl, icon: LinkedInIcon, external: true },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-primary">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
-          <div>
-            <p className="text-base font-semibold text-text-primary">
-              {site.name}
-            </p>
-            <p className="mt-0.5 text-sm text-text-muted">
-              {site.role}
-            </p>
-            <p className="mt-0.5 text-sm text-text-muted">
-              {site.location}
-            </p>
-          </div>
-          <nav aria-label="Footer">
-            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="flex flex-col items-center gap-2 sm:items-end">
-            <div className="flex gap-6">
-              <a
-                href={site.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-              >
-                LinkedIn
-              </a>
-              <a
-                href={site.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-              >
-                GitHub
-              </a>
-              <a
-                href={`mailto:${site.email}`}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-              >
-                Email
-              </a>
-            </div>
-            <p className="text-sm text-text-muted">
-              &copy; {new Date().getFullYear()} {site.name}
-            </p>
-          </div>
+    <footer className="border-t border-border bg-bg-card">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 sm:justify-between">
+        <div className="flex items-center gap-2.5">
+          <p className="font-display text-[15px] font-bold leading-none text-text-primary">
+            Build<span className="text-brand-primary">Verified</span>
+          </p>
+          <span aria-hidden="true" className="text-accent">
+            ·
+          </span>
+          <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]" />
+          </span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand-secondary">
+            Available now
+          </p>
+        </div>
+        <div className="flex items-center gap-1">
+          {socialLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              aria-label={item.label}
+              title={item.label}
+              {...(item.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="p-2.5 text-text-muted transition-colors duration-200 hover:text-accent"
+            >
+              <item.icon className="h-[15px] w-[15px]" />
+            </a>
+          ))}
+          <span aria-hidden="true" className="pl-1 pr-2 text-accent">
+            ·
+          </span>
+          <p className="font-mono text-[10.5px] tracking-[0.14em] text-text-muted">
+            © {new Date().getFullYear()} {site.name}
+          </p>
         </div>
       </div>
     </footer>
