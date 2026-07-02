@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 import { scenarios, shuffleScenarios, type TerminalScenario, type LogTone } from "@/lib/terminal-scenarios";
+import { TerminalChrome } from "@/components/terminal-chrome";
 
 interface TerminalLogLine {
   id: string;
@@ -517,14 +518,10 @@ export function RegressionTerminal() {
   return (
     <div className="flex h-full min-w-0 flex-col">
       <div className="flex h-[320px] min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-bg-card font-mono text-[11px] sm:h-[360px] sm:text-xs lg:h-full">
-        <div className="flex items-center gap-1.5 border-b border-border px-2.5 py-1.5 sm:px-3 sm:py-2" aria-hidden="true">
-          <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-          <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-          <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-          <span className="ml-1.5 text-[10px] text-text-muted">
-            {activeLabel}
-          </span>
-        </div>
+        <TerminalChrome
+          title={activeLabel}
+          className="px-2.5 py-1.5 sm:px-3 sm:py-2"
+        />
         <div
           ref={outputRef}
           role="region"
