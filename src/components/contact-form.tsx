@@ -27,6 +27,7 @@ export function ContactForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: AbortSignal.timeout(15000),
       });
       const body = (await res.json().catch(() => null)) as {
         ok?: boolean;
@@ -40,19 +41,13 @@ export function ContactForm() {
         setStatus("error");
       }
     } catch {
-      setError("Network error. Please try again.");
+      setError("Network error. Please try again or email me directly.");
       setStatus("error");
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate={false}>
-      {/* Honeypot: hidden from humans, tempting to bots */}
-      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
-        <label htmlFor="website">Website</label>
-        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
-      </div>
-
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className={labelClasses}>
           Name
@@ -104,7 +99,7 @@ export function ContactForm() {
         {status === "sending" ? "Sending…" : "Send Message"}
       </button>
 
-      <div aria-live="polite">
+      <div aria-live="polite" aria-atomic="true">
         {status === "success" && (
           <p className="text-sm text-status-pass">
             ✓ Message sent! I&apos;ll get back to you soon.
@@ -119,6 +114,12 @@ export function ContactForm() {
             .
           </p>
         )}
+      </div>
+
+      {/* Honeypot: hidden from humans, tempting to bots */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="website">Website</label>
+        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
     </form>
   );
