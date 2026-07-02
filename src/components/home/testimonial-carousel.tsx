@@ -14,21 +14,21 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     name: "Josh Kremer",
-    title: "Business Administrator, School of IT — University of Cincinnati",
+    title: "Business Administrator, School of IT, University of Cincinnati",
     photo: "/testimonials/josh.jpg",
     quote:
       "Ben consistently produces superior quality work, on time, and within budgetary targets. He invariably understands exactly what a project is all about from the outset, and how to get it done quickly and effectively. He is an example of the type of employee every employer wants.",
   },
   {
     name: "Vineela Kunapareddi",
-    title: "IT Project & Product Manager",
+    title: "ITSC Project Manager",
     photo: "/testimonials/vineela.jpg",
     quote:
       "Ben's dedication to personal and professional growth is truly commendable. His ability to effectively communicate and engage within the QA and development teams has been instrumental in our project success. He seamlessly integrates diverse perspectives and goes above and beyond to use his skills to meet the organization's needs.",
   },
   {
     name: "Yahya Gilany",
-    title: "Engineering Manager",
+    title: "ITSC Technology Lead",
     photo: "/testimonials/yahya.jpg",
     quote:
       "His attention to detail and organizational skills significantly improved our product quality, impressing both myself and the team. His reports were always thorough, showcasing his deep understanding of quality assurance. I would rehire Ben in a heartbeat and encourage any team looking for top-notch QA talent to snap him up.",
@@ -63,7 +63,7 @@ export function TestimonialCarousel() {
 
   return (
     <div
-      className="flex h-full min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-bg-card p-4 sm:p-5"
+      className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-sm border border-border bg-bg-card p-4 sm:p-5"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -77,12 +77,14 @@ export function TestimonialCarousel() {
       aria-label="Testimonials"
       aria-live="polite"
     >
-      <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-        Testimonials
-      </h2>
-
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-4 top-2 select-none font-display text-8xl leading-none text-brand-primary/15"
+      >
+        &ldquo;
+      </span>
       {/* Identity: photo + name/title — grid overlap for slide-fade */}
-      <div className="mt-3 grid min-w-0">
+      <div className="grid min-w-0">
         {testimonials.map((testimonial, i) => {
           const isActive = i === active;
           return (
@@ -97,7 +99,7 @@ export function TestimonialCarousel() {
                 visibility: isActive ? "visible" : "hidden",
               }}
             >
-              <div className="relative h-13 w-13 shrink-0 overflow-hidden rounded-full border border-border">
+              <div className="relative h-13 w-13 shrink-0 overflow-hidden rounded-full border border-brand-primary/35 shadow-[0_0_12px_color-mix(in_srgb,var(--color-brand-primary)_18%,transparent)]">
                 <Image
                   src={testimonial.photo}
                   alt={testimonial.name}

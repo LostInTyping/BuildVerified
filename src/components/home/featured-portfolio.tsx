@@ -4,6 +4,7 @@ import {
   getFeaturedPortfolioItems,
 } from "@/lib/portfolio";
 import { FadeIn } from "@/components/fade-in";
+import { ArrowRightIcon } from "@/components/icons";
 
 export function FeaturedPortfolio() {
   const featuredItems = getFeaturedPortfolioItems();
@@ -15,20 +16,24 @@ export function FeaturedPortfolio() {
 
   return (
     <section>
-      <FadeIn>
-        <hr className="section-divider" />
-      </FadeIn>
-      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+      <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
         <FadeIn>
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
-              Portfolio
-            </h2>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+                Portfolio
+              </h2>
+              <p className="font-display mt-1 text-2xl italic text-text-primary sm:text-3xl">
+                Selected work,{" "}
+                <span className="text-brand-primary">verified in production.</span>
+              </p>
+            </div>
             <Link
               href="/portfolio"
-              className="text-sm text-accent transition-colors hover:text-accent-hover"
+              className="group inline-flex shrink-0 items-center gap-2 pb-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent transition-colors hover:text-accent-hover"
             >
-              View all →
+              view all
+              <ArrowRightIcon className="h-3 w-3 transition-transform duration-200 ease-out group-hover:translate-x-0.5" />
             </Link>
           </div>
         </FadeIn>
@@ -37,7 +42,7 @@ export function FeaturedPortfolio() {
             <FadeIn
               key={item.frontmatter.slug}
               delay={0.1 + index * 0.1}
-              className={index >= 2 ? "hidden h-full md:block" : "h-full"}
+              className="h-full"
               scale
             >
               <Link

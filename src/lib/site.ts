@@ -1,7 +1,11 @@
 export const site = {
   name: "Ben Armour",
   role: "Software QA Engineer",
-  email: "armourbl@mail.uc.edu",
+  url: "https://buildverified.com",
+  location: "Liberty Township, OH",
+  email: "Armourbl@buildverified.com",
   linkedinUrl: "https://linkedin.com/in/ben-armour",
   linkedinLabel: "linkedin.com/in/ben-armour",
+  githubUrl: "https://github.com/LostInTyping",
+  githubLabel: "github.com/LostInTyping",
 } as const;

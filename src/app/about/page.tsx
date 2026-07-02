@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -126,7 +127,9 @@ export default function AboutPage() {
                   </h1>
                 </div>
                 <div className="space-y-0.5">
-                  <p className="text-sm text-text-secondary">Mason, OH</p>
+                  <p className="text-sm text-text-secondary">
+                    {site.location}
+                  </p>
                   <p className="text-sm text-text-secondary">
                     Open to on-site, hybrid &amp; remote
                   </p>
@@ -142,13 +145,15 @@ export default function AboutPage() {
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  LinkedIn ↗
+                  LinkedIn
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
                 <a
                   href={`mailto:${site.email}`}
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  {site.email} ↗
+                  {site.email}
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
@@ -159,7 +164,7 @@ export default function AboutPage() {
                 Background
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                Hi, I&apos;m Ben, a Software QA Engineer with 3.5 years of
+                Hi, I&apos;m Ben, a Software QA Engineer with 4 years of
                 experience in test automation, risk-based test planning, and
                 full defect lifecycle ownership. I help teams ship with
                 confidence by aligning test strategy with release schedules

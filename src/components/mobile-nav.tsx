@@ -161,12 +161,15 @@ export function MobileNav() {
       >
         <svg
           className="h-5 w-5"
-          fill="currentColor"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
           viewBox="0 0 24 24"
         >
-          <circle cx="12" cy="4" r="2" />
-          <circle cx="12" cy="12" r="2" />
-          <circle cx="12" cy="20" r="2" />
+          <path
+            strokeLinecap="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+          />
         </svg>
       </button>
       {isMounted && createPortal(overlay, document.body)}

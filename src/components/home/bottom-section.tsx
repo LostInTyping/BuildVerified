@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
+import { ArrowUpRightIcon } from "@/components/icons";
 import { SlideIn } from "@/components/slide-in";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 import { site } from "@/lib/site";
@@ -7,11 +8,17 @@ import { site } from "@/lib/site";
 export function BottomSection() {
   return (
     <section>
-      <FadeIn>
-        <hr className="section-divider" />
-      </FadeIn>
-      <div className="mx-auto max-w-7xl px-6 py-6 md:py-8">
-        <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
+      <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
+        <FadeIn>
+          <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">
+            Testimonials
+          </h2>
+          <p className="font-display mt-1 text-2xl italic text-text-primary sm:text-3xl">
+            From teams I&apos;ve{" "}
+            <span className="text-brand-primary">shipped with.</span>
+          </p>
+        </FadeIn>
+        <div className="mt-4 grid gap-5 lg:grid-cols-[2fr_1fr]">
           {/* Testimonials */}
           <SlideIn direction="left" delay={0.1} className="h-full min-w-0">
             <TestimonialCarousel />
@@ -44,7 +51,8 @@ export function BottomSection() {
                   rel="noopener noreferrer"
                   className="ghost-btn ghost-btn-neutral"
                 >
-                  LinkedIn ↗
+                  LinkedIn
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>

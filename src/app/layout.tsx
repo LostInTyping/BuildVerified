@@ -3,6 +3,7 @@ import { Inter, Fira_Code, Space_Grotesk } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "I bring reliability to every release so teams can ship with confidence. Every build, verified.",
-  metadataBase: new URL("https://buildverified.com"),
+  metadataBase: new URL(site.url),
   openGraph: {
     type: "website",
     locale: "en_US",
