@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 type Status = "idle" | "sending" | "success" | "error";
 
 const inputClasses =
-  "mt-1.5 w-full rounded-sm border border-border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder-text-muted transition-colors focus:border-accent focus:outline-none";
+  "mt-1.5 w-full rounded-sm border border-border bg-bg-primary px-3.5 py-2.5 text-sm text-text-primary placeholder-text-muted transition-[border-color,box-shadow] duration-200 focus:border-accent focus:shadow-accent-sm focus:outline-none";
 
 const labelClasses =
   "block font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted";

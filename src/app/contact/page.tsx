@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/fade-in";
 import { SlideIn } from "@/components/slide-in";
+import { AmbientNebulas } from "@/components/home/ambient-nebulas";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/lib/site";
 
@@ -40,36 +41,28 @@ const railItems = [
       <path d="M6.5 8.8v9.7M6.5 5.5v.1m4.3 3.2v9.7m0-6.8c0-1.6 1.3-2.9 2.9-2.9s2.9 1.3 2.9 2.9v6.8" />
     ),
   },
-  {
-    label: "Location",
-    href: null,
-    text: "Mason, OH. Open to on-site, hybrid, and remote. Willing to relocate within the US or abroad.",
-    external: false,
-    icon: (
-      <path d="M12 21s-6.5-5.2-6.5-10a6.5 6.5 0 0 1 13 0c0 4.8-6.5 10-6.5 10Zm0-8.2a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" />
-    ),
-  },
 ];
 
 export default function ContactPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
+      <AmbientNebulas />
       <FadeIn>
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
           Get in touch<span className="terminal-cursor">_</span>
         </p>
-        <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-bg-card px-3 py-1">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-status-pass opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-status-pass" />
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-secondary">
+        <div className="mt-4 flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]"
+          />
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-secondary">
             Open to QA opportunities
-          </span>
+          </p>
         </div>
         <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
           Let&apos;s build something{" "}
-          <span className="gradient-text-brand">verified.</span>
+          <span className="gradient-text-brand italic">verified.</span>
         </h1>
         <p className="mt-4 max-w-xl text-text-secondary">
           Reach out directly or use the form. Either way it lands in my inbox.
@@ -79,48 +72,69 @@ export default function ContactPage() {
       <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.2fr]">
         {/* Contact rail */}
         <SlideIn direction="left" delay={0.1}>
-          <ul className="space-y-7">
+          <ul className="space-y-3">
             {railItems.map((item) => (
-              <li key={item.label} className="flex gap-3.5">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  className="mt-0.5 h-5 w-5 shrink-0 text-accent"
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="expertise-tile group flex items-center gap-3.5 rounded-sm border border-border bg-bg-card px-4 py-3.5 transition-all duration-300 hover:-translate-y-1 hover:border-border-hover"
                 >
-                  {item.icon}
-                </svg>
-                <div>
-                  <h2 className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
-                    {item.label}
-                  </h2>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      {...(item.external
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                      className="mt-1 block text-sm text-text-primary transition-colors hover:text-accent"
-                    >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="h-5 w-5 shrink-0 text-accent transition duration-300 group-hover:scale-105"
+                  >
+                    {item.icon}
+                  </svg>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted transition-colors duration-300 group-hover:text-text-secondary">
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 truncate text-sm text-text-primary transition-colors duration-300 group-hover:text-accent">
                       {item.text}
-                    </a>
-                  ) : (
-                    <p className="mt-1 text-sm text-text-secondary">{item.text}</p>
-                  )}
-                </div>
+                    </p>
+                  </div>
+                </a>
               </li>
             ))}
           </ul>
+
+          {/* Location metadata */}
+          <div className="mt-8">
+            <div aria-hidden="true" className="h-px w-12 bg-outline-variant" />
+            <div className="mt-4 flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-text-secondary">
+              <p>Mason, OH</p>
+              <p>on-site · hybrid · remote</p>
+              <p>open to relocation, US or abroad</p>
+            </div>
+          </div>
         </SlideIn>
 
         {/* Form panel */}
         <SlideIn direction="right" delay={0.15}>
-          <div className="portfolio-card rounded-sm border border-border bg-bg-card p-6 sm:p-8">
-            <ContactForm />
+          <div className="portfolio-card overflow-hidden rounded-sm border border-border bg-bg-card">
+            <div
+              aria-hidden="true"
+              className="flex items-center gap-1.5 border-b border-border px-3 py-2"
+            >
+              <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+              <span className="ml-1.5 font-mono text-[10px] text-text-muted">
+                ben@buildverified:~/contact
+              </span>
+            </div>
+            <div className="p-6 sm:p-8">
+              <ContactForm />
+            </div>
           </div>
         </SlideIn>
       </div>
