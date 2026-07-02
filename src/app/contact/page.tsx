@@ -30,7 +30,8 @@ type ContactLink = {
   text: string;
   external: boolean;
   // trailing affordance; rows without one get the ↗ arrow
-  action?: "copy" | "download";
+  // "file" opens in a new tab (no forced download; the browser PDF viewer handles saving)
+  action?: "copy" | "file";
   icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
@@ -64,7 +65,7 @@ const contactLinks: ContactLink[] = [
     href: `/${resumeFile}`,
     text: resumeFile,
     external: true,
-    action: "download",
+    action: "file",
     icon: FileTextIcon,
   },
 ];
@@ -151,7 +152,7 @@ export default function ContactPage() {
                   </span>
                   {item.action === "copy" ? (
                     <span aria-hidden="true" className="w-[22px] shrink-0" />
-                  ) : item.action === "download" ? (
+                  ) : item.action === "file" ? (
                     <ArrowDownIcon className="h-3.5 w-3.5 shrink-0 text-text-muted transition-all duration-300 group-hover/row:translate-y-0.5 group-hover/row:text-accent" />
                   ) : (
                     <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-text-muted transition-all duration-300 group-hover/row:-translate-y-0.5 group-hover/row:translate-x-0.5 group-hover/row:text-accent" />
