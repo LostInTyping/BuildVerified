@@ -16,30 +16,17 @@ export const metadata: Metadata = {
   },
 };
 
-const featuredSkillGroup = {
-  category: "AI-Assisted Development",
-  description:
-    "Coordinating multiple AI models in parallel to accelerate development and QA workflows. Using Claude Code, Codex, Gemini, and Kimi concurrently through custom skills, MCP servers, and hook automation - with multi-agent code review pipelines that compare findings across models. Designing agentic workflows that break tasks into independent work streams with human review at every checkpoint.",
-  pills: [
-    "Claude Code",
-    "Codex",
-    "Gemini",
-    "Kimi",
-    "Agent Deck",
-    "MCP Servers",
-    "Multi-Agent Orchestration",
-    "Prompt Engineering",
-    "Context Engineering",
-    "Agentic Workflows",
-    "Custom Skills & Hooks",
-    "Human-in-the-Loop Review",
-  ],
-};
-
 const skillGroups = [
-  { category: "Test Automation", pills: ["Cypress", "Jest", "Playwright"] },
+  {
+    category: "Test Automation",
+    description:
+      "Designed test automation architecture and built Cypress E2E suites with reusable commands and custom utilities across multi-app platforms. Integrated Jest for unit coverage and Playwright for cross-browser validation.",
+    pills: ["Cypress", "Jest", "Playwright"],
+  },
   {
     category: "Manual Testing & QA Process",
+    description:
+      "Test planning and execution from exploratory testing through regression and smoke cycles. Cross-browser and cross-device validation including a custom 1:1 production-parity test lab. Owned the full defect lifecycle from triage to verified fix.",
     pills: [
       "Test Planning",
       "Exploratory Testing",
@@ -51,25 +38,40 @@ const skillGroups = [
       "Test Documentation",
     ],
   },
-  { category: "API Testing", pills: ["Postman", "REST APIs"] },
+  {
+    category: "API Testing",
+    description:
+      "Validated REST API endpoints with Postman across full request/response cycles. Verified integrations between frontend, backend, and third-party services.",
+    pills: ["Postman", "REST APIs"],
+  },
   {
     category: "Languages",
+    description:
+      "Primary languages for test automation, application code, and database queries. TypeScript and JavaScript for test suites and app code, Python for scripting, SQL for data validation.",
     pills: ["JavaScript", "TypeScript", "Python", "SQL"],
   },
   {
     category: "Frameworks & Data",
+    description:
+      "Tested against React frontends and Node.js/Express backends with PostgreSQL and MongoDB data layers. Wrote queries to validate data integrity across service boundaries.",
     pills: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB"],
   },
   {
     category: "CI & Infrastructure",
+    description:
+      "Configured GitHub Actions pipelines for automated test runs on PRs. Managed test environments with Docker containers and Linux-based staging setups.",
     pills: ["GitHub Actions", "GitLab", "Git", "Docker", "Linux"],
   },
   {
     category: "Tools & Reporting",
+    description:
+      "Tracked defects and test cases through Jira and QMetry, documented processes in Confluence, and built Tableau dashboards for test reporting and coverage metrics.",
     pills: ["GitHub", "Jira", "QMetry", "Confluence", "Tableau"],
   },
   {
     category: "Agile & Collaboration",
+    description:
+      "Active in Scrum ceremonies - sprint planning, standups, retrospectives, and story grooming. Reviewed test automation code and worked with developers, PMs, and stakeholders on architecture decisions and branching workflows.",
     pills: [
       "Scrum",
       "Kanban",
@@ -77,6 +79,26 @@ const skillGroups = [
       "Code Review",
       "Cross-Functional Teams",
     ],
+  },
+  {
+    category: "AI-Assisted Development",
+    description:
+      "Coordinating multiple AI models in parallel to accelerate development and QA workflows. Using Claude Code, Codex, Gemini, and Kimi concurrently through custom skills, MCP servers, and hook automation - with multi-agent code review pipelines that compare findings across models. Designing agentic workflows that break tasks into independent work streams with human review at every checkpoint.",
+    pills: [
+      "Claude Code",
+      "Codex",
+      "Gemini",
+      "Kimi",
+      "Agent Deck",
+      "MCP Servers",
+      "Multi-Agent Orchestration",
+      "Prompt Engineering",
+      "Context Engineering",
+      "Agentic Workflows",
+      "Custom Skills & Hooks",
+      "Human-in-the-Loop Review",
+    ],
+    wide: true,
   },
 ];
 
@@ -224,35 +246,21 @@ export default function AboutPage() {
             The toolbox.
           </p>
         </FadeIn>
-        <FadeIn delay={0.1}>
-          <div className="mt-6 rounded-sm border border-accent/30 bg-bg-card bg-[linear-gradient(135deg,color-mix(in_srgb,var(--color-accent)_5%,transparent),transparent_55%)] p-6">
-            <h3 className="font-display text-[17px] font-bold text-accent">
-              {featuredSkillGroup.category}
-            </h3>
-            <p className="mt-2.5 text-sm leading-[1.65] text-text-secondary">
-              {featuredSkillGroup.description}
-            </p>
-            <div className="mt-3.5 flex flex-wrap gap-2">
-              {featuredSkillGroup.pills.map((pill) => (
-                <span key={pill} className={pillClasses}>
-                  {pill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           {skillGroups.map((group, index) => (
             <FadeIn
               key={group.category}
-              delay={0.15 + index * 0.05}
-              className="h-full"
+              delay={0.1 + Math.min(index, 5) * 0.05}
+              className={`h-full ${"wide" in group ? "sm:col-span-2" : ""}`}
             >
-              <div className="h-full rounded-sm border border-border bg-bg-card p-4">
-                <h4 className="font-mono text-[10.5px] font-bold uppercase tracking-[0.15em] text-text-primary">
-                  <span className="text-accent">/</span> {group.category}
-                </h4>
-                <div className="mt-3 flex flex-wrap gap-2">
+              <div className="h-full rounded-sm border border-border bg-bg-card p-6 transition-[border-color,box-shadow] duration-300 hover:border-border-hover hover:shadow-accent-sm">
+                <h3 className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-accent">
+                  <span aria-hidden="true">/</span> {group.category}
+                </h3>
+                <p className="mt-2.5 text-sm leading-[1.65] text-text-secondary">
+                  {group.description}
+                </p>
+                <div className="mt-3.5 flex flex-wrap gap-2">
                   {group.pills.map((pill) => (
                     <span key={pill} className={pillClasses}>
                       {pill}
