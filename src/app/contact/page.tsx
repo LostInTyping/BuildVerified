@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch for QA engineering opportunities.",
+  description: "Get in touch for QA, SDET, and software development opportunities.",
   openGraph: {
     url: "/contact",
   },
@@ -56,12 +56,12 @@ export default function ContactPage() {
             className="inline-block h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]"
           />
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-secondary">
-            Open to QA opportunities
+            Open to QA · SDET · Software Dev roles
           </p>
         </div>
         <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
           Let&apos;s Build
-          <span className="text-brand-primary">Verified</span>.
+          <span className="text-brand-primary">Verified</span>
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-text-secondary">
           Reach out directly or use the form. Either way it lands in my inbox.
