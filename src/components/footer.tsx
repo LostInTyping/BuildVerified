@@ -9,24 +9,12 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-card">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 sm:justify-between">
+    <footer className="border-t border-border bg-bg-card shadow-[inset_0_1px_0_0_var(--color-surface-highlight)]">
+      <div className="mx-auto grid max-w-7xl justify-items-center gap-y-2 px-6 py-3 sm:grid-cols-3 sm:py-2.5">
+        <p className="self-center font-display text-[15px] font-bold leading-none text-text-primary sm:justify-self-start">
+          Build<span className="text-brand-primary">Verified</span>
+        </p>
         <div className="flex items-center gap-2.5">
-          <p className="font-display text-[15px] font-bold leading-none text-text-primary">
-            Build<span className="text-brand-primary">Verified</span>
-          </p>
-          <span aria-hidden="true" className="text-accent">
-            ·
-          </span>
-          <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_color-mix(in_srgb,var(--color-brand-secondary)_70%,transparent)]" />
-          </span>
-          <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand-secondary">
-            Available now
-          </p>
-        </div>
-        <div className="flex items-center gap-1">
           {socialLinks.map((item) => (
             <a
               key={item.label}
@@ -36,18 +24,15 @@ export function Footer() {
               {...(item.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              className="p-2.5 text-text-muted transition-colors duration-200 hover:text-accent"
+              className="rounded-sm border border-transparent p-2 text-text-muted transition-all duration-200 hover:border-accent-hover/30 hover:bg-accent/5 hover:text-accent hover:shadow-accent-md"
             >
-              <item.icon className="h-[15px] w-[15px]" />
+              <item.icon className="h-[19px] w-[19px]" />
             </a>
           ))}
-          <span aria-hidden="true" className="pl-1 pr-2 text-accent">
-            ·
-          </span>
-          <p className="font-mono text-[10.5px] tracking-[0.14em] text-text-muted">
-            © {new Date().getFullYear()} {site.name}
-          </p>
         </div>
+        <p className="self-center font-mono text-[10.5px] tracking-[0.14em] text-text-muted sm:justify-self-end">
+          © {new Date().getFullYear()} {site.name}
+        </p>
       </div>
     </footer>
   );
