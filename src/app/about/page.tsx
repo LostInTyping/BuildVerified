@@ -174,7 +174,7 @@ export default function AboutPage() {
         <div className="relative isolate">
           <ChapterNum n="01" />
           <FadeIn>
-            <p className={eyebrowClasses}>Background_</p>
+            <h2 className={eyebrowClasses}>Background_</h2>
             <p className={payoffClasses}>
               Four years of{" "}
               <span className="font-medium text-accent">high-stakes QA.</span>
@@ -217,7 +217,7 @@ export default function AboutPage() {
           <div className="relative isolate mt-[52px]">
             <ChapterNum n="02" />
             <FadeIn>
-              <p className={eyebrowClasses}>Skills &amp; Tools_</p>
+              <h2 className={eyebrowClasses}>Skills &amp; Tools_</h2>
               <p className={payoffClasses}>
                 Ship proof,{" "}
                 <span className="font-medium text-accent">not promises.</span>
@@ -273,7 +273,7 @@ export default function AboutPage() {
           <div className="relative isolate mt-[52px]">
             <ChapterNum n="03" />
             <FadeIn>
-              <p className={eyebrowClasses}>Off the clock_</p>
+              <h2 className={eyebrowClasses}>Off the clock_</h2>
               <p className={payoffClasses}>
                 Built,{" "}
                 <span className="font-medium text-accent">not bought.</span>
