@@ -62,7 +62,7 @@ export function Hero() {
 
         {/* Photo + spinner composition */}
         <FadeIn delay={0.25} className="relative mt-3 sm:mt-4 md:mt-5">
-          <div className="spinner-group group/photo relative mx-auto aspect-square w-[340px] sm:w-[420px] md:w-[500px] lg:w-[560px]">
+          <div className="spinner-group group/photo relative mx-auto aspect-square w-[calc(100vw-3rem)] max-w-[340px] overflow-clip sm:w-[420px] sm:max-w-none md:w-[500px] lg:w-[560px]">
             {/* Conic backlight glow */}
             <div
               aria-hidden="true"
