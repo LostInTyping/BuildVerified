@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export function BottomSection() {
   return (
-    <section>
+    <section className="overflow-x-clip">
       <div className="mx-auto max-w-7xl px-6 py-4 md:py-6">
         <FadeIn>
           <h2 className="text-sm font-medium uppercase tracking-widest text-text-muted">

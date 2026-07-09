@@ -32,7 +32,7 @@ const proofItems = [
 
 export function TerminalSection() {
   return (
-    <section className="relative">
+    <section className="relative overflow-x-clip">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-[480px] -translate-y-1/2"

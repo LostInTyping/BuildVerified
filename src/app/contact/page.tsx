@@ -104,7 +104,7 @@ export default function ContactPage() {
       <AmbientNebulas />
       <div className="grid gap-12 md:grid-cols-[1fr_1.35fr] lg:gap-16">
         {/* Identity column */}
-        <SlideIn direction="left">
+        <SlideIn direction="left" className="min-w-0">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Get in touch<span className="terminal-cursor">_</span>
           </p>
@@ -165,7 +165,7 @@ export default function ContactPage() {
         </SlideIn>
 
         {/* Form: terminal window */}
-        <SlideIn direction="right" delay={0.1} className="h-full">
+        <SlideIn direction="right" delay={0.1} className="h-full min-w-0">
           <ContactForm />
         </SlideIn>
       </div>

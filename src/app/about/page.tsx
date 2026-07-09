@@ -115,7 +115,7 @@ export default function AboutPage() {
           <SlideIn direction="left" className="relative md:-mb-px">
             <div
               aria-hidden="true"
-              className="absolute -inset-7 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-accent)_14%,transparent),transparent_70%)] blur-3xl"
+              className="absolute inset-0 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-accent)_14%,transparent),transparent_70%)] blur-3xl sm:-inset-7"
             />
             <div
               aria-hidden="true"
